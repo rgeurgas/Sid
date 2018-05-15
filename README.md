@@ -8,7 +8,7 @@ Clone project and open it with Android Studio
 
 ### Prerequisites
 
-Java.
+Java
 
 ```
 # Java
