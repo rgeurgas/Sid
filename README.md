@@ -1,10 +1,10 @@
 # Troodle
 
-University project Universidade of São Paulo's Software Engineer (SSC0130) 2018 first semester class.
+University project Universidade of São Paulo's Software Engineer (SSC0130) 2018 first semester class
 
 ## Getting Started
 
-Clone project and open it with Android Studio.
+Clone project and open it with Android Studio
 
 ### Prerequisites
 
@@ -20,7 +20,7 @@ sudo apt-get install oracle-java8-set-default
 
 ### Installing
 
-How to install Android Studio.
+How to install Android Studio
 
 ```
 sudo apt-add-repository ppa:maarten-fonville/android-studio
@@ -30,7 +30,7 @@ sudo apt-get install android-studio
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Build the program using Android Studio
 
 ## Built With
 
@@ -38,11 +38,11 @@ Add additional notes about how to deploy this on a live system
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/rgeurgas/Troodle/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/rgeurgas/Troodle/tags)
 
 ## Authors
 
@@ -53,7 +53,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Victor Henrique Rodrigues** - *Initial work* - [victorhenrique97](https://github.com/victorhenrique97)
 * **Guilherme de Pinho Montemovo** - *Initial work* - [GuilhermeMontemovo](https://github.com/GuilhermeMontemovo)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project
 
 ## License
 
