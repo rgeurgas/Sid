@@ -53,7 +53,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 * **Victor Henrique Rodrigues** - *Initial work* - [victorhenrique97](https://github.com/victorhenrique97)
 * **Guilherme de Pinho Montemovo** - *Initial work* - [GuilhermeMontemovo](https://github.com/GuilhermeMontemovo)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project
+See also the list of [contributors](https://github.com/rgeurgas/Troodle/contributors) who participated in this project
 
 ## License
 
