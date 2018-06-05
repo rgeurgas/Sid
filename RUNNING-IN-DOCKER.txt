@@ -1,0 +1,8 @@
+TO RUNSERVER, USE:
+docker-compose up
+
+TO RUN COMMANDS ON DJANGO CONTAINER:
+docker-compose run web <command>
+
+IF NEW PIP PACKAGE IS ADDED, ADD IT TO requirements.txt AND RECREATE CONTAINERS WITH (sudo needed because django creates the project with root as owner, so the script runs a chown to change ownership to the user. Check start-script.sh for yourself if you don't trust it):
+sudo ./start-script.sh
