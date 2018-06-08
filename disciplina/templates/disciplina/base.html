@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DISCIPLINAS</title>
+</head>
+
+<body>
+    <div class="page-header">
+		<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+	</div>
+
+	{% for disciplina in object_list %}
+		<h2> {disciplina.nome} </h2>
+		<h1> {disciplina.codigo} </h1>
+	{% endfor %}
+
+	{% block content %}
+		<h1>Nova Disciplina</h1>
+		<form method="POST" class="post-form"> {% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit" class="save btn btn-default">SAVE</button>
+		</form>
+	{% endblock %}
+
+</body>
+
+</html>
