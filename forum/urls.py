@@ -6,6 +6,6 @@ from . import views
 
 urlpatterns = [
     re_path(r'^$', views.post_list, name='post_list'),
-    re_path(r'^(?P<pk>\d+)/$', views.post_detail, name='post_detail')
-    #url(r'^(?P<pk>\d+$)', DetailView.as_view(model=Post, template_name='forum/post.html'))
+    re_path(r'^(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
+    re_path(r'^new/$', views.post_new, name='post_new')
 ]
