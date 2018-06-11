@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+
+<head>
+	<title>Fórum</title>
+	<meta charset="utf-8">
+</head>
+
+<body>
+
+	<h3> {{post.title}} </h3>
+	<h6> {{post.date}} </h6>
+	{{post.text|safe}} <!-- safe interpreta o html certo-->
+	<hr>
+	{% for comment in post.comment.all %}
+		<h5> {{comment.user}} </h5>
+		<p> {{comment.text}} </p>
+	{% endfor %}
+</body>
