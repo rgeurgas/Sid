@@ -1,10 +1,11 @@
-from django.conf.urls import url, include
+from django.urls import re_path
 from django.views.generic import ListView, DetailView
 from forum.models import Post, Comment
 
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.forumListView.as_view(), name='post_list'),
-    url(r'^(?P<pk>\d+$)', DetailView.as_view(model=Post, template_name='forum/post.html'))
+    re_path(r'^$', views.post_list, name='post_list'),
+    re_path(r'^(?P<pk>\d+)/$', views.post_detail, name='post_detail')
+    #url(r'^(?P<pk>\d+$)', DetailView.as_view(model=Post, template_name='forum/post.html'))
 ]
