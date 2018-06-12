@@ -2,7 +2,7 @@
 
 {% block content %}
 <form method="post">{% csrf_token %}
-	<div id="formsnew" class="form-group formsnew">
+	<div id="formsnew" class="form-group">
 		<h2> Course </h2>
 		{% for field in form %}
 			<label>{{field.label_tag}}</label>
