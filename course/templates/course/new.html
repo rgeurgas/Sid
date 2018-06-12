@@ -1,9 +1,21 @@
 {% extends 'course/base.html' %}
 
 {% block content %}
-	<h1> New Course </h1>
-	<form method="POST" class="post-form"> {% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit" class="save btn btn-default">Save</button>
-	</form>
+<form method="post">{% csrf_token %}
+	<div class="form-group formsnew">
+		<h2> Course </h2>
+		{% for field in form %}
+			<label>{{field.label_tag}}</label>
+			{{field}}
+		{% endfor %}
+		
+		{% with url_name=request.resolver_match.url_name %}
+		{% if url_name == 'course_new' %}
+			<button class="btn right save btn-default" type="submit">Save</button>
+		{% elif url_name == 'course_edit' %}
+			<button class="btn right save btn-default" type="submit">Update</button>
+		{% endif %}
+	{% endwith %}
+	</div>
+</form>
 {% endblock %}

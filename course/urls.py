@@ -20,5 +20,7 @@ from . import views
 urlpatterns = [
 	re_path(r'^$', views.course_list, name='course_list'),
     re_path(r'^new/$', views.course_new, name='course_new'),
-    re_path(r'^(?P<pk>\d+)/$', views.course_details, name='course_details')
+    re_path(r'^(?P<pk>\d+)/$', views.course_details, name='course_details'),
+    re_path(r'^(?P<pk>\d+)/edit/$', views.course_edit, name='course_edit'),
+    re_path(r'^(?P<pk>\d+)/remove/$', views.course_remove, name='course_remove'),
 ]

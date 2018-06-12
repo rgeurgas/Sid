@@ -1,1 +1,24 @@
 {% extends 'course/base.html' %}
+
+
+{% block content %}
+<div class="row">
+	<div class="col s12 m3">
+		{% for course in object_list %}
+		<div class="card teal"> <a href="/course/{{course.id}}">
+			<div class="card-content white-text">
+				<span class="card-title">
+					 {{course.name}} 
+				</span>
+				<h6> {{course.code}} </h6>
+			</div>
+			<div class="card-action">
+				<a href="{{course.id}}/edit/">Edit</a>
+				<a href="{{course.id}}/remove/">Remove</a>
+			</div>
+		</a>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
