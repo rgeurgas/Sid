@@ -1,4 +1,4 @@
-# Troodle
+# Sid
 
 University project Universidade of São Paulo's Software Engineer (SSC0130) 2018 first semester class
 
@@ -16,7 +16,7 @@ sudo apt-get install python3.6
 # Django
 sudo pip install Django
 
-#Docker and docker-compose
+# Docker and docker-compose
 sudo apt-get install docker
 sudo apt-get install docker-compose
 ```
