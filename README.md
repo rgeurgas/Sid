@@ -4,37 +4,41 @@ University project Universidade of São Paulo's Software Engineer (SSC0130) 2018
 
 ## Getting Started
 
-Clone project and open it with Android Studio
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-Java
-
 ```
-# Java
-sudo add-apt-repository ppa:webupd8team/java
+# Python
 sudo apt-get update
-sudo apt-get install oracle-java8-installer
-sudo apt-get install oracle-java8-set-default
+sudo apt-get install python3.6
+
+# Django
+sudo pip install Django
+
+#Docker and docker-compose
+sudo apt-get install docker
+sudo apt-get install docker-compose
 ```
 
 ### Installing
 
-How to install Android Studio
-
+Clone github project
 ```
-sudo apt-add-repository ppa:maarten-fonville/android-studio
-sudo apt-get update
-sudo apt-get install android-studio
+git clone https://github.com/rgeurgas/Sid.git
 ```
 
 ## Deployment
 
-Build the program using Android Studio
+Run server
+```
+docker-compose up
+```
 
 ## Built With
 
-* [AndroidStudio](https://developer.android.com/docs/) - The IDE used
+* [Django](https://www.djangoproject.com/) - The web framework used
+* [Docker](https://www.docker.com/) - The container platform used
 
 ## Contributing
 
