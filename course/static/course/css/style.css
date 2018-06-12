@@ -2,10 +2,16 @@
 	padding-right: 8px;
 	padding-left: 8px;
 }
+
 #edit_btn {
 	padding-left: 8px;	
 }
+
 #std {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+#removebtn {
+	padding-left: 4px;
 }
