@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
 
 	class Meta:
 		model = Post
-		fields = ['user', 'title', 'text']
+		fields = ['user', 'title', 'text', 'tags']
 
 class CommentForm(forms.ModelForm):
 	user = forms.CharField(label='Usuário', max_length=50)

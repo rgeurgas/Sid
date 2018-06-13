@@ -1,11 +1,16 @@
 from django.db import models
 from django.utils import timezone
 
+class Tag(models.Model):
+	name = models.CharField(max_length=50)
+
 class Post(models.Model):
 	user = models.CharField(max_length=50)
 	title = models.CharField(max_length=100)
 	text = models.TextField()
-	date = models.DateTimeField('date published')
+	date = models.DateTimeField(auto_now_add=True, blank=True)
+	tags = models.ManyToManyField(Tag)
+	#document = models.FileField(upload_to='documents/', null=True) # lembrar de colocar nulo
 	#file = 
 	#tags =
 

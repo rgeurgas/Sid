@@ -1,5 +1,5 @@
 from django.contrib import admin
-from forum.models import Post, Comment
+from forum.models import Post, Comment, Tag
 
 class CommentInline(admin.StackedInline):
     model = Comment
@@ -13,4 +13,5 @@ class PostAdmin(admin.ModelAdmin):
     inlines = [CommentInline]
 
 admin.site.register(Post, PostAdmin)
+admin.site.register(Tag)
 #admin.site.register(Comment)
