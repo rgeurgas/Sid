@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.core.exceptions import ObjectDoesNotExist
 
 from course.forms import CourseForm, LinkForm, ListForm, SummaryForm
 from course.models import Course, Link, List, Summary
@@ -36,7 +35,6 @@ def course_edit(request, pk):
 		if form.is_valid():
 			course = course_form.save(commit=False)
 			course.save()
-			handle_uploaded_file(request.FILES['file'])
 			return redirect('course_details', pk=course.pk)
 		else:
 			form = CourseForm()
@@ -61,12 +59,24 @@ def link_add(request):
 	context = {'form' : form}
 	return render(request, 'course/new.html', context)
 
+def link_list(request):
+	links = Link.objects.all()
+	data = {}
+	data['object_list'] = links
+	return render(request, 'course/list.html', data)
+
+def link_detail(request, pk):
+	link = Link.objects.get(pk=pk)
+	context = {'link':link}
+	return render(request, 'course/detail.html', context)
+
 def list_add(request):
 	if request.method == "POST":
 		form = ListForm(request.POST, request.FILES)
 		if form.is_valid():
 			list_new = form.save(commit=False)
 			list_new.save()
+			list_new.tags.set(form.cleaned_data['tags'])
 
 			return redirect('course_list')
 	else:
@@ -75,14 +85,38 @@ def list_add(request):
 	
 	return render(request, 'course/new.html', context)
 
+def list_list(request):
+	lists = List.objects.all()
+	data = {}
+	data['object_list'] = lists
+	return render(request, 'course/list.html', data)
+
+def list_detail(request, pk):
+	list_c = List.objects.get(pk=pk)
+	context = {'list':list_c}
+	return render(request, 'course/detail.html', context)
+
 def summary_add(request):
 	if request.method == "POST":
-		form = SummaryForm(request.POST)
+		form = SummaryForm(request.POST, request.FILES)
 		if form.is_valid():
 			summary = form.save(commit=False)
 			summary.save()
+			summary.tags.set(form.cleaned_data['tags'])
+
 			return redirect('course_list')
 	else:
 		form = SummaryForm()
 	context = {'form' : form}
 	return render(request, 'course/new.html', context)
+
+def summary_list(request):
+	summaries = Summary.objects.all()
+	data = {}
+	data['object_list'] = summaries
+	return render(request, 'course/list.html', data)
+
+def summary_detail(request, pk):
+	summary = Summary.objects.get(pk=pk)
+	context = {'summary':summary}
+	return render(request, 'course/detail.html', context)

@@ -18,11 +18,20 @@ from django.urls import re_path
 from . import views
 
 urlpatterns = [
-	re_path(r'^$', views.course_list, name='course_list'),
+    re_path(r'^$', views.course_list, name='course_list'),
     re_path(r'^new/$', views.course_new, name='course_new'),
     re_path(r'^(?P<pk>\d+)/$', views.course_details, name='course_details'),
     re_path(r'^(?P<pk>\d+)/edit/$', views.course_edit, name='course_edit'),
+    
     re_path(r'^link_add/$', views.link_add, name='link_add'),
+    re_path(r'^links/$', views.link_list, name='link_list'),
+    re_path(r'^links/(?P<pk>\d+)', views.link_detail, name='link_detail'),
+    
     re_path(r'^list_add/$', views.list_add, name='list_add'),
+    re_path(r'^lists/$', views.list_list, name='list_list'),
+    re_path(r'^lists/(?P<pk>\d+)', views.list_detail, name='list_detail'),
+    
     re_path(r'^summary_add/$', views.summary_add, name='summary_add'),
+    re_path(r'^summaries/$', views.summary_list, name='summary_list'),
+	re_path(r'^summaries/(?P<pk>\d+)', views.summary_detail, name='summary_detail'),
 ]

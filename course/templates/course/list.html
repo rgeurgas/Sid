@@ -1,22 +1,78 @@
 {% extends 'course/base.html' %}
 
 {% block content %}
-<div class="row">
-	<div class="col s12 m3">
-		{% for course in object_list %}
-		<div class="card teal"> <a href="/course/{{course.id}}">
-			<div class="card-content white-text">
-				<span class="card-title">
-					 {{course.name}} 
-				</span>
-				<h6> {{course.code}} </h6>
-			</div>
-			<div class="card-action">
-				<a href="{{course.id}}/edit/">Edit</a>
-				<a id="removebtn" href="{{course.id}}/remove/">Remove</a>
-			</div>
-		</a>
-		</div>
+		{% for obj in object_list %}
+		<div class="row">
+			<div class="col s12 m3">
+			{% with url_name=request.resolver_match.url_name %}
+			{% if url_name == "course_list" %}
+				<div class="card teal"> <a href="/course/{{obj.id}}">
+					<div class="card-content white-text">
+						<span class="card-title"> {{obj.name}} </span>
+						<h6> {{obj.code}} </h6>
+					</div>
+				</div>
+				<div class="card-action">
+					<a href="{{obj.id}}/edit/">Edit</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+				</div>
+			{% elif url_name == "link_list" %}
+				<div class="card teal"> <a href="/course/links/{{obj.id}}">
+					<div class="card-content white-text">
+						<span class="card-title"> {{obj.name}} </span>
+						<h6> {{obj.link}} </h6>
+					</div>
+				</div>
+				<div class="card-action">
+					<a href="{{obj.id}}/edit/">Edit</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+				</div>
+			{% elif url_name == "list_list" %}
+				<div class="card teal"> <a href="/course/lists/{{obj.id}}">
+					<div class="card-content white-text">
+						<span class="card-title"> {{obj.name}} </span>
+						<h6> {{obj.file}} </h6>
+					</div>
+				</div>
+				<div class="card-action">
+					<a href="{{obj.id}}/edit/">Edit</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+				</div>
+			{% elif url_name == "summary_list" %}
+				<div class="card-action">
+
+					<a href="{{obj.id}}/edit/">Edit</a>
+
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+
+				</div>
+				<div class="card teal"> <a href="/course/summaries/{{obj.id}}">
+				<div class="card-action">
+
+					<a href="{{obj.id}}/edit/">Edit</a>
+
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+
+				</div>
+					<div class="card-content white-text">
+				<div class="card-action">
+
+					<a href="{{obj.id}}/edit/">Edit</a>
+
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+
+				</div>
+						<span class="card-title"> {{obj.name}} </span>
+						<h6> {{obj.file}} </h6>
+					</div>
+				</div>
+				<div class="card-action">
+					<a href="{{obj.id}}/edit/">Edit</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+				</div>
+		{% endif %}
+		{% endwith %}
+		</a> </div>
 		{% endfor %}
 	</div>
 </div>
