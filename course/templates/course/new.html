@@ -1,21 +1,39 @@
 {% extends 'course/base.html' %}
 
 {% block content %}
-<form method="post">{% csrf_token %}
+<form method="post" enctype="multipart/form-data"> {% csrf_token %}
 	<div id="formsnew" class="form-group">
-		<h2> Course </h2>
+	{% with url_name=request.resolver_match.url_name %}
+		{% if url_name == 'course_new' %}
+			<h2>New Course</h2>
+		{% elif url_name == 'list_add' %}
+			<h2>New List</h2>
+		{% elif url_name == 'link_add' %}
+			<h2>New Link</h2>
+		{% elif url_name == 'summary_add' %}
+			<h2>New Summary</h2>		
+		{% elif url_name == 'course_edit' %}
+			<h2>Edit Course</h2>
+			{% for field in form %}
+				<label>{{field.label_tag}}</label>
+				{{field}}
+			{% endfor %}
+			<button class="btn right save btn-default" type="submit">Update</button>
+			<a href="add_link/"><button class="btn left btn-default">Add Link</button></a>
+			<a href="add_list/"><button class="btn left btn-default">Add List</button></a>
+			<a href="add_summary/"><button class="btn left btn-default">Add Summary</button></a>
+
+		{% endif %}
+
 		{% for field in form %}
 			<label>{{field.label_tag}}</label>
 			{{field}}
 		{% endfor %}
-		
-		{% with url_name=request.resolver_match.url_name %}
-		{% if url_name == 'course_new' %}
-			<button class="btn right save btn-default" type="submit">Save</button>
-		{% elif url_name == 'course_edit' %}
-			<button class="btn right save btn-default" type="submit">Update</button>
-		{% endif %}
+		<button class="btn right save btn-default" type="submit">Save</button>
+
 	{% endwith %}
+
+		
 	</div>
 </form>
 {% endblock %}

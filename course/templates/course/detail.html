@@ -3,6 +3,28 @@
 {% block content %}
 	<div id="edit_btn">
 		<h4> {{course.name}} - {{course.code}} </h4>
+
+		{% if course.list.all %}
+		<h5>Lists</h5>
+		{% for list in course.list.all %}
+			<h6> {{list.name}} </h6>
+		{% endfor %}
+		{% endif %}
+
+		{% if course.summary.all %}
+		<h5>Summaries</h5>
+		{% for summary in course.summary.all %}
+			<h6> {{summary.name}} </h6>
+		{% endfor %}
+		{% endif %}
+
+		{% if course.link.all %}
+		<h5>Links</h5>
+		{% for link in course.link.all %}
+			<h6> {{link.name}} </h6>
+		{% endfor %}
+		{% endif %}
+
 		<a href="edit/"> <button type="edit" class="edit btn btn-default">Edit</button> </a>
 		<a href="remove/"> <button type="edit" class="edit btn btn-default">Remove</button> </a>
 	</div>
