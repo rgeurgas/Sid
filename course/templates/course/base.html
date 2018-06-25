@@ -5,15 +5,24 @@
 	<title>DISCIPLINAS</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 	<link href="{% static "course/css/style.css" %}" rel="stylesheet">
-	 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 	<nav>
 		<div class="nav-wrapper teal">
-			<a href="#" class="brand-logo">Logo</a>
+			<a href="#" class="brand-logo right">Logo</a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="{% url 'course_new' %}">Add Course</a></li>
+				</ul>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+					<li><a href="{% url 'link_add' %}">Add Link</a></li>
+				</ul>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+					<li><a href="{% url 'list_add' %}">Add List</a></li>
+				</ul>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+					<li><a href="{% url 'summary_add' %}">Add Summary</a></li>
 				</ul>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="{% url 'course_list' %}">Courses</a></li>

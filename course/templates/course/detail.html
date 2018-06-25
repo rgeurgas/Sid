@@ -2,7 +2,41 @@
 
 {% block content %}
 	<div id="edit_btn">
-		<h4> {{course.name}} - {{course.code}} </h4>
+		{% with url_name=request.resolver_match.url_name %}
+		{% if url_name == "course_details" %}
+			<h4> {{course.name}} - {{course.code}} </h4>
+		
+		{%  elif url_name == "link_detail"%}
+			<h4>Nome: {{link.name}}</h4>
+			<h5>Descrição: {{link.description}}</h5>
+			<a href="{{link.link}}"><h6> Link: {{link.link}} </h6></a>
+			<h6>{{link.teacher}}</h6>
+			{% if link.tags.name %}
+				<h6>{{link.tags.name}}</h6>
+			{% endif %}
+			<h6>{{link.course}}</h6>
+		
+		{%  elif url_name == "list_detail"%}
+			<h4>Nome: {{list.name}}</h4>
+			<a href="{{list.file}}"><h6> List: {{list.file}} </h6></a>
+			<h6>{{list.teacher}}</h6>
+			{% if list.tags.name %}
+				<h6>{{list.tags.name}}</h6>
+			{% endif %}
+			<h6>{{list.course}}</h6>
+
+		{%  elif url_name == "summary_detail"%}
+			<h4>Nome: {{summary.name}}</h4>
+			<a href="{{summary.file}}"><h6> Summary: {{summary.file}} </h6></a>
+			<h6>{{summary.teacher}}</h6>
+			{% if summary.tags.name %}
+				<h6>{{summary.tags.name}}</h6>
+			{% endif %}
+			<h6>{{summary.course}}</h6>
+
+		{% endif %}
+		{% endwith %}
+
 		<a href="edit/"> <button type="edit" class="edit btn btn-default">Edit</button> </a>
 		<a href="remove/"> <button type="edit" class="edit btn btn-default">Remove</button> </a>
 	</div>
