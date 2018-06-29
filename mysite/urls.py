@@ -20,4 +20,5 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^', include('course.urls'), name='course'),
     re_path(r'^auth/', include('registration.urls'), name='auth'),
+    re_path(r'^forum/', include('forum.urls'), name='forum'),
 ]

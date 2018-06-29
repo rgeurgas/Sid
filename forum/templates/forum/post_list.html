@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+<body>
+	<button align="center" type="button"><a href="/forum/new">Adicionar</a></button>
+	<hr>
+	{% for post in object_list %}
+		<h2><a href="/forum/{{post.id}}"> {{post.title}} </a> </h2> 
+		<h5> {{post.user}} </h5>
+		<h5> {{post.date|date:"Y-m-d"}} </h5>
+		<button type="button"><a href="/forum/{{post.id}}/remove">Excluir</a></button>
+		<button type="button"><a href="/forum/{{post.id}}/edit">Editar</a></button>
+		<hr>
+	{% endfor %}
+</body>
