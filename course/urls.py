@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.urls import re_path
 
-from . import views
+from course import views
 
 urlpatterns = [
     re_path(r'^$', views.course_list, name='course_list'),
-    re_path(r'^new/$', views.course_new, name='course_new'),
-    re_path(r'^(?P<pk>\d+)/$', views.course_details, name='course_details'),
-    re_path(r'^(?P<pk>\d+)/edit/$', views.course_edit, name='course_edit'),
+    re_path(r'^course/new/$', views.course_new, name='course_new'),
+    re_path(r'^course/(?P<pk>\d+)/$', views.course_details, name='course_details'),
+    re_path(r'^course/(?P<pk>\d+)/edit/$', views.course_edit, name='course_edit'),
     
     re_path(r'^link_add/$', views.link_add, name='link_add'),
     re_path(r'^links/$', views.link_list, name='link_list'),

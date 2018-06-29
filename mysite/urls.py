@@ -18,6 +18,6 @@ from django.urls import re_path, include
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^admin/', ),
-    re_path(r'^course/', include('course.urls'), name='course'),
+    re_path(r'^', include('course.urls'), name='course'),
+    re_path(r'^auth/', include('registration.urls'), name='auth'),
 ]
