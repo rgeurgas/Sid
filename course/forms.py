@@ -4,7 +4,7 @@ from course.models import Course, List, Summary, Link, Tag
 
 class CourseForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)
-	code = forms.CharField(max_length=8)
+	code = forms.CharField(max_length=7)
 	
 	class Meta:
 		model = Course

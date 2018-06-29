@@ -5,7 +5,21 @@
 		{% with url_name=request.resolver_match.url_name %}
 		{% if url_name == "course_details" %}
 			<h4> {{course.name}} - {{course.code}} </h4>
-		
+			
+			<h5>Links</h5>
+			{% for link in course.link_set.all %}
+				{{link}}
+			{% endfor %}
+
+			<h5>Lists</h5>
+			{% for list in course.list_set.all %}
+				{{list}}
+			{% endfor %}
+
+			<h5>Summaries</h5>
+			{% for summary in course.summary_set.all %}
+				{{summary}}
+			{% endfor %}
 		{%  elif url_name == "link_detail"%}
 			<h4>Nome: {{link.name}}</h4>
 			<h5>Descrição: {{link.description}}</h5>
@@ -37,7 +51,7 @@
 		{% endif %}
 		{% endwith %}
 
-		<a href="edit/"> <button type="edit" class="edit btn btn-default">Edit</button> </a>
-		<a href="remove/"> <button type="edit" class="edit btn btn-default">Remove</button> </a>
+		<a href="edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
+		<a href="remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 	</div>
 {% endblock %}

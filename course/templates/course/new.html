@@ -14,15 +14,9 @@
 			<h2>New Summary</h2>		
 		{% elif url_name == 'course_edit' %}
 			<h2>Edit Course</h2>
-			{% for field in form %}
-				<label>{{field.label_tag}}</label>
-				{{field}}
-			{% endfor %}
-			<button class="btn right save btn-default" type="submit">Update</button>
-			<a href="add_link/"><button class="btn left btn-default">Add Link</button></a>
-			<a href="add_list/"><button class="btn left btn-default">Add List</button></a>
-			<a href="add_summary/"><button class="btn left btn-default">Add Summary</button></a>
-
+			<a class="btn left" href="/link_add/">Add Link</a>
+			<a class="btn left" href="/list_add/">Add List</a>
+			<a class="btn left" href="/summary_add/">Add Summary</a>
 		{% endif %}
 
 		{% for field in form %}
@@ -30,7 +24,6 @@
 			{{field}}
 		{% endfor %}
 		<button class="btn right save btn-default" type="submit">Save</button>
-
 	{% endwith %}
 		
 	</div>
