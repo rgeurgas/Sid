@@ -20,7 +20,7 @@ class List(models.Model):
 	name = models.CharField(max_length=100, null=False)
 	teacher = models.CharField(max_length=100, null=True, blank=True)
 	file = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
-	tags = models.ManyToManyField(Tag, null=True, blank=True)
+	tags = models.ManyToManyField(Tag, blank=True)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, null=False)
 
 	def __str__(self):
@@ -30,7 +30,7 @@ class Summary(models.Model):
 	name = models.CharField(max_length=100, null=False)
 	teacher = models.CharField(max_length=100, null=True, blank=True)
 	file = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
-	tags = models.ManyToManyField(Tag, null=True, blank=True)
+	tags = models.ManyToManyField(Tag, blank=True)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE)
 	
 	def __str__(self):
@@ -41,7 +41,7 @@ class Link(models.Model):
 	description = models.TextField(null=True, blank=True)
 	link = models.URLField(null=False)
 	teacher = models.CharField(max_length=100, null=True, blank=True)
-	tags = models.ManyToManyField(Tag, null=True, blank=True)
+	tags = models.ManyToManyField(Tag, blank=True)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE)
 
 	def __str__(self):

@@ -39,17 +39,18 @@ def post_new(request):
 	return render(request, 'forum/post_new.html', {'form':form})
 
 def post_edit(request, pk=None):
-	if pk:
-		post = Post.objects.get(pk=pk)
+	post = Post.objects.get(pk=pk)
+	form = PostForm(instance=post)
 
-	if request.method == 'POST' and form.is_valid():
-		form = PostForm(request.POST or None, request.FILES, instance=post)
-		form.save()	
-		return redirect('/forum/', pk=post.pk)
-	else:
-		form = PostForm()
+	if request.method == 'POST':
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.save()
+			return redirect('/forum/', pk=post.pk)
+		else:
+			form = PostForm()
 
-	return render(request, 'forum/post_new.html', {'form':form})
+	return render(request, 'forum/post_new.html', {'form':form, 'post':post})
 
 
 def post_remove(request, pk):
