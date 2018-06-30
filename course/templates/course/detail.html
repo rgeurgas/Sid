@@ -7,18 +7,18 @@
 			<h4> {{course.name}} - {{course.code}} </h4>
 			
 			<h5>Links</h5>
-			{% for link in course.link_set.all %}
-				{{link}}
+			{% for link in course.link.all %}
+				<a href="/links/{{link.id}}"><h6>{{link}}</h6></a>
 			{% endfor %}
 
 			<h5>Lists</h5>
-			{% for list in course.list_set.all %}
-				{{list}}
+			{% for list in course.list.all %}
+				<a href="/lists/{{link.id}}"><h6>{{list}}</h6></a>
 			{% endfor %}
 
 			<h5>Summaries</h5>
 			{% for summary in course.summary_set.all %}
-				{{summary}}
+				<a href="/summary/{{link.id}}"><h6>{{summary}}</h6></a>
 			{% endfor %}
 		{%  elif url_name == "link_detail"%}
 			<h4>Nome: {{link.name}}</h4>
