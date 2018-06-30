@@ -92,18 +92,20 @@ def link_remove(request, pk):
 	link.delete()
 	return redirect('course_details', pk)
 
-def list_add(request):
+def list_add(request, pk):
+	course = Course.objects.get(pk=pk)
 	if request.method == "POST":
 		form = ListForm(request.POST, request.FILES)
 		if form.is_valid():
 			list_new = form.save(commit=False)
+			list_new.course = course
 			list_new.save()
 			list_new.tags.set(form.cleaned_data['tags'])
 
 			return redirect('course_list')
-		else:
-			form = ListForm()
-	context = {'form' : form}
+	else:
+		form = ListForm()
+	context = {'form' : form, 'course' : course}
 	
 	return render(request, 'course/new.html', context)
 
@@ -138,18 +140,20 @@ def list_remove(request, pk):
 	list_c.delete()
 	return redirect('course_details', pk)
 
-def summary_add(request):
+def summary_add(request, pk):
+	course = Course.objects.get(pk=pk)
 	if request.method == "POST":
 		form = SummaryForm(request.POST, request.FILES)
 		if form.is_valid():
 			summary = form.save(commit=False)
+			summary.course = course
 			summary.save()
 			summary.tags.set(form.cleaned_data['tags'])
 
 			return redirect('course_list')
-		else:
-			form = SummaryForm()
-	context = {'form' : form}
+	else:
+		form = SummaryForm()
+	context = {'form' : form, 'course' : course}
 	return render(request, 'course/new.html', context)
 
 def summary_list(request):
