@@ -4,21 +4,12 @@
 <form method="post" enctype="multipart/form-data"> {% csrf_token %}
 	<div id="formsnew" class="form-group">
 	{% with url_name=request.resolver_match.url_name %}
-		{% if url_name == 'course_new' %}
-			<h2>New Course</h2>
-		{% elif url_name == 'list_add' %}
-			<h2>New List</h2>
-		{% elif url_name == 'link_add' %}
-			<h2>New Link</h2>
-		{% elif url_name == 'summary_add' %}
-			<h2>New Summary</h2>		
-		{% elif url_name == 'course_edit' %}
-			<h2>Edit Course</h2>
+		{{url_name}}
+		{% if url_name == 'course_edit' %}
 			<a class="btn left" href="/link_add/">Add Link</a>
 			<a class="btn left" href="/list_add/">Add List</a>
 			<a class="btn left" href="/summary_add/">Add Summary</a>
 		{% endif %}
-
 		{% for field in form %}
 			<label>{{field.label_tag}}</label>
 			{{field}}
