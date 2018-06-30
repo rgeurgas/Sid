@@ -13,12 +13,12 @@
 
 			<h5>Lists</h5>
 			{% for list in course.list.all %}
-				<a href="/lists/{{link.id}}"><h6>{{list}}</h6></a>
+				<a href="/lists/{{list.id}}"><h6>{{list}}</h6></a>
 			{% endfor %}
 
 			<h5>Summaries</h5>
 			{% for summary in course.summary_set.all %}
-				<a href="/summary/{{link.id}}"><h6>{{summary}}</h6></a>
+				<a href="/summary/{{summary.id}}"><h6>{{summary}}</h6></a>
 			{% endfor %}
 			<a href="edit/"> <button class="btn right btn-default">Edit</button> </a>
 			<a href="remove/"> <button class="btn right btn-default">Remove</button> </a>

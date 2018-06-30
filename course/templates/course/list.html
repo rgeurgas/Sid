@@ -17,7 +17,7 @@
 					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 				</div>
 			{% elif url_name == "link_list" %}
-				<div class="card teal"> <a href="/course/links/{{obj.id}}">
+				<div class="card teal"> <a href="/links/{{obj.id}}">
 					<div class="card-content white-text">
 						<span class="card-title"> {{obj.name}} </span>
 						<h6> {{obj.link}} </h6>
@@ -25,10 +25,10 @@
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
 				</div>
 			{% elif url_name == "list_list" %}
-				<div class="card teal"> <a href="/course/lists/{{obj.id}}">
+				<div class="card teal"> <a href="/lists/{{obj.id}}">
 					<div class="card-content white-text">
 						<span class="card-title"> {{obj.name}} </span>
 						<h6> {{obj.file}} </h6>
@@ -36,44 +36,22 @@
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
 				</div>
 			{% elif url_name == "summary_list" %}
-				<div class="card-action">
-
-					<a href="{{obj.id}}/edit/">Edit</a>
-
-					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
-
-				</div>
-				<div class="card teal"> <a href="/course/summaries/{{obj.id}}">
-				<div class="card-action">
-
-					<a href="{{obj.id}}/edit/">Edit</a>
-
-					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
-
-				</div>
+				<div class="card teal"> <a href="/lists/{{obj.id}}">
 					<div class="card-content white-text">
-				<div class="card-action">
-
-					<a href="{{obj.id}}/edit/">Edit</a>
-
-					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
-
-				</div>
 						<span class="card-title"> {{obj.name}} </span>
 						<h6> {{obj.file}} </h6>
 					</div>
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
 				</div>
-		{% endif %}
-		{% endwith %}
-		</a> </div>
+			{% endif %}
+			{% endwith %}
+			</div>
 		{% endfor %}
-	</div>
-</div>
+		</div>
 {% endblock %}

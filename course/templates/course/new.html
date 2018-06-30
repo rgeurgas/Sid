@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post" enctype="multipart/form-data"> {% csrf_token %}
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
 	<div id="formsnew" class="form-group">
 	{% with url_name=request.resolver_match.url_name %}
-		{{url_name}}
 		{% if url_name == 'course_edit' %}
 			<a class="btn left" href="/link_add/">Add Link</a>
 			<a class="btn left" href="/list_add/">Add List</a>
@@ -16,7 +16,6 @@
 		{% endfor %}
 		<button class="btn right save btn-default" type="submit">Save</button>
 	{% endwith %}
-		
 	</div>
 </form>
 {% endblock %}

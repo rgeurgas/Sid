@@ -26,19 +26,19 @@ urlpatterns = [
     
     re_path(r'^link_add/$', views.link_add, name='link_add'),
     re_path(r'^links/$', views.link_list, name='link_list'),
-    re_path(r'^links/(?P<pk>\d+)', views.link_detail, name='link_detail'),
+    re_path(r'^links/(?P<pk>\d+)/$', views.link_detail, name='link_detail'),
     re_path(r'^links/(?P<pk>\d+)/edit/$', views.link_edit, name='link_edit'),
     re_path(r'^links/(?P<pk>\d+)/remove/$', views.link_remove, name='link_remove'),
     
     re_path(r'^list_add/$', views.list_add, name='list_add'),
     re_path(r'^lists/$', views.list_list, name='list_list'),
-    re_path(r'^lists/(?P<pk>\d+)', views.list_detail, name='list_detail'),
+    re_path(r'^lists/(?P<pk>\d+)/$', views.list_detail, name='list_detail'),
     re_path(r'^lists/(?P<pk>\d+)/edit/$', views.list_edit, name='list_edit'),
     re_path(r'^lists/(?P<pk>\d+)/remove/$', views.list_remove, name='list_remove'),
     
     re_path(r'^summary_add/$', views.summary_add, name='summary_add'),
     re_path(r'^summaries/$', views.summary_list, name='summary_list'),
-    re_path(r'^summaries/(?P<pk>\d+)', views.summary_detail, name='summary_detail'),
+    re_path(r'^summaries/(?P<pk>\d+)/$', views.summary_detail, name='summary_detail'),
 	re_path(r'^summaries/(?P<pk>\d+)/edit/$', views.summary_edit, name='summary_edit'),
     re_path(r'^summaries/(?P<pk>\d+)/remove/$', views.summary_remove, name='summary_remove'),
 ]

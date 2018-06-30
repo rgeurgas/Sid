@@ -21,8 +21,8 @@ def course_new(request):
 			course = form.save(commit=False)
 			course.save()	
 			return redirect('course_details', pk=course.pk)
-	else:
-		form = CourseForm()
+		else:
+			form = CourseForm()
 
 	context = {'form': form}
 	return render(request, 'course/new.html', context)
@@ -30,9 +30,10 @@ def course_new(request):
 def course_edit(request, pk):
 	course = Course.objects.get(pk=pk)
 	form = CourseForm(instance=course)
+	
 	if request.method == "POST":
 		if form.is_valid():
-			course = course_form.save(commit=False)
+			course = form.save(commit=False)
 			course.save()
 			return redirect('course_details', pk=course.pk)
 		else:
@@ -77,7 +78,7 @@ def link_edit(request, pk):
 		if form.is_valid():
 			link = form.save(commit=False)
 			link.save()
-			return redirect('link_detail', pk=pk)
+			return redirect('link_detail', pk=link.pk)
 		else:
 			form = LinkForm()
 	context = {'form': form, 'link': link}
@@ -87,7 +88,7 @@ def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
 	pk = link.course
 	link.delete()
-	return redirect('course_detail', pk)
+	return redirect('course_details', pk)
 
 def list_add(request):
 	if request.method == "POST":
@@ -98,8 +99,8 @@ def list_add(request):
 			list_new.tags.set(form.cleaned_data['tags'])
 
 			return redirect('course_list')
-	else:
-		form = ListForm()
+		else:
+			form = ListForm()
 	context = {'form' : form}
 	
 	return render(request, 'course/new.html', context)
@@ -123,9 +124,9 @@ def list_edit(request, pk):
 		if form.is_valid():
 			list_c = form.save(commit=False)
 			list_c.save()
-			return redirect('list_detail', pk=pk)
-	else:
-		form = LinkForm()
+			return redirect('list_detail', pk=list_c.pk)
+		else:
+			form = LinkForm()
 	context = {'form': form, 'list': list_c}
 	return render(request, 'course/new.html', context)
 
@@ -133,7 +134,7 @@ def list_remove(request, pk):
 	list_c = List.objects.get(pk=pk)
 	pk = list_c.course
 	list_c.delete()
-	return redirect('course_detail', pk)
+	return redirect('course_details', pk)
 
 def summary_add(request):
 	if request.method == "POST":
@@ -167,7 +168,7 @@ def summary_edit(request, pk):
 		if form.is_valid():
 			summary = form.save(commit=False)
 			summary.save()
-			return redirect('summary_detail', pk=pk)
+			return redirect('summary_detail', pk=summary.pk)
 		else:
 			form = LinkForm()
 	context = {'form': form, 'summary': summary}
@@ -177,4 +178,4 @@ def summary_remove(request, pk):
 	summary = Summary.objects.get(pk=pk)
 	pk = summary.course
 	summary.delete()
-	return redirect('course_detail', pk)
+	return redirect('course_details', pk)
