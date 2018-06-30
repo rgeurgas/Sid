@@ -20,6 +20,8 @@
 			{% for summary in course.summary_set.all %}
 				<a href="/summary/{{link.id}}"><h6>{{summary}}</h6></a>
 			{% endfor %}
+			<a href="course/{{course.id}}/edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
+			<a href="course/{{course.id}}/remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 		{%  elif url_name == "link_detail"%}
 			<h4>Nome: {{link.name}}</h4>
 			<h5>Descrição: {{link.description}}</h5>
@@ -29,7 +31,8 @@
 				<h6>{{link.tags.name}}</h6>
 			{% endif %}
 			<h6>{{link.course}}</h6>
-		
+			<a href="links/{{course.id}}/edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
+			<a href="links/{{course.id}}/remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 		{%  elif url_name == "list_detail"%}
 			<h4>Nome: {{list.name}}</h4>
 			<a href="{{list.file}}"><h6> List: {{list.file}} </h6></a>
@@ -38,7 +41,8 @@
 				<h6>{{list.tags.name}}</h6>
 			{% endif %}
 			<h6>{{list.course}}</h6>
-
+			<a href="lists/{{course.id}}/edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
+			<a href="lists/{{course.id}}/remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 		{%  elif url_name == "summary_detail"%}
 			<h4>Nome: {{summary.name}}</h4>
 			<a href="{{summary.file}}"><h6> Summary: {{summary.file}} </h6></a>
@@ -47,11 +51,10 @@
 				<h6>{{summary.tags.name}}</h6>
 			{% endif %}
 			<h6>{{summary.course}}</h6>
-
+			<a href="summaries/{{course.id}}/edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
+			<a href="summaries/{{course.id}}/remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 		{% endif %}
 		{% endwith %}
 
-		<a href="edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
-		<a href="remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 	</div>
 {% endblock %}
