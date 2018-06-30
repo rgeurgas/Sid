@@ -40,6 +40,11 @@
 					<li><a href="/auth/signup/">Signup</a></li>
 				</ul>
 
+				{% if user.is_authenticated %}
+					<ul id="nav-mobile" class="left hide-on-med-and-down">
+						<li>{{user.username}}</li>
+					</ul>
+				{% endif %}
 		</div>
 	</nav>
 	
