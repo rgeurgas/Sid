@@ -24,7 +24,7 @@ urlpatterns = [
     re_path(r'^course/(?P<pk>\d+)/edit/$', views.course_edit, name='course_edit'),
     re_path(r'^course/(?P<pk>\d+)/remove/$', views.course_remove, name='course_remove'),
     
-    re_path(r'^link_add/$', views.link_add, name='link_add'),
+    re_path(r'^link_add/(?P<pk>\d+)/$', views.link_add, name='link_add'),
     re_path(r'^links/$', views.link_list, name='link_list'),
     re_path(r'^links/(?P<pk>\d+)/$', views.link_detail, name='link_detail'),
     re_path(r'^links/(?P<pk>\d+)/edit/$', views.link_edit, name='link_edit'),

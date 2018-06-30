@@ -6,9 +6,9 @@
 	<div id="formsnew" class="form-group">
 	{% with url_name=request.resolver_match.url_name %}
 		{% if url_name == 'course_edit' %}
-			<a class="btn left" href="/link_add/">Add Link</a>
-			<a class="btn left" href="/list_add/">Add List</a>
-			<a class="btn left" href="/summary_add/">Add Summary</a>
+			<a class="btn left" href="/link_add/{{course.id}} ">Add Link</a>
+			<a class="btn left" href="/list_add/{{course.id}}">Add List</a>
+			<a class="btn left" href="/summary_add/{{course.id}}">Add Summary</a>
 		{% endif %}
 		{% for field in form %}
 			<label>{{field.label_tag}}</label>

@@ -38,8 +38,8 @@ class LinkForm(forms.ModelForm):
 	link = forms.URLField()
 	teacher = forms.CharField(max_length=100)
 	tags = forms.ModelMultipleChoiceField(Tag.objects.all())
-	course = forms.ModelChoiceField(Course.objects.all())
+	#course = forms.ModelChoiceField(Course.objects.all())
 
 	class Meta:
 		model = Link
-		fields = ['name', 'description', 'link', 'teacher', 'tags', 'course']
+		fields = ['name', 'description', 'link', 'teacher', 'tags']

@@ -47,16 +47,18 @@ def course_remove(request, pk):
 	course.delete()
 	return redirect('course_list')
 
-def link_add(request):
+def link_add(request, pk):
+	course = Course.objects.get(pk=pk)
 	if request.method == "POST":
 		form = LinkForm(request.POST)
 		if form.is_valid():
 			link = form.save(commit=False)
+			link.course = course
 			link.save()
 			return redirect('course_list')
 	else:
 		form = LinkForm()
-	context = {'form' : form}
+	context = {'form' : form, 'course' : course}
 	return render(request, 'course/new.html', context)
 
 def link_list(request):
