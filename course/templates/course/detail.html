@@ -20,8 +20,8 @@
 			{% for summary in course.summary_set.all %}
 				<a href="/summary/{{link.id}}"><h6>{{summary}}</h6></a>
 			{% endfor %}
-			<a href="course/{{course.id}}/edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
-			<a href="course/{{course.id}}/remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
+			<a href="edit/"> <button type="edit" class="btn right btn-default">Edit</button> </a>
+			<a href="remove/"> <button type="edit" class="btn right btn-default">Remove</button> </a>
 		{%  elif url_name == "link_detail"%}
 			<h4>Nome: {{link.name}}</h4>
 			<h5>Descrição: {{link.description}}</h5>

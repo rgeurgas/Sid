@@ -14,7 +14,7 @@
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 				</div>
 			{% elif url_name == "link_list" %}
 				<div class="card teal"> <a href="/course/links/{{obj.id}}">
@@ -25,7 +25,7 @@
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 				</div>
 			{% elif url_name == "list_list" %}
 				<div class="card teal"> <a href="/course/lists/{{obj.id}}">
@@ -36,14 +36,14 @@
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 				</div>
 			{% elif url_name == "summary_list" %}
 				<div class="card-action">
 
 					<a href="{{obj.id}}/edit/">Edit</a>
 
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 
 				</div>
 				<div class="card teal"> <a href="/course/summaries/{{obj.id}}">
@@ -51,7 +51,7 @@
 
 					<a href="{{obj.id}}/edit/">Edit</a>
 
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 
 				</div>
 					<div class="card-content white-text">
@@ -59,7 +59,7 @@
 
 					<a href="{{obj.id}}/edit/">Edit</a>
 
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 
 				</div>
 						<span class="card-title"> {{obj.name}} </span>
@@ -68,7 +68,7 @@
 				</div>
 				<div class="card-action">
 					<a href="{{obj.id}}/edit/">Edit</a>
-					<a id="removebtn" href="{{obj.id}}/remove/">Remove</a>
+					<a id="removebtn" href="course/{{obj.id}}/remove/">Remove</a>
 				</div>
 		{% endif %}
 		{% endwith %}
