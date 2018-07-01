@@ -14,7 +14,8 @@ def course_list(request):
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
 	context = {'course':course}
-	return render(request, 'course/detail.html', context)
+	return render(request, 'course/course_single.html', context)
+	# return render(request, 'course/detail.html', context)
 
 def course_new(request):
 	if request.method == "POST":

@@ -36,4 +36,4 @@ def edit_profile(request, pk):
 
 		return render(request, 'TEMPLATE', {'form':form, 'profile':profile})
 	#TODO colocar erro de permissao
-	return ALGUM ERRO AQUI
+	# return ALGUM ERRO AQUI
