@@ -18,7 +18,7 @@
 
 			<h5>Summaries</h5>
 			{% for summary in course.summary.all %}
-				<a href="/summary/{{summary.id}}"><h6>{{summary}}</h6></a>
+				<a href="/summaries/{{summary.id}}"><h6>{{summary}}</h6></a>
 			{% endfor %}
 			<a href="edit/"> <button class="btn right btn-default">Edit</button> </a>
 			<a href="remove/"> <button class="btn right btn-default">Remove</button> </a>
@@ -37,7 +37,7 @@
 		
 		{%  elif url_name == "list_detail"%}
 			<h4>Nome: {{list.name}}</h4>
-			<a href="/{{list.file}}"><h6> List: {{list.file}} </h6></a>
+			<a href="/media/{{list.file}}"><h6> List: {{list.file}} </h6></a>
 			<h6>{{list.teacher}}</h6>
 			{% if list.tags.name %}
 				<h6>{{list.tags.name}}</h6>
@@ -48,7 +48,7 @@
 		
 		{%  elif url_name == "summary_detail"%}
 			<h4>Nome: {{summary.name}}</h4>
-			<a href="{{summary.file}}"><h6> Summary: {{summary.file}} </h6></a>
+			<a href="/media/{{summary.file}}"><h6> Summary: {{summary.file}} </h6></a>
 			<h6>{{summary.teacher}}</h6>
 			{% if summary.tags.name %}
 				<h6>{{summary.tags.name}}</h6>

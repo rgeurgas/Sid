@@ -18,7 +18,7 @@ def post_detail(request, pk):
 		if form.is_valid():
 			new_comment = form.save(commit=False)
 			new_comment.post = post
-			new_comment.save()	
+			new_comment.save()
 			return redirect('post_detail', pk=post.pk)
 	else:
 		form = CommentForm()

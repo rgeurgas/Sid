@@ -33,14 +33,11 @@ def course_edit(request, pk):
 	course = Course.objects.get(pk=pk)
 	form = CourseForm(instance=course)
 	
-	if request.method == "POST":
-		if form.is_valid():
-			course = form.save(commit=False)
-			course.save()
-			return redirect('course_details', pk=course.pk)
-	else:
-		form = CourseForm()
-
+	if request.method == "POST" and form.is_valid():
+		course = form.save(commit=False)
+		course.save()
+		return redirect('course_details', pk=course.pk)
+	
 	context = {'form': form, 'course': course}
 	return render(request, 'course/new.html', context)
 
@@ -78,13 +75,11 @@ def link_edit(request, pk):
 	link = Link.objects.get(pk=pk)
 	form = LinkForm(instance=link)
 	
-	if request.method == "POST":
-		if form.is_valid():
-			link = form.save(commit=False)
-			link.save()
-			return redirect('link_detail', pk=link.pk)
-	else:
-		form = LinkForm()
+	if request.method == "POST" and form.is_valid():
+		link = form.save(commit=False)
+		link.save()
+		return redirect('link_detail', pk=link.pk)
+
 	context = {'form': form, 'link': link}
 	return render(request, 'course/new.html', context)
 
@@ -127,13 +122,11 @@ def list_edit(request, pk):
 	list_c = List.objects.get(pk=pk)
 	form = ListForm(instance=list_c)
 
-	if request.method == "POST":
-		if form.is_valid():
-			list_c = form.save(commit=False)
-			list_c.save()
-			return redirect('list_detail', pk=list_c.pk)
-	else:
-		form = LinkForm()
+	if request.method == "POST" and form.is_valid():
+		list_c = form.save(commit=False)
+		list_c.save()
+		return redirect('list_detail', pk=list_c.pk)
+
 	context = {'form': form, 'list': list_c}
 	return render(request, 'course/new.html', context)
 
@@ -174,13 +167,10 @@ def summary_detail(request, pk):
 def summary_edit(request, pk):
 	summary = Summary.objects.get(pk=pk)
 	form = SummaryForm(instance=summary)
-	if request.method == "POST":
-		if form.is_valid():
-			summary = form.save(commit=False)
-			summary.save()
-			return redirect('summary_detail', pk=summary.pk)
-	else:
-		form = LinkForm()
+	if request.method == "POST" and form.is_valid():
+		summary = form.save(commit=False)
+		summary.save()
+		return redirect('summary_detail', pk=summary.pk)
 	context = {'form': form, 'summary': summary}
 	return render(request, 'course/new.html', context)
 

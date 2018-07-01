@@ -12,7 +12,7 @@ class Teacher(models.Model):
 class Course(models.Model):
 	name = models.CharField(max_length=100, null=False)
 	code = models.CharField(max_length=7, null=False, unique=True)
-	teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False, related_name='course')
+	teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=True, related_name='course')
 
 	def __str__(self):
 		return "{}-{}".format(self.code, self.name)
