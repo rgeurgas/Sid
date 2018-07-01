@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from course.models import Tag
+from course.models import Tag, Course
 
 class Post(models.Model):
 	title = models.CharField(max_length=100)
@@ -11,6 +11,7 @@ class Post(models.Model):
 	tags = models.ManyToManyField(Tag)
 	document = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='post')
+	course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, related_name='post')
 
 	def __str__(self):
 		return self.title
@@ -23,4 +24,3 @@ class Comment(models.Model):
 
 	def __str__(self):
 		return self.text
-
