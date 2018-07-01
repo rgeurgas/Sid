@@ -184,9 +184,7 @@ def summary_remove(request, pk):
 	return redirect('course_details', pk)
 
 def download(request, path):
-	print(path)
 	file_path = os.path.join(settings.MEDIA_ROOT, path)
-	print('path: ' + file_path)
 	if os.path.exists(file_path):
 		with open(file_path, 'rb') as f:
 			response = HttpResponse(f.read(), content_type='application/force-download')
