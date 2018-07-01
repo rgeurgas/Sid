@@ -13,8 +13,40 @@ def course_list(request):
 
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
-	context = {'course':course}
-	return render(request, 'course/detail.html', context)
+
+	if 'add_list' in request.POST:
+		listForm = ListForm(request.POST, request.FILES)
+		if listForm.is_valid():
+			list_new = listForm.save(commit=False)
+			list_new.course = course
+			list_new.user = request.user
+			list_new.tags.set(form.cleaned_data['tags'])
+			list_new.save()
+	else:
+		listForm = ListForm()
+	
+	if 'add_link' in request.POST:
+		linkForm = LinkForm(request.POST)
+		if form.is_valid():
+			link = linkForm.save(commit=False)
+			link.course = course
+			link.user = request.user
+			link.save()
+	else:
+		linkForm = LinkForm()
+
+	if 'add_summary' in request.POST:
+		summaryForm = SummaryForm(request.POST, request.FILES)
+		if summaryForm.is_valid():
+			summary = summaryForm.save(commit=False)
+			summary.course = course
+			summary.user = request.user
+			summary.tags.set(summaryForm.cleaned_data['tags'])
+			summary.save()
+	else:
+		summaryForm = SummaryForm()
+
+	return render(request, 'course/course_single.html', context)
 
 def course_new(request):
 	if request.method == "POST":
@@ -46,21 +78,6 @@ def course_remove(request, pk):
 	course.delete()
 	return redirect('course_list')
 
-def link_add(request, pk):
-	course = Course.objects.get(pk=pk)
-	if request.method == "POST":
-		form = LinkForm(request.POST)
-		if form.is_valid():
-			link = form.save(commit=False)
-			link.course = course
-			link.user = request.user
-			link.save()
-			return redirect('course_list')
-	else:
-		form = LinkForm()
-	context = {'form' : form, 'course' : course}
-	return render(request, 'course/new.html', context)
-
 def link_list(request):
 	links = Link.objects.all()
 	data = {}
@@ -90,25 +107,6 @@ def link_remove(request, pk):
 	link.delete()
 	return redirect('course_details', pk)
 
-def list_add(request, pk):
-	course = Course.objects.get(pk=pk)
-	if request.method == "POST":
-		form = ListForm(request.POST, request.FILES)
-		if form.is_valid():
-			list_new = form.save(commit=False)
-			list_new.course = course
-			list_new.user = request.user
-			list_new.save()
-			list_new.tags.set(form.cleaned_data['tags'])
-
-			return redirect('course_list')
-	else:
-		form = ListForm()
-
-	context = {'form' : form, 'course' : course}
-	
-	return render(request, 'course/new.html', context)
-
 def list_list(request):
 	lists = List.objects.all()
 	data = {}
@@ -137,24 +135,6 @@ def list_remove(request, pk):
 	pk = list_c.course
 	list_c.delete()
 	return redirect('course_details', pk)
-
-def summary_add(request, pk):
-	course = Course.objects.get(pk=pk)
-	if request.method == "POST":
-		form = SummaryForm(request.POST, request.FILES)
-		if form.is_valid():
-			summary = form.save(commit=False)
-			summary.course = course
-			summary.user = request.user
-			summary.save()
-			summary.tags.set(form.cleaned_data['tags'])
-
-			return redirect('course_list')
-	else:
-		form = SummaryForm()
-
-	context = {'form' : form, 'course' : course}
-	return render(request, 'course/new.html', context)
 
 def summary_list(request):
 	summaries = Summary.objects.all()
