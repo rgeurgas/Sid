@@ -2,14 +2,6 @@ from django.contrib import admin
 
 from course.models import Course, Link, List, Summary, Tag, Teacher
 
-class TeacherInline(admin.StackedInline):
-	model = Teacher
-
-class TeacherAdmin(admin.ModelAdmin):
-	fieldset = [
-		(None, {'fields':['name']}),
-	]
-
 class TagInline(admin.StackedInline):
 	model = Tag
 
@@ -46,6 +38,9 @@ class SummaryAdmin(admin.ModelAdmin):
 		(None, {'fields':['file']}),
 	]
 
+class CourseInline(admin.StackedInline):
+	model = Course
+
 class CourseAdmin(admin.ModelAdmin):
 	fieldset = [
 		(None, {'fields':['name']}),
@@ -55,8 +50,16 @@ class CourseAdmin(admin.ModelAdmin):
 		LinkInline,
 		ListInline,
 		SummaryInline,
-		TeacherInline,
 	]
+
+class TeacherAdmin(admin.ModelAdmin):
+	fieldset = [
+		(None, {'fields':['name']}),
+	]
+	inlines = [
+		CourseInline,
+	]
+
 
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Tag, TagAdmin)
