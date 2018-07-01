@@ -17,7 +17,7 @@
 			{% endfor %}
 
 			<h5>Summaries</h5>
-			{% for summary in course.summary_set.all %}
+			{% for summary in course.summary.all %}
 				<a href="/summary/{{summary.id}}"><h6>{{summary}}</h6></a>
 			{% endfor %}
 			<a href="edit/"> <button class="btn right btn-default">Edit</button> </a>
