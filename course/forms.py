@@ -15,22 +15,22 @@ class ListForm(forms.ModelForm):
 	teacher = forms.CharField(max_length=100)
 	file = forms.FileField()
 	tags = forms.ModelMultipleChoiceField(Tag.objects.all())
-	course = forms.ModelChoiceField(Course.objects.all())
+	#course = forms.ModelChoiceField(Course.objects.all())
 	
 	class Meta:
 		model = List
-		fields = ['name', 'teacher', 'file', 'tags', 'course']
+		fields = ['name', 'teacher', 'file', 'tags']
 
 class SummaryForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)
 	teacher = forms.CharField(max_length=100)
 	file = forms.FileField()
 	tags = forms.ModelMultipleChoiceField(Tag.objects.all())
-	course = forms.ModelChoiceField(Course.objects.all())
+	#course = forms.ModelChoiceField(Course.objects.all())
 	
 	class Meta:
 		model = Summary
-		fields = ['name', 'teacher', 'file', 'tags', 'course']
+		fields = ['name', 'teacher', 'file', 'tags']
 
 class LinkForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)
@@ -38,8 +38,8 @@ class LinkForm(forms.ModelForm):
 	link = forms.URLField()
 	teacher = forms.CharField(max_length=100)
 	tags = forms.ModelMultipleChoiceField(Tag.objects.all())
-	course = forms.ModelChoiceField(Course.objects.all())
+	#course = forms.ModelChoiceField(Course.objects.all())
 
 	class Meta:
 		model = Link
-		fields = ['name', 'description', 'link', 'teacher', 'tags', 'course']
+		fields = ['name', 'description', 'link', 'teacher', 'tags']

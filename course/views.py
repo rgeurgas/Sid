@@ -49,16 +49,18 @@ def course_remove(request, pk):
 	course.delete()
 	return redirect('course_list')
 
-def link_add(request):
+def link_add(request, pk):
+	course = Course.objects.get(pk=pk)
 	if request.method == "POST":
 		form = LinkForm(request.POST)
 		if form.is_valid():
 			link = form.save(commit=False)
+			link.course = course
 			link.save()
 			return redirect('course_list')
 	else:
 		form = LinkForm()
-	context = {'form' : form}
+	context = {'form' : form, 'course' : course}
 	return render(request, 'course/new.html', context)
 
 def link_list(request):
@@ -92,18 +94,21 @@ def link_remove(request, pk):
 	link.delete()
 	return redirect('course_details', pk)
 
-def list_add(request):
+def list_add(request, pk):
+	course = Course.objects.get(pk=pk)
 	if request.method == "POST":
 		form = ListForm(request.POST, request.FILES)
 		if form.is_valid():
 			list_new = form.save(commit=False)
+			list_new.course = course
 			list_new.save()
 			list_new.tags.set(form.cleaned_data['tags'])
 
 			return redirect('course_list')
 	else:
 		form = ListForm()
-	context = {'form' : form}
+
+	context = {'form' : form, 'course' : course}
 	
 	return render(request, 'course/new.html', context)
 
@@ -138,18 +143,21 @@ def list_remove(request, pk):
 	list_c.delete()
 	return redirect('course_details', pk)
 
-def summary_add(request):
+def summary_add(request, pk):
+	course = Course.objects.get(pk=pk)
 	if request.method == "POST":
 		form = SummaryForm(request.POST, request.FILES)
 		if form.is_valid():
 			summary = form.save(commit=False)
+			summary.course = course
 			summary.save()
 			summary.tags.set(form.cleaned_data['tags'])
 
 			return redirect('course_list')
 	else:
 		form = SummaryForm()
-	context = {'form' : form}
+
+	context = {'form' : form, 'course' : course}
 	return render(request, 'course/new.html', context)
 
 def summary_list(request):
@@ -183,10 +191,11 @@ def summary_remove(request, pk):
 	return redirect('course_details', pk)
 
 def download(request, path):
+	print(path)
 	file_path = os.path.join(settings.MEDIA_ROOT, path)
 	print('path: ' + file_path)
 	if os.path.exists(file_path):
 		with open(file_path, 'rb') as f:
-			response = HttpResponse(f.read(), mimetype='application/force-download')
+			response = HttpResponse(f.read(), content_type='application/force-download')
 			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 			return response

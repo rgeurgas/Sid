@@ -23,5 +23,5 @@ urlpatterns = [
     re_path(r'^', include('course.urls'), name='course'),
     re_path(r'^auth/', include('registration.urls'), name='auth'),
     re_path(r'^forum/', include('forum.urls'), name='forum'),
-    re_path(r'^uploads/(?P<path>[0-9]{4}[0-9]{2}[0-9]{2})/', views.download, name='downloads'),
+    re_path(r'^media/(?P<path>uploads/[0-9]{4}/[0-9]{2}/[0-9]{2}/.{1,100})', views.download, name='downloads'),
 ]
