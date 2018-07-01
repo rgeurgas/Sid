@@ -1,6 +1,7 @@
 from django import forms
 
 from course.models import Course, List, Summary, Link, Tag
+from django.contrib.auth.models import User
 
 class CourseForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)
@@ -11,6 +12,7 @@ class CourseForm(forms.ModelForm):
 		fields = ['name', 'code']
 
 class ListForm(forms.ModelForm):
+
 	name = forms.CharField(max_length=100)
 	teacher = forms.CharField(max_length=100)
 	file = forms.FileField()
@@ -20,6 +22,7 @@ class ListForm(forms.ModelForm):
 	class Meta:
 		model = List
 		fields = ['name', 'teacher', 'file', 'tags']
+
 
 class SummaryForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)

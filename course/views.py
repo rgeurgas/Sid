@@ -54,6 +54,7 @@ def link_add(request, pk):
 		if form.is_valid():
 			link = form.save(commit=False)
 			link.course = course
+			link.user = request.user
 			link.save()
 			return redirect('course_list')
 	else:
@@ -99,6 +100,7 @@ def list_add(request, pk):
 		if form.is_valid():
 			list_new = form.save(commit=False)
 			list_new.course = course
+			list_new.user = request.user
 			list_new.save()
 			list_new.tags.set(form.cleaned_data['tags'])
 
@@ -147,6 +149,7 @@ def summary_add(request, pk):
 		if form.is_valid():
 			summary = form.save(commit=False)
 			summary.course = course
+			summary.user = request.user
 			summary.save()
 			summary.tags.set(form.cleaned_data['tags'])
 
