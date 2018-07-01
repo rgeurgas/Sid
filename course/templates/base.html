@@ -4,12 +4,40 @@
 <head>
 	<title>DISCIPLINAS</title>
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 	<link href="{% static "course/css/style.css" %}" rel="stylesheet">
+	<link href="{% static "course/css/estilo.css" %}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script type="text/javascript" src="scripts/init.js"></script>
 </head>
 
 <body>
 	<nav>
+		<div class="nav-wrapper red darken-1 row">
+     		<a href="#" class="brand-logo center">Sid</a>
+     		<ul id="nav-mobile" class="left hide-on-med-and-down">
+	   			<li><a href="index_logado2.html">Inicio</a></li>
+    	   		<li><a href="badges.html">Meu perfil</a></li>
+    	   		<li><a href="{% url 'course_list' %}">Disciplinas</a></li>
+    	   		{% if user.is_authenticated %}
+       			<li><a href="/auth/logout/">Sair</a></li>
+       			{% endif %}
+       			<!-- <li><a href="collapsible.html"><i class="material-icons">exit_to_app</i></a></li>  -->
+	     	</ul>
+	     	<form>
+        		<div class="input-field right" style="width: 30vw">
+          		<input id="search" type="search" placeholder="Buscar disciplinas" required>
+          		<label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          		<i class="material-icons">close</i>
+        		</div>
+      		</form>
+			</div>
+	   	</div>
+	</nav>
+
+	<!-- <nav>
 		<div class="nav-wrapper teal">
 			<a href="#" class="brand-logo right">Logo</a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -39,10 +67,26 @@
 					</ul>
 				{% endif %}
 		</div>
-	</nav>
+	</nav> -->
 	
 	{% block content %}
 	{% endblock %}
+
+	<footer class="page-footer red darken-1">
+	<div class="container">
+		<div class="row">
+			<div class="col l12 m12 s12">
+				<h5 class="white-text">Sid</h5>
+				<p class="grey-text text-lighten-4">Feito com  ♥ no ICMC-USP</p>
+			</div>
+		</div>
+	</div>
+	<div class="footer-copyright">
+		<div class="container">
+			Alguma outra info aqui
+		</div>
+	</div>
+</footer>
 
 </body>
 
