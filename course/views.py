@@ -1,5 +1,7 @@
+import os
 from django.shortcuts import render, redirect
-
+from django.http import HttpResponse
+from django.conf import settings
 from course.forms import CourseForm, LinkForm, ListForm, SummaryForm
 from course.models import Course, Link, List, Summary
 
@@ -16,13 +18,13 @@ def course_details(request, pk):
 
 def course_new(request):
 	if request.method == "POST":
-		form = CourseForm(request.POST)		
+		form = CourseForm(request.POST)
 		if form.is_valid():
 			course = form.save(commit=False)
 			course.save()	
 			return redirect('course_details', pk=course.pk)
-		else:
-			form = CourseForm()
+	else:
+		form = CourseForm()
 
 	context = {'form': form}
 	return render(request, 'course/new.html', context)
@@ -36,8 +38,8 @@ def course_edit(request, pk):
 			course = form.save(commit=False)
 			course.save()
 			return redirect('course_details', pk=course.pk)
-		else:
-			form = CourseForm()
+	else:
+		form = CourseForm()
 
 	context = {'form': form, 'course': course}
 	return render(request, 'course/new.html', context)
@@ -82,8 +84,8 @@ def link_edit(request, pk):
 			link = form.save(commit=False)
 			link.save()
 			return redirect('link_detail', pk=link.pk)
-		else:
-			form = LinkForm()
+	else:
+		form = LinkForm()
 	context = {'form': form, 'link': link}
 	return render(request, 'course/new.html', context)
 
@@ -107,6 +109,7 @@ def list_add(request, pk):
 			return redirect('course_list')
 	else:
 		form = ListForm()
+
 	context = {'form' : form, 'course' : course}
 	
 	return render(request, 'course/new.html', context)
@@ -131,8 +134,8 @@ def list_edit(request, pk):
 			list_c = form.save(commit=False)
 			list_c.save()
 			return redirect('list_detail', pk=list_c.pk)
-		else:
-			form = LinkForm()
+	else:
+		form = LinkForm()
 	context = {'form': form, 'list': list_c}
 	return render(request, 'course/new.html', context)
 
@@ -156,6 +159,7 @@ def summary_add(request, pk):
 			return redirect('course_list')
 	else:
 		form = SummaryForm()
+
 	context = {'form' : form, 'course' : course}
 	return render(request, 'course/new.html', context)
 
@@ -178,8 +182,8 @@ def summary_edit(request, pk):
 			summary = form.save(commit=False)
 			summary.save()
 			return redirect('summary_detail', pk=summary.pk)
-		else:
-			form = LinkForm()
+	else:
+		form = LinkForm()
 	context = {'form': form, 'summary': summary}
 	return render(request, 'course/new.html', context)
 
@@ -188,3 +192,13 @@ def summary_remove(request, pk):
 	pk = summary.course
 	summary.delete()
 	return redirect('course_details', pk)
+
+def download(request, path):
+	print(path)
+	file_path = os.path.join(settings.MEDIA_ROOT, path)
+	print('path: ' + file_path)
+	if os.path.exists(file_path):
+		with open(file_path, 'rb') as f:
+			response = HttpResponse(f.read(), content_type='application/force-download')
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+			return response
