@@ -4,10 +4,13 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from course.models import Course
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
 	university = models.CharField(max_length=50, null=True, blank=True)
+	courses = models.ManyToManyField(Course, blank=True)
 
 	def __str__(self):
 		return self.user.username

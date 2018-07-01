@@ -10,7 +10,7 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
-    <script type="text/javascript" src="scripts/init.js"></script>
+    <script type="text/javascript" src="{% static "course/scripts/init.js" %}"></script>
 </head>
 
 <body>
@@ -18,10 +18,10 @@
 		<div class="nav-wrapper red darken-1 row">
      		<a href="#" class="brand-logo center">Sid</a>
      		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	   			<li><a href="index_logado2.html">Inicio</a></li>
+	   			<li><a href="{% url 'home' %}">Inicio</a></li>
+	   			{% if user.is_authenticated %}
     	   		<li><a href="badges.html">Meu perfil</a></li>
     	   		<li><a href="{% url 'course_list' %}">Disciplinas</a></li>
-    	   		{% if user.is_authenticated %}
        			<li><a href="/auth/logout/">Sair</a></li>
        			{% endif %}
        			<!-- <li><a href="collapsible.html"><i class="material-icons">exit_to_app</i></a></li>  -->
@@ -37,7 +37,7 @@
 	   	</div>
 	</nav>
 
-	<!-- <nav>
+	<nav>
 		<div class="nav-wrapper teal">
 			<a href="#" class="brand-logo right">Logo</a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
@@ -67,7 +67,7 @@
 					</ul>
 				{% endif %}
 		</div>
-	</nav> -->
+	</nav>
 	
 	{% block content %}
 	{% endblock %}
