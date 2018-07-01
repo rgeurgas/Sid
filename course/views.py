@@ -46,6 +46,8 @@ def course_details(request, pk):
 	else:
 		summaryForm = SummaryForm()
 
+	context = {}
+	
 	return render(request, 'course/course_single.html', context)
 
 def course_new(request):

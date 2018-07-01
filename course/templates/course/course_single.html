@@ -24,7 +24,7 @@
 						<li class="collection-item avatar">
 							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
 							<span class="title"> {{list.name}}</span><br>
-							<p class="usuario-data">{{list.user.username}} • 01/01/2000</p> 
+							<p class="usuario-data">{{list.user.username}} • {{list.date|date:"d/m/Y"}}</p> 
 							<a href="/media/{{list.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
 
 						</li>
@@ -97,7 +97,7 @@
 					<li class="collection-item avatar">
 						<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
 						<span class="title">{{link.name}}</span><br>
-						<p class="usuario-data">{{link.user.username}} • 01/01/2000</p> 
+						<p class="usuario-data">{{link.user.username}} • {{link.date|date:"d/m/Y"}}</p> 
 						<a target="_blank" href="{{link.link}}" class="secondary-content"><i class="material-icons icone-rosa">open_in_new</i></a>
 					</li>
 					{% endfor %}
@@ -165,7 +165,7 @@
 						<li class="collection-item avatar">
 							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
 							<span class="title">{{summary.name}}</span><br>
-							<p class="usuario-data">{{summary.user.username}} • 01/01/2000</p> 
+							<p class="usuario-data">{{summary.user.username}} • {{summary.date|date:"d/m/Y"}}</p> 
 							<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
 						</li>
 						{% endfor %}
