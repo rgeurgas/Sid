@@ -1,0 +1,162 @@
+body{
+	background-color: #EEEEEE;
+	height: 100%;
+}
+
+.preto-branco{
+	filter: grayscale(50%);
+	opacity: 0.5;
+}
+
+.conquistas-bar{
+	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDDDDD;
+	padding: 2vh;
+}
+
+.conquistas-bar .conquista-img{
+	padding: 2vh;
+}
+
+.conquistas-bar img{
+	height: 4vw;
+	width: 4vw;
+}
+
+.cinza-claro{
+	color: #374955;
+}
+
+i.icone-amarelo{
+	color: #ffd933;
+}
+
+.topo{
+	margin-top: 8vh;
+	background-color: white;
+	padding: 2vh;
+	height: auto;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #DDDDDD;
+}
+
+.topo img{
+	height: 20vh;
+	width: 20vh;
+}
+
+.topo h6{
+	color: #666
+}
+
+i.icone-rosa{
+	color: #f62a66;
+}
+.conteudo{
+	margin: 4vh;
+	margin-top: 8vh;
+	/*height: 85vh;*/
+}
+
+.caixa-conteudo-full{
+	background-color: #FFFFFF;
+	height: 100vh;
+	border-radius: 5px;
+	padding: 2vh;
+	margin-right: 2vw;
+}
+
+.caixa-conteudo-half{
+	overflow: hidden;
+	background-color: #FFFFFF;
+	height: 48vh;
+	margin-bottom: 2vh;
+	/*border-radius: 5px;*/
+	/*padding: 2vh;*/
+	margin-left: 2vw;
+}
+
+.atividade{
+	min-height: 15vh;
+	/*background-color: black;*/
+	margin-bottom: 2vh;
+	padding: 2vh;
+}
+
+.atividade .foto{
+	border-radius: 15vh;
+	min-height: 15vh;
+	min-width: 15vh;
+	background-color: blue;
+}
+.conquista{
+	min-height: 10vh;
+	background-color: black;
+	margin-bottom: 2vh;
+}
+
+.comentario-icon i{
+	vertical-align: center;
+	display: inline-block;
+}
+
+.comentario-icon p{
+	font-size: 90%;
+	display: inline-block;
+}
+
+.collection-img{
+	top: 50%;
+	bottom: 50%;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.single_forum{
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	padding: 2vh;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 5%;
+	margin-bottom: auto;
+
+}
+
+.usuario-data{
+	margin: 0;
+	vertical-align: super;
+	margin-left: 0.5em;
+	font-size: 80%;
+	color: grey;
+	display: inline-block;
+}
+
+.single_forum .post h4{
+	margin:0;
+}
+
+.form-edit{
+	margin-top: 5%;
+}
+
+.single_forum .collection-img{
+	max-width:2em;
+    max-height:2em;
+	top: 50%;
+	bottom: 50%;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.subtittle {
+	padding-top: 7%;
+}
+
+.input-field input[type=search]:focus:not(.browser-default){
+	background-color: #EEEEEE;
+	border-bottom: 1px solid #9e9e9e;
+}

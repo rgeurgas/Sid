@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+
+<div class="container">
+
+		<!-- TO DO -->
+		<div class="row topo">
+			<div class="col m9">
+				<h3>{{course.name}}</h3>
+				<h6>{{course.code}}</h6>
+			</div>
+			<div class="col m3">
+				<img src="https://www.revistalounge.com.br/wp-content/uploads/Cl%C3%A1udio-Possani-CR%C3%89DITO-DANIEL-CANCINI-23.jpg" class="circle right">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col m4">
+				<h5 class="left-align">Listas</h5>
+				<hr>
+				<ul class="collection">
+					{% for list in course.list.all %}
+						<li class="collection-item avatar">
+							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+							<span class="title"> {{list.name}}</span><br>
+							<p class="usuario-data">{{list.user.username}} • 01/01/2000</p> 
+							<a href="/media/{{list.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
+
+						</li>
+					{% endfor %}
+				</ul>
+				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="#modal-list" class="right btn-flat modal-trigger">enviar</a>
+				<!-- Modal form lista  -->
+				<div id="modal-list" class="modal">
+				  	<form class=""> 
+				  		<div class="modal-content">
+				  			<h5>Enviar uma nova lista</h5>
+				  			<hr>
+				  			<div class="row form-edit">
+				  				<div class="col s12 offset-m1 m5">
+				  					<div class="input-field">
+				  						<input id="name-lista" type="text" class="validate">
+				  						<label for="name-lista">Título</label>
+				  					</div>
+				  					
+				  				</div>
+				  				<!-- <div class="col s12 m5">
+				  					<div class="input-field">
+				  						<input id="teacher" type="text" class="validate">
+				  						<label for="teacher">Professor</label>
+				  					</div>
+				  				</div> -->
+								<div class="input-field col s12 m5">
+									<select multiple>
+								    	<option value="" disabled selected class="">Escolha os professores</option>
+								    	<option value="1">Option 1</option>
+								    	<option value="2">Option 2</option>
+								    	<option value="3">Option 3</option>
+								  	</select>
+								</div>
+				  			</div>
+				  			<div class="row">
+				  				<div class="col s12 m10 offset-m1 input-field">
+				  					<!-- <div class="chips chips-placeholder"></div> -->
+				  					<input id="tags-lista" type="text" class="validate">
+				  					<label for="tags-lista">Tags (separadas por virgulas)</label>
+				  				</div>
+				  			</div>
+				  			<div class="row">
+								<div class="file-field input-field col s12 m10 offset-m1">
+								    <div class="btn">
+								        <span>Selecionar Arquivo</span>
+								        <input type="file">
+								    </div>
+								    <div class="file-path-wrapper">
+									    <input class="file-path validate" type="text">
+								    </div>
+								</div>				  				
+				  			</div>
+				  		</div>
+				  		<div class="modal-footer">
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+						    	<i class="material-icons right">send</i>
+							</button>
+				  		</div>
+				  	</form>
+				</div>       	
+			</div>
+
+			<div class="col m4">
+				<h5>Links</h5>
+				<hr>
+				<ul class="collection">
+					{% for link in course.link.all %}
+					<li class="collection-item avatar">
+						<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+						<span class="title">{{link.name}}</span><br>
+						<p class="usuario-data">{{link.user.username}} • 01/01/2000</p> 
+						<a target="_blank" href="{{link.link}}" class="secondary-content"><i class="material-icons icone-rosa">open_in_new</i></a>
+					</li>
+					{% endfor %}
+				</ul>
+				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
+
+				<div id="modal-link" class="modal">
+				  	<form class=""> 
+				  		<div class="modal-content">
+				  			<h5>Enviar um link</h5>
+				  			<hr>
+				  			<div class="row form-edit">
+				  				<div class="col s12 offset-m1 m5">
+				  					<div class="input-field">
+				  						<input id="name-link" type="text" class="validate">
+				  						<label for="name-link">Título</label>
+				  					</div>
+				  					
+				  				</div>
+				  				<!-- <div class="col s12 m5">
+				  					<div class="input-field">
+				  						<input id="teacher" type="text" class="validate">
+				  						<label for="teacher">Professor</label>
+				  					</div>
+				  				</div> -->
+								<div class="input-field col s12 m5">
+									<select multiple>
+								    	<option value="" disabled selected class="">Escolha os professores</option>
+								    	<option value="1">Option 1</option>
+								    	<option value="2">Option 2</option>
+								    	<option value="3">Option 3</option>
+								  	</select>
+								</div>
+				  			</div>
+				  			<div class="row">
+				  				<div class="col s12 m10 offset-m1 input-field">
+				  					<!-- <div class="chips chips-placeholder"></div> -->
+				  					<input id="tags-link" type="text" class="validate">
+				  					<label for="tags-link">Tags (separadas por virgulas)</label>
+				  				</div>
+				  			</div>
+				  			<div class="row">
+								<div class="input-field col s12 m10 offset-m1">
+				  					<input id="link" type="text" class="validate">
+				  					<label for="link">Link</label>
+				  				</div>				  				
+				  			</div>
+				  		</div>
+				  		<div class="modal-footer">
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+						    	<i class="material-icons right">send</i>
+							</button>
+				  		</div>
+				  	</form>
+				</div>
+			</div>
+
+
+			<div class="col m4">
+				<h5>Resumos</h5>
+				<hr>
+				<ul class="collection">
+					{% for summary in course.summary.all %}
+						<li class="collection-item avatar">
+							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+							<span class="title">{{summary.name}}</span><br>
+							<p class="usuario-data">{{summary.user.username}} • 01/01/2000</p> 
+							<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
+						</li>
+						{% endfor %}
+				</ul>
+				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
+
+				<div id="modal-summary" class="modal">
+				  	<form class=""> 
+				  		<div class="modal-content">
+				  			<h5>Enviar um resumo</h5>
+				  			<hr>
+				  			<div class="row form-edit">
+				  				<div class="col s12 offset-m1 m5">
+				  					<div class="input-field">
+				  						<input id="name-resumo" type="text" class="validate">
+				  						<label for="name-resumo">Título</label>
+				  					</div>
+				  					
+				  				</div>
+				  				<!-- <div class="col s12 m5">
+				  					<div class="input-field">
+				  						<input id="teacher" type="text" class="validate">
+				  						<label for="teacher">Professor</label>
+				  					</div>
+				  				</div> -->
+								<div class="input-field col s12 m5">
+									<select multiple>
+								    	<option value="" disabled selected class="">Escolha os professores</option>
+								    	<option value="1">Option 1</option>
+								    	<option value="2">Option 2</option>
+								    	<option value="3">Option 3</option>
+								  	</select>
+								</div>
+				  			</div>
+				  			<div class="row">
+				  				<div class="col s12 m10 offset-m1 input-field">
+				  					<!-- <div class="chips chips-placeholder"></div> -->
+				  					<input id="tags-resumo" type="text" class="validate">
+				  					<label for="tags-resumo">Tags (separadas por virgulas)</label>
+				  				</div>
+				  			</div>
+				  			<div class="row">
+				  				<div class="file-field input-field col s12 m10 offset-m1">
+								    <div class="btn">
+								        <span>Selecionar Arquivo</span>
+								        <input type="file">
+								    </div>
+								    <div class="file-path-wrapper">
+									    <input class="file-path validate" type="text">
+								    </div>
+								</div>	  				
+				  			</div>
+				  		</div>
+				  		<div class="modal-footer">
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+						    	<i class="material-icons right">send</i>
+							</button>
+				  		</div>
+				  	</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col m12">
+				<h5>Fórum</h5>
+				<hr>
+				<ul class="collection">
+					<a href="#!">
+						<li class="collection-item avatar">
+							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+							<span class="title">Title</span>
+							<p>O texto vem aqui</p>
+							<i class="material-icons icone-rosa secondary-content">arrow_forward</i>
+						</li>
+					</a>
+				</ul>
+				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="#modal-post" class="right btn-flat modal-trigger">Novo Post</a>
+
+				<div id="modal-post" class="modal">
+				  	<form class=""> 
+				  		<div class="modal-content">
+				  			<h5>Enviar um Post</h5>
+				  			<hr>
+				  			<div class="row form-edit">
+				  				<div class="col s12 offset-m1 m5">
+				  					<div class="input-field">
+				  						<input id="name-Post" type="text" class="validate">
+				  						<label for="name-Post">Título</label>
+				  					</div>				  					
+				  				</div>
+				  				<!-- <div class="col s12 m5">
+				  					<div class="input-field">
+				  						<input id="teacher" type="text" class="validate">
+				  						<label for="teacher">Professor</label>
+				  					</div>
+				  				</div> -->
+				  			</div>
+							<div class="row">
+							    <div class="col s12 m10 offset-m1 input-field">
+							          <textarea id="textarea1" class="materialize-textarea"></textarea>
+							          <label for="textarea1">Textarea</label>
+							    </div>
+							</div>
+				  		</div>
+				  		<div class="modal-footer">
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+						    	<i class="material-icons right">send</i>
+							</button>
+				  		</div>
+				  	</form>
+				</div>
+			</div>
+		</div>
+</div>
+
+{% endblock %}
+</body>
+</html>
