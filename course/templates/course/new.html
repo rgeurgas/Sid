@@ -2,6 +2,8 @@
 
 {% block content %}
 
+ARROOOZ
+
 <form method="post" enctype="multipart/form-data">{% csrf_token %}
 	<div id="formsnew" class="form-group">
 	{% with url_name=request.resolver_match.url_name %}
@@ -10,10 +12,13 @@
 			<a class="btn left" href="/list_add/{{course.id}}">Add List</a>
 			<a class="btn left" href="/summary_add/{{course.id}}">Add Summary</a>
 		{% endif %}
+		<div class="row">
 		{% for field in form %}
+		<div class="input-field"></div>		
 			<label>{{field.label_tag}}</label>
 			{{field}}
 		{% endfor %}
+		</div>
 		<button class="btn right save btn-default" type="submit">Save</button>
 	{% endwith %}
 	</div>

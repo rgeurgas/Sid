@@ -4,6 +4,34 @@ from django.http import HttpResponse
 from django.conf import settings
 from course.forms import CourseForm, LinkForm, ListForm, SummaryForm
 from course.models import Course, Link, List, Summary
+from registration.models import Profile
+
+
+def home(request):
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user=request.user)
+		
+		sub_courses = profile.courses.all()
+
+		activities = []
+		for course in sub_courses:
+			for l in course.link.all():
+				activities.append(l)
+			for l in course.list.all():
+				activities.append(l)
+			for s in course.summary.all():
+				activities.append(s)
+
+		activities.sort(key = lambda x: x.date, reverse=True)
+
+		context = {
+			'courses': sub_courses,
+			'activities': activities[:10]
+		}
+		
+		return render(request, 'course/home.html', context)
+
+	return render(request, 'course/home_logged_out.html')
 
 def course_list(request):
 	courses = Course.objects.all()
