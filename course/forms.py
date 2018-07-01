@@ -1,5 +1,6 @@
 from django import forms
 
+from django.contrib.auth.models import User
 from course.models import Course, List, Summary, Link, Tag, Teacher
 
 class TeacherForm(forms.ModelForm):
@@ -19,6 +20,7 @@ class CourseForm(forms.ModelForm):
 		fields = ['name', 'code','teacher']
 
 class ListForm(forms.ModelForm):
+
 	name = forms.CharField(max_length=100)
 	file = forms.FileField()
 	tags = forms.ModelMultipleChoiceField(Tag.objects.all())
@@ -26,6 +28,7 @@ class ListForm(forms.ModelForm):
 	class Meta:
 		model = List
 		fields = ['name', 'file', 'tags']
+
 
 class SummaryForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)
