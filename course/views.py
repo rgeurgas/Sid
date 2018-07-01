@@ -13,7 +13,7 @@ def course_list(request):
 
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
-	context = {'course':course}	
+	context = {'course':course}
 	return render(request, 'course/detail.html', context)
 
 def course_new(request):
@@ -21,7 +21,7 @@ def course_new(request):
 		form = CourseForm(request.POST)
 		if form.is_valid():
 			course = form.save(commit=False)
-			course.save()	
+			course.save()
 			return redirect('course_details', pk=course.pk)
 	else:
 		form = CourseForm()

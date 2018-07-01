@@ -30,6 +30,7 @@ class List(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, null=False, related_name='list')
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='list')
+	date = models.DateTimeField(auto_now_add=True, blank=True)
 
 	def __str__(self):
 		return "{} --> {}".format(self.name, self.file)
@@ -40,18 +41,18 @@ class Summary(models.Model):
 	tags = models.ManyToManyField(Tag, blank=True)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='summary')
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='summary')
-
+	date = models.DateTimeField(auto_now_add=True, blank=True)
 	
 	def __str__(self):
 		return "{} --> {}".format(self.name, self.file)
 
 class Link(models.Model):
 	name = models.CharField(max_length=100, null=False)
-	description = models.TextField(null=True, blank=True)
 	link = models.URLField(null=False)
 	tags = models.ManyToManyField(Tag, blank=True)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='link')
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='link')
+	date = models.DateTimeField(auto_now_add=True, blank=True)
 
 	def __str__(self):
 		return "{} --> {}".format(self.name, self.link)
