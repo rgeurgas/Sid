@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class PostForm(forms.ModelForm):
 	title = forms.CharField(label='Dúvida', max_length=100)
 	text = forms.CharField(label='Descrição', widget=forms.Textarea)
+	tags = forms.CharField(max_length=100)
 
 	class Meta:
 		model = Post

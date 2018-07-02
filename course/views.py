@@ -42,7 +42,6 @@ def course_list(request):
 
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
-	teachers = course.teachers.all()
 
 	if 'add_list' in request.POST:
 		listForm = ListForm(request.POST, request.FILES)
@@ -50,14 +49,14 @@ def course_details(request, pk):
 			list_new = listForm.save(commit=False)
 			list_new.course = course
 			list_new.user = request.user
-			list_new.tags.set(form.cleaned_data['tags'])
 			list_new.save()
 	else:
 		listForm = ListForm()
 	
 	if 'add_link' in request.POST:
 		linkForm = LinkForm(request.POST)
-		if form.is_valid():
+		print(linkForm)
+		if linkForm.is_valid():
 			link = linkForm.save(commit=False)
 			link.course = course
 			link.user = request.user
@@ -71,12 +70,11 @@ def course_details(request, pk):
 			summary = summaryForm.save(commit=False)
 			summary.course = course
 			summary.user = request.user
-			summary.tags.set(summaryForm.cleaned_data['tags'])
 			summary.save()
 	else:
 		summaryForm = SummaryForm()
 
-	context = {'course':course, 'teachers':teachers, 'listForm':listForm}
+	context = {'course':course, 'listForm':listForm, 'linkForm':linkForm, 'summaryForm':summaryForm}
 	
 	return render(request, 'course/course_single.html', context)
 

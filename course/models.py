@@ -1,11 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Tag(models.Model):
-	name = models.CharField(max_length=50)
 
-	def __str__(self):
-		return "{}".format(self.name)
+def user_directory_path(filename):
+    return 'uploads/%Y/%m/%d'
 
 class Teacher(models.Model):
 	name = models.CharField(max_length=100, null=False)
@@ -23,14 +21,11 @@ class Course(models.Model):
 
 from forum.models import Post
 
-def user_directory_path(filename):
-    return 'uploads/%Y/%m/%d'
-
 class List(models.Model):
 	name = models.CharField(max_length=100, null=False)
 	file = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True, blank=True)
-	tags = models.ManyToManyField(Tag, blank=True)
+	tags = models.CharField(max_length=100)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, null=False, related_name='list')
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='list')
 	teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False, related_name='list')
@@ -42,7 +37,7 @@ class Summary(models.Model):
 	name = models.CharField(max_length=100, null=False)
 	file = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True, blank=True)
-	tags = models.ManyToManyField(Tag, blank=True)
+	tags = models.CharField(max_length=100)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='summary')
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='summary')
 	teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False, related_name='summary')
@@ -54,7 +49,7 @@ class Link(models.Model):
 	name = models.CharField(max_length=100, null=False)
 	link = models.URLField(null=False)
 	date = models.DateTimeField(auto_now_add=True, blank=True)
-	tags = models.ManyToManyField(Tag, blank=True)
+	tags = models.CharField(max_length=100)
 	course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='link')
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='link')
 	teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE, null=False, related_name='link')

@@ -2,13 +2,13 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from course.models import Tag, Course
+from course.models import Course
 
 class Post(models.Model):
 	title = models.CharField(max_length=100)
 	text = models.TextField()
 	date = models.DateTimeField(auto_now_add=True, blank=True)
-	tags = models.ManyToManyField(Tag)
+	tags = models.CharField(max_length=100)
 	document = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='post')
 	course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, related_name='post')

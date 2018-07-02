@@ -32,7 +32,7 @@
 				<a href="#modal-list" class="right btn-flat modal-trigger">enviar</a>
 				<!-- Modal form lista  -->
 				<div id="modal-list" class="modal">
-				  	<form method="post">{% csrf_token %}
+				  	<form method="post" enctype="multipart/form-data">{% csrf_token %}
 				  		<div class="modal-content">
 				  			<h5>Enviar uma nova lista</h5>
 				  			<hr>
@@ -41,41 +41,22 @@
 				  					<div class="input-field">
 				  						{{listForm.name}}
 				  						<label for="name-lista">Título</label>
-				  					</div>
-				  					
+				  					</div>	
 				  				</div>
-				  				<!-- <div class="col s12 m5">
-				  					<div class="input-field">
-				  						<input id="teacher" type="text" class="validate">
-				  						<label for="teacher">Professor</label>
-				  					</div>
-				  				</div> -->
-								<div class="input-field col s12 m5">
-									<select>
-										{% for teacher in teachers %}
-										    <option value="{{teacher.id}}">{{teacher.name}}</option>
-								    	{% endfor %}
-								  	</select>
+								<div class="col s12 m5 input-field">
+									{{listForm.teacher}}
 								</div>
 				  			</div>
 				  			<div class="row">
 				  				<div class="col s12 m10 offset-m1 input-field">
-				  					<!-- <div class="chips chips-placeholder"></div> -->
-				  					<input id="tags-lista" type="text" class="validate">
+				  					{{listForm.tags}}
 				  					<label for="tags-lista">Tags (separadas por virgulas)</label>
 				  				</div>
 				  			</div>
 				  			<div class="row">
-								<div class="file-field input-field col s12 m10 offset-m1">
-								    <div class="btn">
-								        <span>Selecionar Arquivo</span>
-								        <input type="file">
-								    </div>
-								    <div class="file-path-wrapper">
-									    <!-- <input class="file-path validate" type="text"> -->
-									    {{listForm.file}}
-								    </div>
-								</div>				  				
+								<div class="input-field col s12 m10 offset-m1">
+									{{listForm.file}}
+								</div>
 				  			</div>
 				  		</div>
 				  		<div class="modal-footer">
@@ -111,41 +92,29 @@
 				  			<div class="row form-edit">
 				  				<div class="col s12 offset-m1 m5">
 				  					<div class="input-field">
-				  						<input id="name-link" type="text" class="validate">
+				  						{{linkForm.name}}
 				  						<label for="name-link">Título</label>
 				  					</div>
-				  					
 				  				</div>
-				  				<!-- <div class="col s12 m5">
-				  					<div class="input-field">
-				  						<input id="teacher" type="text" class="validate">
-				  						<label for="teacher">Professor</label>
-				  					</div>
-				  				</div> -->
-								<div class="input-field col s12 m5">
-									<select>
-										{% for teacher in teachers %}
-										    <option value="{{teacher.id}}">{{teacher.name}}</option>
-								    	{% endfor %}
-								  	</select>
+								<div class="col s12 m5 input-field">
+									{{linkForm.teacher}}
 								</div>
 				  			</div>
 				  			<div class="row">
 				  				<div class="col s12 m10 offset-m1 input-field">
-				  					<!-- <div class="chips chips-placeholder"></div> -->
-				  					<input id="tags-link" type="text" class="validate">
+				  					{{linkForm.tags}}
 				  					<label for="tags-link">Tags (separadas por virgulas)</label>
 				  				</div>
 				  			</div>
 				  			<div class="row">
 								<div class="input-field col s12 m10 offset-m1">
-				  					<input id="link" type="text" class="validate">
-				  					<label for="link">Link</label>
-				  				</div>				  				
+									{{linkForm.link}}
+									<label for="link">Link</label>
+								</div>
 				  			</div>
 				  		</div>
 				  		<div class="modal-footer">
-				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="add_link">Enviar
 						    	<i class="material-icons right">send</i>
 							</button>
 				  		</div>
@@ -171,53 +140,36 @@
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
 				<div id="modal-summary" class="modal">
-				  	<form method="post" class=""> {% csrf_token %}
+				  	<form method="post" class="" enctype="multipart/form-data"> {% csrf_token %}
 				  		<div class="modal-content">
 				  			<h5>Enviar um resumo</h5>
 				  			<hr>
 				  			<div class="row form-edit">
 				  				<div class="col s12 offset-m1 m5">
 				  					<div class="input-field">
-				  						<input id="name-resumo" type="text" class="validate">
+				  						{{summaryForm.name}}
 				  						<label for="name-resumo">Título</label>
 				  					</div>
 				  					
 				  				</div>
-				  				<!-- <div class="col s12 m5">
-				  					<div class="input-field">
-				  						<input id="teacher" type="text" class="validate">
-				  						<label for="teacher">Professor</label>
-				  					</div>
-				  				</div> -->
-								<div class="input-field col s12 m5">
-									<select>
-										{% for teacher in teachers %}
-										    <option value="{{teacher.id}}">{{teacher.name}}</option>
-								    	{% endfor %}
-								  	</select>
+				  				<div class="col s12 m5 input-field">
+									{{summaryForm.teacher}}
 								</div>
 				  			</div>
 				  			<div class="row">
 				  				<div class="col s12 m10 offset-m1 input-field">
-				  					<!-- <div class="chips chips-placeholder"></div> -->
-				  					<input id="tags-resumo" type="text" class="validate">
+				  					{{summaryForm.tags}}
 				  					<label for="tags-resumo">Tags (separadas por virgulas)</label>
 				  				</div>
 				  			</div>
 				  			<div class="row">
-				  				<div class="file-field input-field col s12 m10 offset-m1">
-								    <div class="btn">
-								        <span>Selecionar Arquivo</span>
-								        <input type="file">
-								    </div>
-								    <div class="file-path-wrapper">
-									    <input class="file-path validate" type="text">
-								    </div>
-								</div>	  				
+				  				<div class="input-field col s12 m10 offset-m1">
+				  					{{summaryForm.file}}
+								</div>
 				  			</div>
 				  		</div>
 				  		<div class="modal-footer">
-				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="add_summary">Enviar
 						    	<i class="material-icons right">send</i>
 							</button>
 				  		</div>
