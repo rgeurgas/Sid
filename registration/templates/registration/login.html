@@ -3,13 +3,50 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-	<div class="row">
+	<!-- <div class="row">
 		<form method="post">
 			{% csrf_token %}
 			{{form.username.label_tag}}
-			{{ form.username }}
+			
 			{{ form.password }}
 			<button type="submit">Login</button>
 		</form>
+	</div> -->
+	<div class="row">
+		
+    	<form class="col s10 offset-s1 m6 offset-m3 xl4 offset-xl4" method="post">
+    		{% csrf_token %}
+			<div class="topo">
+				<div class="row">
+					<h5 class="center-align">Bem vindo ao Sid :)</h5>
+				</div>
+      			<div class="row">
+        			<div class="input-field col s12">
+          				{{ form.username }}
+          				<label for="username">Nome de Usuário</label>	
+        			</div>
+        		</div>
+        		<div class="row">
+        			<div class="input-field col s12">
+        				{{form.password}}
+          				<label for="password">Senha</label>
+        			</div>
+        		</div>
+        		<div class="row">
+        			<div class="col s12">
+        				<button style="width:100%" class="btn-flat waves-effect waves-light" type="submit" name="action">
+        					Entrar
+  						</button>
+        			</div>
+        		</div>
+        		<div class="divider"></div>
+        		<div class="row">
+        			<div class="col s12">
+	        			<p class="center">Não possui conta? Cadastre-se <a href="{% url 'signup' %}">aqui</a></p>
+        		</div>	
+        		</div>
+      		</div>	
+    	</form>	
 	</div>
+
 {% endblock %}

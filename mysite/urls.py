@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import re_path, include
+from django.conf import settings
 
 from course import views
 
@@ -23,4 +24,5 @@ urlpatterns = [
     re_path(r'^', include('course.urls'), name='course'),
     re_path(r'^auth/', include('registration.urls'), name='auth'),
     re_path(r'^media/(?P<path>uploads/[0-9]{4}/[0-9]{2}/[0-9]{2}/.{1,100})', views.download, name='downloads'),
+    
 ]
