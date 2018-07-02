@@ -40,7 +40,7 @@
 				  				<div class="col s12 offset-m1 m5">
 				  					<div class="input-field">
 				  						{{listForm.name}}
-				  						<label for="name-lista">Título</label>
+				  						<label for="name-list">Título</label>
 				  					</div>	
 				  				</div>
 								<div class="col s12 m5 input-field">
@@ -50,7 +50,7 @@
 				  			<div class="row">
 				  				<div class="col s12 m10 offset-m1 input-field">
 				  					{{listForm.tags}}
-				  					<label for="tags-lista">Tags (separadas por virgulas)</label>
+				  					<label for="tags-list">Tags (separadas por virgulas)</label>
 				  				</div>
 				  			</div>
 				  			<div class="row">
@@ -134,7 +134,7 @@
 							<p class="usuario-data">{{summary.user.username}} • {{summary.date|date:"d/m/Y"}}</p> 
 							<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
 						</li>
-						{% endfor %}
+					{% endfor %}
 				</ul>
 				<a href="#" class="right btn-flat">ver mais</a>
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
@@ -148,7 +148,7 @@
 				  				<div class="col s12 offset-m1 m5">
 				  					<div class="input-field">
 				  						{{summaryForm.name}}
-				  						<label for="name-resumo">Título</label>
+				  						<label for="name-summary">Título</label>
 				  					</div>
 				  					
 				  				</div>
@@ -159,12 +159,22 @@
 				  			<div class="row">
 				  				<div class="col s12 m10 offset-m1 input-field">
 				  					{{summaryForm.tags}}
-				  					<label for="tags-resumo">Tags (separadas por virgulas)</label>
+				  					<label for="tags-summary">Tags (separadas por virgulas)</label>
 				  				</div>
 				  			</div>
 				  			<div class="row">
-				  				<div class="input-field col s12 m10 offset-m1">
-				  					{{summaryForm.file}}
+				  				<div class="input-field col s12 m10 offset-m1">					
+				  					<label for='id_file' class="card teal white-text waves-effect waves-light">
+								        <span>Selecionar Arquivo</span>
+									    <div style="display: none;">
+					  							{{summaryForm.file}}				  						
+									    </div>  
+				  					</label>
+				  					<div class="file-path-wrapper">
+									    <input class="file-path validate" type="text">
+								    </div>
+
+								    
 								</div>
 				  			</div>
 				  		</div>
@@ -184,45 +194,53 @@
 				<hr>
 				<ul class="collection">
 					<a href="#!">
+						{% for post in course.post.all %}
 						<li class="collection-item avatar">
 							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
-							<span class="title">Title</span>
-							<p>O texto vem aqui</p>
+							<span class="title">{{post.title}}</span>
+							<p>{{post.text}}</p>
 							<i class="material-icons icone-rosa secondary-content">arrow_forward</i>
+						{% endfor %}
 						</li>
 					</a>
 				</ul>
 				<a href="#" class="right btn-flat">ver mais</a>
 				<a href="#modal-post" class="right btn-flat modal-trigger">Novo Post</a>
-
-				<div id="modal-post" class="modal">
-				  	<form class=""> 
+				<div id="modal-post" class="modal" >
+				  	<form method="post" class="" enctype="multipart/form-data"> {% csrf_token %} 
 				  		<div class="modal-content">
 				  			<h5>Enviar um Post</h5>
 				  			<hr>
 				  			<div class="row form-edit">
 				  				<div class="col s12 offset-m1 m5">
 				  					<div class="input-field">
-				  						<input id="name-Post" type="text" class="validate">
-				  						<label for="name-Post">Título</label>
+				  						{{postForm.title}}
+				  						<label for="title-post">Título</label>
 				  					</div>				  					
 				  				</div>
-				  				<!-- <div class="col s12 m5">
-				  					<div class="input-field">
-				  						<input id="teacher" type="text" class="validate">
-				  						<label for="teacher">Professor</label>
-				  					</div>
-				  				</div> -->
 				  			</div>
+				  			<div class="row">
+				  				<div class="col s12 m10 offset-m1 input-field">
+				  					{{postForm.tags}}
+				  					<label for="tags-post">Tags (separadas por virgulas)</label>
+				  				</div>
+				  			</div>
+
 							<div class="row">
 							    <div class="col s12 m10 offset-m1 input-field">
-							          <textarea id="textarea1" class="materialize-textarea"></textarea>
-							          <label for="textarea1">Textarea</label>
+							          {{postForm.text}}
+							          <label for="content-post">Conteúdo</label>
 							    </div>
 							</div>
+							<div class="row">
+				  				<div class="input-field col s12 m10 offset-m1">
+				  					{{summaryForm.file}}
+								</div>
+				  			</div>
+
 				  		</div>
 				  		<div class="modal-footer">
-				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="add_post">Enviar
 						    	<i class="material-icons right">send</i>
 							</button>
 				  		</div>
