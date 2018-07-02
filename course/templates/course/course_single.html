@@ -34,14 +34,14 @@
 				<a href="#modal-list" class="right btn-flat modal-trigger">enviar</a>
 				<!-- Modal form lista  -->
 				<div id="modal-list" class="modal">
-				  	<form class=""> 
+				  	<form method="post">{% csrf_token %}
 				  		<div class="modal-content">
 				  			<h5>Enviar uma nova lista</h5>
 				  			<hr>
 				  			<div class="row form-edit">
 				  				<div class="col s12 offset-m1 m5">
 				  					<div class="input-field">
-				  						<input id="name-lista" type="text" class="validate">
+				  						{{listForm.name}}
 				  						<label for="name-lista">Título</label>
 				  					</div>
 				  					
@@ -53,11 +53,10 @@
 				  					</div>
 				  				</div> -->
 								<div class="input-field col s12 m5">
-									<select multiple>
-								    	<option value="" disabled selected class="">Escolha os professores</option>
-								    	<option value="1">Option 1</option>
-								    	<option value="2">Option 2</option>
-								    	<option value="3">Option 3</option>
+									<select>
+										{% for teacher in teachers %}
+										    <option value="{{teacher.id}}">{{teacher.name}}</option>
+								    	{% endfor %}
 								  	</select>
 								</div>
 				  			</div>
@@ -75,13 +74,14 @@
 								        <input type="file">
 								    </div>
 								    <div class="file-path-wrapper">
-									    <input class="file-path validate" type="text">
+									    <!-- <input class="file-path validate" type="text"> -->
+									    {{listForm.file}}
 								    </div>
 								</div>				  				
 				  			</div>
 				  		</div>
 				  		<div class="modal-footer">
-				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+				  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="add_list">Enviar
 						    	<i class="material-icons right">send</i>
 							</button>
 				  		</div>
@@ -106,7 +106,7 @@
 				<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
 
 				<div id="modal-link" class="modal">
-				  	<form class=""> 
+				  	<form method="post" class="">{% csrf_token %}
 				  		<div class="modal-content">
 				  			<h5>Enviar um link</h5>
 				  			<hr>
@@ -125,11 +125,10 @@
 				  					</div>
 				  				</div> -->
 								<div class="input-field col s12 m5">
-									<select multiple>
-								    	<option value="" disabled selected class="">Escolha os professores</option>
-								    	<option value="1">Option 1</option>
-								    	<option value="2">Option 2</option>
-								    	<option value="3">Option 3</option>
+									<select>
+										{% for teacher in teachers %}
+										    <option value="{{teacher.id}}">{{teacher.name}}</option>
+								    	{% endfor %}
 								  	</select>
 								</div>
 				  			</div>
@@ -174,7 +173,7 @@
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
 				<div id="modal-summary" class="modal">
-				  	<form class=""> 
+				  	<form method="post" class=""> {% csrf_token %}
 				  		<div class="modal-content">
 				  			<h5>Enviar um resumo</h5>
 				  			<hr>
@@ -193,11 +192,10 @@
 				  					</div>
 				  				</div> -->
 								<div class="input-field col s12 m5">
-									<select multiple>
-								    	<option value="" disabled selected class="">Escolha os professores</option>
-								    	<option value="1">Option 1</option>
-								    	<option value="2">Option 2</option>
-								    	<option value="3">Option 3</option>
+									<select>
+										{% for teacher in teachers %}
+										    <option value="{{teacher.id}}">{{teacher.name}}</option>
+								    	{% endfor %}
 								  	</select>
 								</div>
 				  			</div>

@@ -38,9 +38,6 @@ class SummaryAdmin(admin.ModelAdmin):
 		(None, {'fields':['file']}),
 	]
 
-class CourseInline(admin.StackedInline):
-	model = Course
-
 class CourseAdmin(admin.ModelAdmin):
 	fieldset = [
 		(None, {'fields':['name']}),
@@ -55,9 +52,6 @@ class CourseAdmin(admin.ModelAdmin):
 class TeacherAdmin(admin.ModelAdmin):
 	fieldset = [
 		(None, {'fields':['name']}),
-	]
-	inlines = [
-		CourseInline,
 	]
 
 

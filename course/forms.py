@@ -13,7 +13,7 @@ class TeacherForm(forms.ModelForm):
 class CourseForm(forms.ModelForm):
 	name = forms.CharField(max_length=100)
 	code = forms.CharField(max_length=7)
-	teacher = forms.ModelChoiceField(Teacher.objects.all())
+	teacher = forms.ModelMultipleChoiceField(Teacher.objects.all())
 
 	class Meta:
 		model = Course

@@ -41,6 +41,7 @@ def course_list(request):
 
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
+	teachers = course.teachers.all()
 
 	if 'add_list' in request.POST:
 		listForm = ListForm(request.POST, request.FILES)
@@ -74,7 +75,7 @@ def course_details(request, pk):
 	else:
 		summaryForm = SummaryForm()
 
-	context = {}
+	context = {'course':course, 'teachers':teachers, 'listForm':listForm}
 	
 	return render(request, 'course/course_single.html', context)
 
