@@ -11,6 +11,8 @@ class Profile(models.Model):
 	birth_date = models.DateField(null=True, blank=True)
 	university = models.CharField(max_length=50, null=True, blank=True)
 	courses = models.ManyToManyField(Course, blank=True)
+	bio = models.TextField(default=" ")
+	image = models.FileField(upload_to='pictures/', default="pictures/mclovin.png")
 
 	def __str__(self):
 		return self.user.username

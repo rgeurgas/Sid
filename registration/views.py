@@ -22,8 +22,35 @@ def signup(request):
 	return render(request, 'registration/signup.html', {'form': form})
 
 def view_profile(request, pk):
-	profile = Profile.objects.get(pk=pk)
-	return render(request, 'TEMPLATE AQUI', {'profile':profile})
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user=request.user)
+		
+		sub_courses = profile.courses.all()
+
+		activities = []
+		for course in sub_courses:
+			for l in course.link.all()[:10]:
+				if l.user.id == profile.id:
+					activities.append({'obj': l, 'tipo': 'um link'})
+			for l in course.list.all()[:10]:
+				if l.user.id == profile.id:
+					activities.append({'obj': l, 'tipo': 'uma lista'})
+			for s in course.summary.all()[:10]:
+				if s.user.id == profile.id:
+					activities.append({'obj': s, 'tipo': 'um resumo'})
+
+		activities.sort(key = lambda x: x['obj'].date, reverse=True)
+		activities = activities[:10]
+
+		context = {
+			'profile': profile,
+			'courses': sub_courses,
+			'activities': activities
+		}
+		
+		return render(request, 'registration/perfil.html', context)
+
+	return redirect('login')
 
 def edit_profile(request, pk):
 	profile = Profile.objects.get(pk=pḱ)

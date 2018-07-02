@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container">
+
+		<!-- TO DO -->
+		<div class="row topo">
+			<div class="col m9">
+				<h3>{{profile.user.username}}</h3>
+				<h6>{{profile.bio}}</h6>
+			</div>
+			<div class="col m3">
+				{{profile.image.url}}
+				<img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle right">
+			</div>
+		</div>
+
+		<!--<div class="">
+			<h5 class="left-align">Conquistas</h5>
+			<hr>
+			<div class="row conquistas-bar">
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
+			</div>
+		</div>-->
+
+		<div class="row">
+			<div class="col m12">
+				<h5 class='left-align'>Atividade recente</h5>
+					<hr>
+
+					<ul class="collection">
+						{% for activity in activities %}
+						<li class="collection-item avatar">
+							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+							<span class="title">{{ activity.obj.user.username }} enviou {{activity.tipo}} para {{ activity.obj.course.name }}: {{activity.obj.name}}</span>
+							{# <p>O texto vem aqui</p> #}
+							<a href="{%url 'course_details' activity.obj.course.id%}" class="secondary-content"><i class="material-icons icone-rosa">arrow_forward</i></a>
+						</li>
+						{% endfor %}
+					</ul>
+			</div>
+		</div>
+</div>
+
+
+
+</body>
+</html>
+{% endblock %}
