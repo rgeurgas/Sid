@@ -9,7 +9,7 @@ def signup(request):
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
-			user.refresh_from_db()  # load the profile instance created by the signal
+			user.refresh_from_db()  #load the profile instance created by the signal
 			user.profile.university = form.cleaned_data.get('university')
 			user.profile.birth_date = form.cleaned_data.get('birth_date')
 			user.save()
@@ -30,13 +30,13 @@ def view_profile(request, pk):
 		activities = []
 		for course in sub_courses:
 			for l in course.link.all()[:10]:
-				if l.user.id == profile.id:
+				if l.user.id == profile.user.id:
 					activities.append({'obj': l, 'tipo': 'um link'})
 			for l in course.list.all()[:10]:
-				if l.user.id == profile.id:
+				if l.user.id == profile.user.id:
 					activities.append({'obj': l, 'tipo': 'uma lista'})
 			for s in course.summary.all()[:10]:
-				if s.user.id == profile.id:
+				if s.user.id == profile.user.id:
 					activities.append({'obj': s, 'tipo': 'um resumo'})
 
 		activities.sort(key = lambda x: x['obj'].date, reverse=True)

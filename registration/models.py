@@ -13,7 +13,6 @@ class Profile(models.Model):
 	courses = models.ManyToManyField(Course, blank=True)
 	bio = models.TextField(default=" ")
 	image = models.ImageField(upload_to='registration/static/registration/pictures/', default="registration/static/registration/pictures/default.png")
-
 	def __str__(self):
 		return self.user.username
 
