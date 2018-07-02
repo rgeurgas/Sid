@@ -15,23 +15,24 @@ def home(request):
 
 		activities = []
 		for course in sub_courses:
-			for l in course.link.all():
-				activities.append(l)
-			for l in course.list.all():
-				activities.append(l)
-			for s in course.summary.all():
-				activities.append(s)
+			for l in course.link.all()[:10]:
+				activities.append({'obj': l, 'tipo': 'um link'})
+			for l in course.list.all()[:10]:
+				activities.append({'obj': l, 'tipo': 'uma lista'})
+			for s in course.summary.all()[:10]:
+				activities.append({'obj': s, 'tipo': 'um resumo'})
 
-		activities.sort(key = lambda x: x.date, reverse=True)
+		activities.sort(key = lambda x: x['obj'].date, reverse=True)
+		activities = activities[:10]
 
 		context = {
 			'courses': sub_courses,
-			'activities': activities[:10]
+			'activities': activities
 		}
 		
 		return render(request, 'course/home.html', context)
 
-	return render(request, 'course/home_logged_out.html')
+	return redirect('login')
 
 def course_list(request):
 	courses = Course.objects.all()
