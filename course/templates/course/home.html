@@ -2,7 +2,6 @@
 
 
 {% block content %}
-<div class="container">
 		<div class="row conteudo">
 			<div class="col m8">
 				<div class="row" style="margin-right: 10px">
@@ -13,9 +12,9 @@
 						{% for activity in activities %}
 						<li class="collection-item avatar">
 							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
-							<span class="title">{{ activity.user.username }} fez um envio para {{ activity.course.name }}</span>
+							<span class="title">{{ activity.obj.user.username }} enviou {{activity.tipo}} para {{ activity.obj.course.name }}: {{activity.obj.name}}</span>
 							{# <p>O texto vem aqui</p> #}
-							<a href="{%url 'course_details' activity.course.id%}" class="secondary-content"><i class="material-icons icone-rosa">arrow_forward</i></a>
+							<a href="{%url 'course_details' activity.obj.course.id%}" class="secondary-content"><i class="material-icons icone-rosa">arrow_forward</i></a>
 						</li>
 						{% endfor %}
 					</ul>
@@ -45,5 +44,4 @@
 				</div>
 			</div>
 		</div>
-</div>
 {% endblock %}
