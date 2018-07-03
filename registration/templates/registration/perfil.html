@@ -3,7 +3,6 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<div class="container">
 
 		<!-- TO DO -->
 		<div class="row topo">
@@ -14,6 +13,46 @@
 			<div class="col m3">
 				{{MEDIA_URL}}
 				<img src="/media/{{profile.image}}" class="circle right">
+			</div>
+		
+
+			<a href="#modal-list" class="right btn-flat modal-trigger">Editar Perfil</a>
+				<!-- Modal form lista  -->
+			<div id="modal-list" class="modal">
+			  	<form method="post" enctype="multipart/form-data">{% csrf_token %}
+			  		<div class="modal-content">
+			  			<h5>Editar Perfil</h5>
+			  			<hr>
+			  			<div class="row">
+							<div class="input-field col s12 m10 offset-m1">
+								{{form.university}}
+								<label for="id_university">Universidade</label>
+							</div>
+			  			</div>
+			  			<div class="row">
+							<div class="input-field col s12 m10 offset-m1">
+								{{form.bio}}
+								<label for="id_bio">Bio</label>
+							</div>
+			  			</div>
+			  			<div class="row">
+							<div class="input-field col s12 m10 offset-m1">
+								{{form.birth_date}}
+								<label for="id_university">Data de Nascimento</label>
+							</div>
+			  			</div>
+			  			<div class="row">
+								<div class="input-field col s12 m10 offset-m1">
+									{{form.image}}
+								</div>
+				  		</div>
+			  		</div>
+			  		<div class="modal-footer">
+			  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="add_list">Enviar
+					    	<i class="material-icons right">send</i>
+						</button>
+			  		</div>
+			  	</form>
 			</div>
 		</div>
 
@@ -53,10 +92,5 @@
 					</ul>
 			</div>
 		</div>
-</div>
 
-
-
-</body>
-</html>
 {% endblock %}
