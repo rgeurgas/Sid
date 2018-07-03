@@ -15,7 +15,7 @@ $(document).ready(function(){
   	maxD = new Date();
   	
     $('.datepicker').datepicker({
-    	format: 'dd mmm, yyyy',
+    	format: 'yyyy-mm-dd',
     	maxDate: maxD,
     	yearRange: [1950, maxD.getFullYear()],
     });
