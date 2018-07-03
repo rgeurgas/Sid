@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+	<div class="row topo">
+			<div class="col m9">
+				<h3>Cálculo III</h3>
+				<h6>SMA-333</h6>
+			</div>
+			<div class="col m3">
+				<img src="https://www.revistalounge.com.br/wp-content/uploads/Cl%C3%A1udio-Possani-CR%C3%89DITO-DANIEL-CANCINI-23.jpg" class="circle right">
+			</div>
+		</div>
+
+	<h5>Fórum</h5>
+	<hr>
+
+	<div class="row">
+		<div class="col m12 list_forum">
+			<ul class="collection">
+				<li class="collection-item avatar list_forum">
+					<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle collection-img">
+					<span class="title">Título do Post</span> <br>
+					<p class="usuario-data">Autor • 01/01/2000</p> 
+					<div class="comentario-icon">
+						<i class="tiny material-icons">mode_comment</i>
+						<p>2 Comentários</p>		
+					</div>
+					
+					<a href="#!" class="secondary-content"><i class="material-icons icone-rosa">
+					arrow_forward</i></a>
+				</li>
+
+				<li class="collection-item avatar">
+					<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle collection-img">
+					<span class="title">Título do Post</span> <br>
+					<p class="usuario-data">Autor • 01/01/2000</p> 
+					<div class="comentario-icon">
+						<i class="tiny material-icons">mode_comment</i>
+						<p>2 Comentários</p>		
+					</div>
+						
+					<a href="#!" class="secondary-content"><i class="material-icons icone-rosa">
+					arrow_forward</i></a>
+				</li>
+
+				<li class="collection-item avatar">
+					<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle collection-img">
+					<span class="title">Título do Post</span> <br>
+					<p class="usuario-data">Autor • 01/01/2000</p> 
+					<div class="comentario-icon">
+						<i class="tiny material-icons">mode_comment</i>
+						<p>2 Comentários</p>		
+					</div>
+						
+					<a href="#!" class="secondary-content"><i class="material-icons icone-rosa">
+					arrow_forward</i></a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<a href="#modal-post" class="right btn-flat modal-trigger">Novo Post</a>
+
+	<div id="modal-post" class="modal">
+	  	<form class=""> 
+	  		<div class="modal-content">
+	  			<h5>Enviar um Post</h5>
+	  			<hr>
+				<div class="row form-edit">
+				  	<div class="col s12 offset-m1 m5">
+				  		<div class="input-field">
+				  			<input id="name-Post" type="text" class="validate">
+				  			<label for="name-Post">Título</label>
+						</div>				  					
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s12 m10 offset-m1 input-field">
+					    <textarea id="textarea1" class="materialize-textarea"></textarea>
+	      		        <label for="textarea1">Textarea</label>
+				    </div>
+				</div>
+	  		</div>
+	 		<div class="modal-footer">
+	  			<button class="btn-flat waves-effect waves-light modal-close" type="submit" name="action">Enviar
+			    	<i class="material-icons right">send</i>
+				</button>
+	  		</div>
+	  	</form>
+	</div>
+
+</div>
+
+{% endblock %}

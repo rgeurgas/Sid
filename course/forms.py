@@ -63,13 +63,14 @@ class PostForm(forms.ModelForm):
 	title = forms.CharField(label='Dúvida', max_length=100, widget=forms.TextInput(attrs={'id':'title-post'}))
 	text = forms.CharField(label='Descrição', widget=forms.Textarea(attrs={'class':'materialize-textarea', 'id':'content-post'}))
 	tags = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'id':'tags-post'}))
+	document = forms.FileField()
 
 	class Meta:
 		model = Post
-		fields = ['title', 'text', 'tags']
+		fields = ['title', 'text', 'tags', 'document']
 
 class CommentForm(forms.ModelForm):
-	text = forms.CharField(label='Comentário', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
+	text = forms.CharField(label='Comentário', widget=forms.Textarea(attrs={'class': 'materialize-textarea', 'id':'novo-comentario'}))
 
 	class Meta:
 		model = Comment
