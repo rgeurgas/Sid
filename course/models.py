@@ -62,7 +62,7 @@ class Post(models.Model):
 	tags = models.CharField(max_length=100)
 	document = models.FileField(upload_to='uploads/%Y/%m/%d', null=True, blank=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='post')
-	course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, related_name='post')
+	course = models.ForeignKey('Course', on_delete=models.CASCADE, null=True, related_name='post')
 
 	def __str__(self):
 		return self.title

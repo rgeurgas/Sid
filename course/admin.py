@@ -25,22 +25,6 @@ class SummaryAdmin(admin.ModelAdmin):
 	fieldset = [
 		(None, {'fields':['name', 'file']}),
 	]
-
-class CourseAdmin(admin.ModelAdmin):
-	fieldset = [
-		(None, {'fields':['name', 'code']}),
-	]
-	inlines = [
-		LinkInline,
-		ListInline,
-		SummaryInline,
-	]
-
-class TeacherAdmin(admin.ModelAdmin):
-	fieldset = [
-		(None, {'fields':['name']}),
-	]
-
 class CommentAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['user', 'text', 'document']}),
@@ -50,11 +34,31 @@ class CommentInline(admin.StackedInline):
     model = Comment
     extra = 0
 
+class PostInline(admin.StackedInline):
+	model = Post
+
 class PostAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['user', 'title', 'text', 'tags', 'document']}),
     ]
     inlines = [CommentInline]
+
+class CourseAdmin(admin.ModelAdmin):
+	fieldset = [
+		(None, {'fields':['name', 'code']}),
+	]
+	inlines = [
+		LinkInline,
+		ListInline,
+		SummaryInline,
+		PostInline,
+	]
+
+class TeacherAdmin(admin.ModelAdmin):
+	fieldset = [
+		(None, {'fields':['name']}),
+	]
+
 
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(Link, LinkAdmin)
