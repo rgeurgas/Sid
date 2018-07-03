@@ -28,14 +28,15 @@ def view_profile(request, pk):
 		sub_courses = profile.courses.all()
 
 		if request.method == 'POST':
-			form = EditarForm(request.POST, instance=profile)
+			form = EditarForm(request.POST, request.FILES, instance=profile)
+			print(request.FILES)
 			if form.is_valid():
-				profile.save(commit=False)
-				profile.user.first_name = request.user.first_name
-				profile.user.last_name = request.user.last_name	
+				profile = form.save(commit=False)
+				profile.save()
 				return redirect('view_profile', pk=profile.pk)
 		else:
 			form = EditarForm(instance=profile)
+
 
 
 		activities = []
@@ -63,16 +64,3 @@ def view_profile(request, pk):
 		return render(request, 'registration/perfil.html', context)
 
 	return redirect('login')
-
-def edit_profile(request, pk):
-	profile = Profile.objects.get(pk=pḱ)
-	if request.user.username == profile.username:
-		form = ProfileForm(instance=profile)
-		if request.method == "POST" and form.is_valid():
-			profile = form.save(commit=False)
-			profile.save()
-			return redirect('ROTA DE REDIRECT AQUI')
-
-		return render(request, 'TEMPLATE', {'form':form, 'profile':profile})
-	#TODO colocar erro de permissao
-	# return ALGUM ERRO AQUI
