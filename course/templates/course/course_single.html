@@ -21,7 +21,9 @@
 							<span class="title"> {{list.name}}</span><br>
 							<p class="usuario-data">{{list.user.username}} • {{list.date|date:"d/m/Y"}}</p> 
 							<a href="/media/{{list.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
-							<a href="#" class=""><i class="material-icons icone-rosa">delete</i></a>
+							{% if list.user.id == user.id %}
+							<a href="/lists/{{list.id}}/remove" class=""><i class="material-icons icone-rosa">delete</i></a>
+							{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
@@ -56,7 +58,7 @@
 										<div style=" cursor: default;">
 											<span>Selecionar Arquivo</span>
 											<div style="display: none;">
-													{{listForm.file}}
+												{{listForm.file}}
 											</div>
 										</div>
 									</label>
@@ -85,6 +87,9 @@
 						<span class="title">{{link.name}}</span><br>
 						<p class="usuario-data">{{link.user.username}} • {{link.date|date:"d/m/Y"}}</p> 
 						<a target="_blank" href="{{link.link}}" class="secondary-content"><i class="material-icons icone-rosa">open_in_new</i></a>
+						{% if link.user.id == user.id %}
+						<a href="/links/{{link.id}}/remove" class=""><i class="material-icons icone-rosa">delete</i></a>
+						{% endif %}
 					</li>
 					{% endfor %}
 				</ul>
@@ -141,6 +146,9 @@
 							<span class="title">{{summary.name}}</span><br>
 							<p class="usuario-data">{{summary.user.username}} • {{summary.date|date:"d/m/Y"}}</p> 
 							<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
+							{% if summary.user.id == user.id %}
+							<a href="/summaries/{{summary.id}}/remove" class=""><i class="material-icons icone-rosa">delete</i></a>
+							{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
