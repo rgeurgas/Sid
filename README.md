@@ -29,11 +29,17 @@ git clone https://github.com/rgeurgas/Sid.git
 ```
 
 ## Deployment
+Get Requirements
+```
+make start
+```
 
 Run server
 ```
-docker-compose up
+make all
 ```
+
+If it doesn't work run with sudo
 
 ## Built With
 
