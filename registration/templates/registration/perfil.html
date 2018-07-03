@@ -11,7 +11,6 @@
 				<h6>{{profile.bio}}</h6>
 			</div>
 			<div class="col m3">
-				{{MEDIA_URL}}
 				<img src="/media/{{profile.image}}" class="circle right">
 			</div>
 		
@@ -79,11 +78,10 @@
 			<div class="col m12">
 				<h5 class='left-align'>Atividade recente</h5>
 					<hr>
-
 					<ul class="collection">
 						{% for activity in activities %}
 						<li class="collection-item avatar">
-							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+							<img src="/media/{{activity.obj.user.profile.image}}" class="circle">
 							<span class="title">{{ activity.obj.user.username }} enviou {{activity.tipo}} para {{ activity.obj.course.name }}: {{activity.obj.name}}</span>
 							{# <p>O texto vem aqui</p> #}
 							<a href="{%url 'course_details' activity.obj.course.id%}" class="secondary-content"><i class="material-icons icone-rosa">arrow_forward</i></a>

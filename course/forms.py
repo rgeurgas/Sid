@@ -60,8 +60,8 @@ class LinkForm(forms.ModelForm):
 		fields = ['name', 'link', 'tags', 'teacher']
 
 class PostForm(forms.ModelForm):
-	title = forms.CharField(label='Dúvida', max_length=100, widget=forms.TextInput(attrs={'id':'title-post'}))
-	text = forms.CharField(label='Descrição', widget=forms.Textarea(attrs={'class':'materialize-textarea', 'id':'content-post'}))
+	title = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'id':'title-post'}))
+	text = forms.CharField(widget=forms.Textarea(attrs={'class':'materialize-textarea', 'id':'content-post'}))
 	tags = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'id':'tags-post'}))
 
 	class Meta:
@@ -69,7 +69,7 @@ class PostForm(forms.ModelForm):
 		fields = ['title', 'text', 'tags']
 
 class CommentForm(forms.ModelForm):
-	text = forms.CharField(label='Comentário', widget=forms.Textarea)
+	text = forms.CharField(widget=forms.Textarea(attrs={'class': 'materialize-textarea', 'id':'novo-comentario'}))
 
 	class Meta:
 		model = Comment
