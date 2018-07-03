@@ -17,12 +17,31 @@ from django.contrib import admin
 from django.urls import re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include, url
+
+from importlib import import_module
+from allauth.socialaccount import providers
+from allauth import app_settings
 
 from course import views
+
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^', include('course.urls'), name='course'),
     re_path(r'^auth/', include('registration.urls'), name='auth'),
     re_path(r'^media/(?P<path>uploads/[0-9]{4}/[0-9]{2}/[0-9]{2}/.{1,100})', views.download, name='downloads'),
+    re_path(r'^/', include('allauth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if app_settings.SOCIALACCOUNT_ENABLED:
+    urlpatterns += [url(r'^social/', include('allauth.socialaccount.urls'))]
+
+for provider in providers.registry.get_list():
+    try:
+        prov_mod = import_module(provider.get_package() + '.urls')
+    except ImportError:
+        continue
+    prov_urlpatterns = getattr(prov_mod, 'urlpatterns', None)
+    if prov_urlpatterns:
+        urlpatterns += prov_urlpatterns

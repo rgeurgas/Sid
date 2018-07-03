@@ -20,4 +20,3 @@ $(document).ready(function(){
     	yearRange: [1950, maxD.getFullYear()],
     });
 });
-   

@@ -2,3 +2,7 @@ Django
 django-extensions
 psycopg2-binary
 Pillow
+python-openid
+requests
+requests-oauthlib
+django-allauth
