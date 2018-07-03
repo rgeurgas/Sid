@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
 
-from course.models import Course, Link, List, Summary, Post, Comment
+from course.models import Course, Link, List, Summary, Post, Comment, Teacher
 from course.forms import CourseForm, LinkForm, ListForm, SummaryForm, PostForm, CommentForm
 from registration.models import Profile
 
@@ -33,6 +33,35 @@ def home(request):
 		return render(request, 'course/home.html', context)
 
 	return redirect('login')
+
+def course_search(request):
+	query = request.GET.get('q')
+	query_tags = query.split(' ')
+
+	results = set()
+
+	for tag in query_tags:
+		for result in Course.objects.all().filter(name__icontains = tag):
+			results.add(result)
+		for result in Course.objects.all().filter(code__icontains = tag):
+			results.add(result)
+		for teacher in Teacher.objects.all().filter(name__icontains = tag):
+			for result in Course.objects.all().filter(teachers=teacher.id):
+				results.add(result)
+	results = list(results)
+
+
+	profile = Profile.objects.get(user=request.user)
+	user_courses = profile.courses.all()
+
+	context = {
+		'search_courses': results,
+		'user_courses': user_courses,
+		'has_results': len(results) > 0,
+		'has_user_courses': len(user_courses) > 0
+	}
+
+	return render(request, 'course/course_search.html', context)
 
 def course_list(request):
 	courses = Course.objects.all()

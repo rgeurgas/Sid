@@ -16,23 +16,26 @@
 <body>
 	<nav>
 		<div class="nav-wrapper red darken-1 row">
-     		<a href="#" class="brand-logo center">Sid</a>
+     		<a href="{% url 'home' %}" class="brand-logo center">Sid</a>
      		<ul id="nav-mobile" class="left hide-on-med-and-down">
-	   			<li><a href="{% url 'home' %}">Inicio</a></li>
 	   			{% if user.is_authenticated %}
+	   			<li><a href="{% url 'home' %}">Inicio</a></li>
     	   		<li><a href="/auth/profile/{{request.user.id}}">Meu perfil</a></li>
     	   		<li><a href="{% url 'course_list' %}">Disciplinas</a></li>
        			<li><a href="/auth/logout/">Sair</a></li>
        			{% endif %}
        			<!-- <li><a href="collapsible.html"><i class="material-icons">exit_to_app</i></a></li>  -->
 	     	</ul>
-	     	<form>
+	     	{% if user.is_authenticated %}
+	     	<form method="get" action="{% url 'course_search' %}">
+	     		{% csrf_token %}
         		<div class="input-field right" style="width: 30vw">
-          		<input id="search" type="search" placeholder="Buscar disciplinas" required>
+          		<input id="search" type="search" placeholder="Buscar disciplinas" name="q" required>
           		<label class="label-icon" for="search"><i class="material-icons">search</i></label>
           		<i class="material-icons">close</i>
         		</div>
       		</form>
+	     	{% endif %}
 			</div>
 	   	</div>
 	</nav>
