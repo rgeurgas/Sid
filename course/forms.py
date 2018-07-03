@@ -69,7 +69,7 @@ class PostForm(forms.ModelForm):
 		fields = ['title', 'text', 'tags']
 
 class CommentForm(forms.ModelForm):
-	text = forms.CharField(label='Comentário', widget=forms.Textarea)
+	text = forms.CharField(label='Comentário', widget=forms.Textarea(attrs={'class': 'materialize-textarea'}))
 
 	class Meta:
 		model = Comment
