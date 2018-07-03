@@ -8,7 +8,7 @@
 			<div class="col m12 post">
 				<img src="/media/{{user.profile.image}}" class="circle collection-img">
 				<p class="usuario-data">{{post.user.username}}</p>
-				<p class="usuario-data">{{post.date}}</p>
+				<p class="usuario-data"> • {{post.date}}</p>
 
 				<h4>{{post.title}}</h4>
 
@@ -23,12 +23,12 @@
 			</div>
 			<hr>
 
-			{% for comment in post.comment.all %}
+			{% for comment in comments %}
 				<div class="row">
 					<div class="col m11 offset-m1 comentario">
 						<img src="/media/{{comment.user.profile.image}}" class="circle collection-img">
 						<p class="usuario-data">{{comment.user.username}}</p>
-						<p class="usuario-data">{{comment.date}}</p>
+						<p class="usuario-data"> • {{comment.date}}</p>
 						<p>{{comment.text}}</p>
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 		</div>
 		<div class="row">
 			<div class="col m11 offset-m1 comentario">
-				<form  method="post" class="" enctype="multipart/form-data"> {% csrf_token %}
+				<form method="post" class="" enctype="multipart/form-data"> {% csrf_token %}
 					<div class="row">
         				<div class="input-field col s12">
 							{{form.text}}

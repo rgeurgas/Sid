@@ -104,6 +104,7 @@
 								</div>
 								<div class="col s12 m5 input-field">
 									{{linkForm.teacher}}
+									<label for="teacher-link">Professor</label>
 								</div>
 							</div>
 							<div class="row">
@@ -210,7 +211,7 @@
 						</a>
 					{% endfor %}
 				</ul>
-				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="forum" class="right btn-flat">ver mais</a>
 				<a href="#modal-post" class="right btn-flat modal-trigger">Novo Post</a>
 				<div id="modal-post" class="modal" >
 					<form method="post" class="" enctype="multipart/form-data"> {% csrf_token %} 
