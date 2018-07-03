@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 class SignUpForm(UserCreationForm):
 	birth_date = forms.DateField(widget=forms.TextInput(attrs={'id':'birthdate', 'class':'datepicker'}), input_formats=('%d %b, %Y'))
-	
 	university = forms.CharField(max_length=50)
 	bio = forms.CharField(max_length=500)
 	email = forms.EmailField(max_length=254, help_text='Required. Please insert a valid email')

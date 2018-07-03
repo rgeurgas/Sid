@@ -99,51 +99,6 @@ def course_details(request, pk):
 	
 	return redirect('login')
 
-def post_new(request):
-	if request.method == 'POST':
-		form = PostForm(request.POST, request.FILES)
-
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.user = request.user
-			post.save()	
-			return redirect('/forum/', pk=post.pk)
-	else:
-		form = PostForm()
-
-	return render(request, 'forum/post_new.html', {'form':form})
-
-
-def course_new(request):
-	if request.method == "POST":
-		form = CourseForm(request.POST)
-		if form.is_valid():
-			course = form.save(commit=False)
-			course.save()
-			return redirect('course_details', pk=course.pk)
-	else:
-		form = CourseForm()
-
-	context = {'form': form}
-	return render(request, 'course/new.html', context)
-
-def course_edit(request, pk):
-	course = Course.objects.get(pk=pk)
-	form = CourseForm(instance=course)
-	
-	if request.method == "POST" and form.is_valid():
-		course = form.save(commit=False)
-		course.save()
-		return redirect('course_details', pk=course.pk)
-	
-	context = {'form': form, 'course': course}
-	return render(request, 'course/new.html', context)
-
-def course_remove(request, pk):
-	course = Course.objects.get(pk=pk)
-	course.delete()
-	return redirect('course_list')
-
 def link_list(request):
 	links = Link.objects.all()
 	data = {}
@@ -154,18 +109,6 @@ def link_detail(request, pk):
 	link = Link.objects.get(pk=pk)
 	context = {'link':link}
 	return render(request, 'course/detail.html', context)
-
-def link_edit(request, pk):
-	link = Link.objects.get(pk=pk)
-	form = LinkForm(instance=link)
-	
-	if request.method == "POST" and form.is_valid():
-		link = form.save(commit=False)
-		link.save()
-		return redirect('link_detail', pk=link.pk)
-
-	context = {'form': form, 'link': link}
-	return render(request, 'course/new.html', context)
 
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
@@ -184,18 +127,6 @@ def list_detail(request, pk):
 	context = {'list':list_c}
 	return render(request, 'course/detail.html', context)
 
-def list_edit(request, pk):
-	list_c = List.objects.get(pk=pk)
-	form = ListForm(instance=list_c)
-
-	if request.method == "POST" and form.is_valid():
-		list_c = form.save(commit=False)
-		list_c.save()
-		return redirect('list_detail', pk=list_c.pk)
-
-	context = {'form': form, 'list': list_c}
-	return render(request, 'course/new.html', context)
-
 def list_remove(request, pk):
 	list_c = List.objects.get(pk=pk)
 	pk = list_c.course
@@ -213,16 +144,6 @@ def summary_detail(request, pk):
 	context = {'summary':summary}
 	return render(request, 'course/detail.html', context)
 
-def summary_edit(request, pk):
-	summary = Summary.objects.get(pk=pk)
-	form = SummaryForm(instance=summary)
-	if request.method == "POST" and form.is_valid():
-		summary = form.save(commit=False)
-		summary.save()
-		return redirect('summary_detail', pk=summary.pk)
-	context = {'form': form, 'summary': summary}
-	return render(request, 'course/new.html', context)
-
 def summary_remove(request, pk):
 	summary = Summary.objects.get(pk=pk)
 	pk = summary.course
@@ -237,14 +158,47 @@ def download(request, path):
 			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 			return response
 
-def post_list(request):
-	posts =  Post.objects.all()
-	data = {}
-	data['object_list'] = posts
-	return render(request, 'course/post_list.html', data)
+def post_new(request):
+	if request.method == 'POST':
+		form = PostForm(request.POST, request.FILES)
+
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.user = request.user
+			post.save()	
+			return redirect('/forum/', pk=post.pk)
+	else:
+		form = PostForm()
+
+	return render(request, 'forum/post_new.html', {'form':form})
+
+def post_list(request, course_pk):
+	posts = Post.objects.all()
+	course = Course.objects.get(pk=course_pk)
+
+	posts = list(posts)
+	posts.sort(key=lambda x: x.date, reverse=True)
+	
+	if request.method == 'POST':
+		form = PostForm(request.POST)
+		if 'add_post' in request.POST and form.is_valid():
+			new_post = form.save(commit=False)
+			new_post.user = request.user
+			new_post.course = course
+			new_post.save()
+			return redirect('post_list', course_pk=course_pk)
+	else:
+		form = PostForm()
+	print(form)
+	data = {'form': form, 'posts': posts, 'course':course}
+	
+	return render(request, 'course/forum_list.html', data)
 
 def post_detail(request, pk):
 	post = Post.objects.get(pk=pk)
+	
+	comments = list(post.comment.all())
+	comments.sort(key=lambda x: x.date, reverse=False)
 
 	if request.method == 'POST':
 		form = CommentForm(request.POST)
@@ -257,23 +211,10 @@ def post_detail(request, pk):
 			return redirect('post_detail', pk=post.pk)
 	else:
 		form = CommentForm()
-
-	return render(request, 'course/forum_single.html', {'post':post, 'form':form})
-
-def post_edit(request, pk=None):
-	post = Post.objects.get(pk=pk)
-	form = PostForm(instance=post)
-
-	if request.method == 'POST':
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.save()
-			return redirect('/forum/', pk=post.pk)
-		else:
-			form = PostForm()
-
-	return render(request, 'course/post_new.html', {'form':form, 'post':post})
-
+	
+	context = {'post':post, 'form':form, 'comments':comments}
+	
+	return render(request, 'course/forum_single.html', context)
 
 def post_remove(request, pk):
 	post = Post.objects.get(pk=pk)

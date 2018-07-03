@@ -37,38 +37,6 @@
 	   	</div>
 	</nav>
 
-	<!-- <nav>
-		<div class="nav-wrapper teal">
-			<a href="#" class="brand-logo right">Logo</a>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="{% url 'course_new' %}">Add Course</a></li>
-				</ul>
-				
-				</ul>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="{% url 'course_list' %}">Courses</a></li>
-				</ul>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="/forum/">Forum</a></li>
-				</ul>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="/auth/login/">Login</a></li>
-				</ul>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="/auth/logout/">Logout</a></li>
-				</ul>
-				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="/auth/signup/">Signup</a></li>
-				</ul>
-
-				{% if user.is_authenticated %}
-					<ul id="nav-mobile" class="left hide-on-med-and-down">
-						<li>{{user.username}}</li>
-					</ul>
-				{% endif %}
-		</div>
-	</nav> -->
-
 	<div class="container" style="min-height: 78vh;">
 	{% block content %}
 	{% endblock %}
