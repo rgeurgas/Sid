@@ -57,11 +57,11 @@ $(document).ready(function(){
 		$(this).addClass("vanish");
 		$("#voltar-summarys").removeClass("vanish");
 	});
-	$('#voltar-summarys').click(function(){
+	$('#voltar-summaries').click(function(){
 		console.log("clickou 2");
 		$('.open-summary').removeClass("vanish");
 		$('.exclude-summary').addClass("vanish");
 		$(this).addClass("vanish");
-		$("#excluir-summarys").removeClass("vanish");
+		$("#excluir-summaries").removeClass("vanish");
 	});
 });

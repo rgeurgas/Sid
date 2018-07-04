@@ -94,7 +94,7 @@ def course_details(request, pk):
 
 		context = {'course':course, 'listForm':listForm,'linkForm':linkForm,
 				   'summaryForm':summaryForm, 'postForm':postForm}
-		
+
 		return render(request, 'course/course_single.html', context)
 	
 	return redirect('login')
@@ -112,7 +112,7 @@ def link_detail(request, pk):
 
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
-	pk = link.course
+	pk = link.course.id
 	link.delete()
 	return redirect('course_details', pk)
 
@@ -129,7 +129,7 @@ def list_detail(request, pk):
 
 def list_remove(request, pk):
 	list_c = List.objects.get(pk=pk)
-	pk = list_c.course
+	pk = list_c.course.id
 	list_c.delete()
 	return redirect('course_details', pk)
 
@@ -146,7 +146,7 @@ def summary_detail(request, pk):
 
 def summary_remove(request, pk):
 	summary = Summary.objects.get(pk=pk)
-	pk = summary.course
+	pk = summary.course.id
 	summary.delete()
 	return redirect('course_details', pk)
 

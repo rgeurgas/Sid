@@ -15,23 +15,31 @@
 				<h5 class="left-align">Listas</h5>
 				<hr>
 				<ul class="collection">
-					{% for list in course.list.all %}
+					{% for list in course.list.all|slice:":5" %}
 						<li class="collection-item avatar">
 							<img src="/media/{{list.user.profile.image}}" class="circle">
 							<span class="title"> {{list.name}}</span><br>
 							<p class="usuario-data">{{list.user.username}} • {{list.date|date:"d/m/Y"}}</p> 
+
 
 							<div class="open-list">
 								<a href="/media/{{list.file}}" class="secondary-content">
 									<i class="material-icons icone-rosa">file_download</i>
 								</a>								
 							</div>
+							{% if list.user.id == user.id %}
 							<div class="exclude-list vanish">
-								<a href="" class="secondary-content">
+								<a href="/lists/{{list.id}}/remove" class="secondary-content">
 									<i class="material-icons icone-rosa">delete_forever</i>
 								</a>
 							</div>
-
+							{% else %}
+							<div class="exclude-list vanish">
+								<a href="" class="secondary-content">
+									<i class="material-icons icone-gray">delete_forever</i>
+								</a>
+							</div>
+							{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
@@ -69,7 +77,7 @@
 										<div style=" cursor: default;">
 											<span>Selecionar Arquivo</span>
 											<div style="display: none;">
-													{{listForm.file}}
+												{{listForm.file}}
 											</div>
 										</div>
 									</label>
@@ -92,20 +100,29 @@
 				<h5>Links</h5>
 				<hr>
 				<ul class="collection">
-					{% for link in course.link.all %}
+					{% for link in course.link.all|slice:":5" %}
 					<li class="collection-item avatar">
 						<img src="/media/{{link.user.profile.image}}" class="circle">
 						<span class="title">{{link.name}}</span><br>
 						<p class="usuario-data">{{link.user.username}} • {{link.date|date:"d/m/Y"}}</p> 
+
 						<div class="open-link">
 							<a target="_blank" href="{{link.link}}" class="secondary-content"><i class="material-icons icone-rosa">open_in_new</i>
 							</a>
 						</div>
+						{% if link.user.id == user.id %}
 						<div class="exclude-link vanish">
-							<a href="" class="secondary-content">
+							<a href="/links/{{link.id}}/remove" class="secondary-content">
 								<i class="material-icons icone-rosa">delete_forever</i>
 							</a>
 						</div>
+						{% else %}
+						<div class="exclude-link vanish">
+							<a href="#" class="secondary-content">
+								<i class="material-icons icone-gray">delete_forever</i>
+							</a>
+						</div>
+						{% endif %}
 					</li>
 					{% endfor %}
 				</ul>
@@ -158,26 +175,35 @@
 				<h5>Resumos</h5>
 				<hr>
 				<ul class="collection">
-					{% for summary in course.summary.all %}
+					{% for summary in course.summary.all|slice:":5" %}
 						<li class="collection-item avatar">
 							<img src="/media/{{summary.user.profile.image}}" class="circle">
 							<span class="title">{{summary.name}}</span><br>
 							<p class="usuario-data">{{summary.user.username}} • {{summary.date|date:"d/m/Y"}}</p> 
+<<<<<<< HEAD
 							<div class="open-summary">
 								<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
 								</a>
 							</div>
+							{% if summary.user.id == user.id %}
 							<div class="exclude-summary vanish">
-								<a href="" class="secondary-content">
+								<a href="/summaries/{{summary.id}}/remove" class="secondary-content">
 									<i class="material-icons icone-rosa">delete_forever</i>
 								</a>
 							</div>
+							{% else %}
+							<div class="exclude-link vanish">
+								<a href="#" class="secondary-content">
+									<i class="material-icons icone-gray">delete_forever</i>
+								</a>
+							</div>
+							{% endif %}
 						</li>
 					{% endfor %}
 				</ul>
 
-				<a href="#" id="excluir-summarys" class="btn-flat left">excluir</a>
-				<a href="#" id="voltar-summarys" class="vanish btn-flat left">voltar</a>
+				<a href="#" id="excluir-summaries" class="btn-flat left">excluir</a>
+				<a href="#" id="voltar-summaries" class="vanish btn-flat left">voltar</a>
 				<a href="#" class="right btn-flat">ver mais</a>
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
@@ -235,7 +261,7 @@
 				<h5>Fórum</h5>
 				<hr>
 				<ul class="collection">
-					{% for post in course.post.all %}
+					{% for post in course.post.all|slice:":5" %}
 						<a href="/course/{{course.id}}/forum/{{post.id}}">
 							<li class="collection-item avatar">
 								<img src="/media/{{post.user.profile.image}}" class="circle">
