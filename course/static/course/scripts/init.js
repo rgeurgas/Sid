@@ -21,14 +21,12 @@ $(document).ready(function(){
     });
    
 	$('#excluir-links').click(function(){
-		console.log("clickou");
 		$('.open-link').addClass("vanish");
 		$('.exclude-link').removeClass("vanish");
 		$(this).addClass("vanish");
 		$("#voltar-links").removeClass("vanish");
 	});
 	$('#voltar-links').click(function(){
-		console.log("clickou 2");
 		$('.open-link').removeClass("vanish");
 		$('.exclude-link').addClass("vanish");
 		$(this).addClass("vanish");
@@ -36,29 +34,25 @@ $(document).ready(function(){
 	});
 
 	$('#excluir-lists').click(function(){
-		console.log("clickou");
 		$('.open-list').addClass("vanish");
 		$('.exclude-list').removeClass("vanish");
 		$(this).addClass("vanish");
 		$("#voltar-lists").removeClass("vanish");
 	});
 	$('#voltar-lists').click(function(){
-		console.log("clickou 2");
 		$('.open-list').removeClass("vanish");
 		$('.exclude-list').addClass("vanish");
 		$(this).addClass("vanish");
 		$("#excluir-lists").removeClass("vanish");
 	});
 
-	$('#excluir-summarys').click(function(){
-		console.log("clickou");
+	$('#excluir-summaries').click(function(){
 		$('.open-summary').addClass("vanish");
 		$('.exclude-summary').removeClass("vanish");
 		$(this).addClass("vanish");
-		$("#voltar-summarys").removeClass("vanish");
+		$("#voltar-summaries").removeClass("vanish");
 	});
 	$('#voltar-summaries').click(function(){
-		console.log("clickou 2");
 		$('.open-summary').removeClass("vanish");
 		$('.exclude-summary').addClass("vanish");
 		$(this).addClass("vanish");
