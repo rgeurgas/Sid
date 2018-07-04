@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
-from registration.forms import SignUpForm
+from registration.forms import SignUpForm, EditarForm
 from registration.models import Profile
 
 def signup(request):
@@ -27,6 +27,18 @@ def view_profile(request, pk):
 		
 		sub_courses = profile.courses.all()
 
+		if request.method == 'POST':
+			form = EditarForm(request.POST, request.FILES, instance=profile)
+			print(request.FILES)
+			if form.is_valid():
+				profile = form.save(commit=False)
+				profile.save()
+				return redirect('view_profile', pk=profile.pk)
+		else:
+			form = EditarForm(instance=profile)
+
+
+
 		activities = []
 		for course in sub_courses:
 			for l in course.link.all()[:10]:
@@ -40,27 +52,15 @@ def view_profile(request, pk):
 					activities.append({'obj': s, 'tipo': 'um resumo'})
 
 		activities.sort(key = lambda x: x['obj'].date, reverse=True)
-		activities = activities[:10]
+		activities = activities[:5]
 
 		context = {
 			'profile': profile,
 			'courses': sub_courses,
-			'activities': activities
+			'activities': activities,
+			'form': form
 		}
 		
 		return render(request, 'registration/perfil.html', context)
 
 	return redirect('login')
-
-def edit_profile(request, pk):
-	profile = Profile.objects.get(pk=pḱ)
-	if request.user.username == profile.username:
-		form = ProfileForm(instance=profile)
-		if request.method == "POST" and form.is_valid():
-			profile = form.save(commit=False)
-			profile.save()
-			return redirect('ROTA DE REDIRECT AQUI')
-
-		return render(request, 'TEMPLATE', {'form':form, 'profile':profile})
-	#TODO colocar erro de permissao
-	# return ALGUM ERRO AQUI
