@@ -20,10 +20,24 @@
 							<img src="/media/{{list.user.profile.image}}" class="circle">
 							<span class="title"> {{list.name}}</span><br>
 							<p class="usuario-data">{{list.user.username}} • {{list.date|date:"d/m/Y"}}</p> 
-							<a href="/media/{{list.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
+
+							<div class="open-list">
+								<a href="/media/{{list.file}}" class="secondary-content">
+									<i class="material-icons icone-rosa">file_download</i>
+								</a>								
+							</div>
+							<div class="exclude-list vanish">
+								<a href="" class="secondary-content">
+									<i class="material-icons icone-rosa">delete_forever</i>
+								</a>
+							</div>
+
 						</li>
 					{% endfor %}
 				</ul>
+
+				<a href="#" id="excluir-lists" class="btn-flat left">excluir</a>
+				<a href="#" id="voltar-lists" class="vanish btn-flat left">voltar</a>
 				<a href="#" class="right btn-flat">ver mais</a>
 				<a href="#modal-list" class="right btn-flat modal-trigger">enviar</a>
 				<!-- Modal form lista  -->
@@ -83,10 +97,20 @@
 						<img src="/media/{{link.user.profile.image}}" class="circle">
 						<span class="title">{{link.name}}</span><br>
 						<p class="usuario-data">{{link.user.username}} • {{link.date|date:"d/m/Y"}}</p> 
-						<a target="_blank" href="{{link.link}}" class="secondary-content"><i class="material-icons icone-rosa">open_in_new</i></a>
+						<div class="open-link">
+							<a target="_blank" href="{{link.link}}" class="secondary-content"><i class="material-icons icone-rosa">open_in_new</i>
+							</a>
+						</div>
+						<div class="exclude-link vanish">
+							<a href="" class="secondary-content">
+								<i class="material-icons icone-rosa">delete_forever</i>
+							</a>
+						</div>
 					</li>
 					{% endfor %}
 				</ul>
+				<a href="#" id="excluir-links" class="btn-flat left">excluir</a>
+				<a href="#" id="voltar-links" class="vanish btn-flat left">voltar</a>
 				<a href="#" class="right btn-flat">ver mais</a>
 				<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
 
@@ -139,10 +163,21 @@
 							<img src="/media/{{summary.user.profile.image}}" class="circle">
 							<span class="title">{{summary.name}}</span><br>
 							<p class="usuario-data">{{summary.user.username}} • {{summary.date|date:"d/m/Y"}}</p> 
-							<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
+							<div class="open-summary">
+								<a href="/media/{{summary.file}}" class="secondary-content"><i class="material-icons icone-rosa">file_download</i></a>
+								</a>
+							</div>
+							<div class="exclude-summary vanish">
+								<a href="" class="secondary-content">
+									<i class="material-icons icone-rosa">delete_forever</i>
+								</a>
+							</div>
 						</li>
 					{% endfor %}
 				</ul>
+
+				<a href="#" id="excluir-summarys" class="btn-flat left">excluir</a>
+				<a href="#" id="voltar-summarys" class="vanish btn-flat left">voltar</a>
 				<a href="#" class="right btn-flat">ver mais</a>
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
