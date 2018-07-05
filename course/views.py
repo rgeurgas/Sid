@@ -67,7 +67,6 @@ def course_search(request):
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
 
-	print(request.method == 'POST')
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user=request.user)
 
@@ -138,6 +137,8 @@ def course_all_links(request, course_pk):
 			for result in course.link.all().filter(tags__icontains = query_tag):
 				links.add(result)
 		links = list(links)
+
+		linkForm = LinkForm(course)
 	elif request.POST:
 		linkForm = LinkForm(course, request.POST)
 		links = course.link.all()
@@ -146,7 +147,7 @@ def course_all_links(request, course_pk):
 			link.course = course
 			link.user = request.user
 			link.save()
-			return redirect('course_all_links', course_pk)
+			return redirect('links_see_more', course_pk)
 	else:
 		linkForm = LinkForm(course)
 		links = course.link.all()
@@ -164,7 +165,6 @@ def course_all_lists(request, course_pk):
 	
 	if request.GET:
 		query = request.GET.get('q')
-
 		query_tags = query.split(' ')
 
 		lists = set()
@@ -174,6 +174,9 @@ def course_all_lists(request, course_pk):
 			for result in course.list.all().filter(tags__icontains = query_tag):
 				lists.add(result)
 		lists = list(lists)
+
+		listForm = ListForm(course)
+
 	elif request.POST:
 		listForm = ListForm(course, request.POST, request.FILES)
 		lists = course.list.all()
@@ -182,7 +185,7 @@ def course_all_lists(request, course_pk):
 			list_new.course = course
 			list_new.user = request.user
 			list_new.save()
-			return redirect('course_all_lists', course_pk)
+			return redirect('lists_see_more', course_pk)
 	else:
 		listForm = ListForm(course)
 		lists = course.list.all()
@@ -200,7 +203,6 @@ def course_all_summaries(request, course_pk):
 	
 	if request.GET:
 		query = request.GET.get('q')
-
 		query_tags = query.split(' ')
 
 		summaries = set()
@@ -210,6 +212,8 @@ def course_all_summaries(request, course_pk):
 			for result in course.summary.all().filter(tags__icontains = query_tag):
 				summaries.add(result)
 		summaries = list(summaries)
+
+		summaryForm = SummaryForm(course)
 	elif request.POST:
 		summaryForm = SummaryForm(course, request.POST, request.FILES)
 		summaries = course.summary.all()
@@ -218,7 +222,7 @@ def course_all_summaries(request, course_pk):
 			summary.course = course
 			summary.user = request.user
 			summary.save()
-			return redirect('course_all_summaries', course_pk)
+			return redirect('summaries_see_more', course_pk)
 	else:
 		summaryForm = SummaryForm(course)
 		summaries = course.summary.all()
