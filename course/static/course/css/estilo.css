@@ -187,3 +187,12 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 
 .div.file-path-wrapper{
 	border-bottom: 0px !important;
+}
+
+.post-single p{
+	color:#555555;
+}
+
+.post-single .title{
+	color:#000000;
+}
