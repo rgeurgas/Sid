@@ -62,7 +62,7 @@
 			<div class="col m12">
 				<h5 class='left-align'>Atividade recente</h5>
 					<hr>
-					{% if activities|length < 0 %}
+					{% if activities|length > 0 %}
 					<ul class="collection">
 						{% for activity in activities %}
 						<li class="collection-item avatar">

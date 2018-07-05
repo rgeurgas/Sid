@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 
+from course.models import Course
 from registration.forms import SignUpForm, EditarForm
 from registration.models import Profile
 
@@ -41,21 +42,21 @@ def view_profile(request, pk):
 
 
 		activities = []
-		for course in sub_courses:
-			for l in course.link.all()[:10]:
-				if l.user.profile.id == profile.id:
+		for course in Course.objects.all():
+			for l in course.link.all():
+				if l.user.id == profile.user.id:
 					activities.append({'obj': l, 'tipo': 'um link'})
-			for l in course.list.all()[:10]:
+			for l in course.list.all():
 				if l.user.id == profile.user.id:
 					activities.append({'obj': l, 'tipo': 'uma lista'})
-			for s in course.summary.all()[:10]:
+			for s in course.summary.all():
 				if s.user.id == profile.user.id:
 					activities.append({'obj': s, 'tipo': 'um resumo'})
 
 		activities.sort(key = lambda x: x['obj'].date, reverse=True)
 		activities = activities[:5]
 
-		print('>>>>' + str(len(activities)))
+		print(profile.user.first_name +'>>>>' + str(len(activities)))
 
 		context = {
 			'profile': profile,
