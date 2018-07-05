@@ -302,17 +302,17 @@ def post_list(request, course_pk):
 	posts.sort(key=lambda x: x.date, reverse=True)
 	
 	if request.method == 'POST':
-		form = PostForm(request.POST)
-		if 'add_post' in request.POST and form.is_valid():
-			new_post = form.save(commit=False)
+		postForm = PostForm(request.POST)
+		if 'add_post' in request.POST and postForm.is_valid():
+			new_post = postForm.save(commit=False)
 			new_post.user = request.user
 			new_post.course = course
 			new_post.save()
 			return redirect('post_list', course_pk=course_pk)
 	else:
-		form = PostForm()
+		postForm = PostForm()
 
-	data = {'form': form, 'posts': posts, 'course':course}
+	data = {'postForm': postForm, 'posts': posts, 'course':course}
 	
 	return render(request, 'course/forum_list.html', data)
 
