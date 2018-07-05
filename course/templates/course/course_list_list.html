@@ -22,8 +22,8 @@
 			<hr>
 			<ul class="collection">
 				{% for list in lists %}
-					<li class="collection-item avatar">
-						<img src="/media/{{list.user.profile.image}}" class="circle collection-img">
+					<li class="collection-item avatar item-list-bg">
+						<a href="{% url 'view_profile' list.user.profile.id %}"><img src="/media/{{list.user.profile.image}}" class="circle collection-img"></a>
 						<span class="title">{{list.name}}</span> <br>
 						<p class="usuario-data">{{list.user.username}} • {{list.date}}</p> 
 					

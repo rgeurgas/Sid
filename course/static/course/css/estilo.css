@@ -197,7 +197,16 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 	color:#000000;
 }
 
+
+.item-list:hover{
+	background-color: #DDD !important;
+	cursor: pointer;
+}
+
+.item-list-bg:hover{
+	background-color: #DDD !important;
+}
+
 .nav-wrapper .input-field input[type=search]{
 	color: #000000 !important;
->>>>>>> 2b359ee496317d17ee82430281edd463e5d93b5b
 }

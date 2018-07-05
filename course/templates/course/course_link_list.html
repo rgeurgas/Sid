@@ -22,8 +22,8 @@
 	<hr>
 	<ul class="collection">
 		{% for link in links %}
-			<li class="collection-item avatar">
-				<img src="/media/{{link.user.profile.image}}" class="circle">
+			<li class="collection-item avatar item-list-bg">
+				<a href="{% url 'view_profile' link.user.profile.id %}"><img src="/media/{{link.user.profile.image}}" class="circle"></a>
 				<span class="title">{{link.name}}</span><br>
 				<p class="usuario-data">{{link.user.username}} • {{link.date|date:"d/m/Y"}}</p> 
 

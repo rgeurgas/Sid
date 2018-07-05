@@ -10,7 +10,7 @@
 					{% if activities|length > 0 %}
 					<ul class="collection">
 						{% for activity in activities %}
-						<li class="collection-item avatar">
+						<li class="collection-item avatar item-list" onclick="location.href='{%url 'course_details' activity.obj.course.id%}'">
 							<a href="{% url 'view_profile' activity.obj.user.profile.id %}"><img src="/media/{{activity.obj.user.profile.image}}" class="circle"></a>
 							<span class="title">{{ activity.obj.user.username }} enviou {{activity.tipo}} para {{ activity.obj.course.name }}: {{activity.obj.name}}</span>
 							{# <p>O texto vem aqui</p> #}

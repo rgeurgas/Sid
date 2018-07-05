@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-
 	<div class="row topo">
 			<div class="col m9">
 				<h3>{{course.name}}</h3>
@@ -17,7 +15,7 @@
 		<div class="col m12 list_forum">
 			<ul class="collection">
 				{% for post in posts %}
-				<li class="collection-item avatar list_forum">
+				<li class="collection-item avatar list_forum item-list" onclick="location.href='{% url 'post_detail' course.id post.id %}'">
 					<img src="/media/{{post.user.profile.image}}" class="circle collection-img">
 					<span class="title">{{post.title}}</span> <br>
 					<p class="usuario-data">{{post.user.username}} • {{post.date}}</p> 
@@ -26,7 +24,7 @@
 						<p>{{post.comment.all|length}} Comentários</p>		
 					</div>
 					
-					<a href="{{post.id}}" class="secondary-content"><i class="material-icons icone-rosa">
+					<a href="{% url 'post_detail' course.id post.id %}" class="secondary-content"><i class="material-icons icone-rosa">
 					arrow_forward</i></a>
 				</li>
 				{% endfor %}
@@ -36,7 +34,5 @@
 	</div>
 
 	{% include 'course/snippets/modal_new_post.html'%}	
-
-</div>
 
 {% endblock %}

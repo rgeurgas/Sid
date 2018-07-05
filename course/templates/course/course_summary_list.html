@@ -5,7 +5,7 @@
 		
 	<div class="row">
 		<div class="col m4">
-			<h5 class="left subtittle">Listas</h5>
+			<h5 class="left subtittle">Resumos</h5>
 		</div>
 		<div class="col m5 offset-m3">
 			<form class="">
@@ -22,8 +22,8 @@
 			<hr>
 			<ul class="collection">
 				{% for summary in summaries %}
-					<li class="collection-item avatar">
-						<img src="/media/{{summary.user.profile.image}}" class="circle collection-img">
+					<li class="collection-item avatar item-list-bg">
+						<a href="{% url 'view_profile' summary.user.profile.id %}"><img src="/media/{{summary.user.profile.image}}" class="circle collection-img"></a>	
 						<span class="title">{{summary.name}}</span> <br>
 						<p class="usuario-data">{{summary.user.username}} • {{summary.date}}</p> 
 					

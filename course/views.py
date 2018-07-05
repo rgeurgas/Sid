@@ -64,17 +64,6 @@ def course_search(request):
 
 	return render(request, 'course/course_search.html', context)
 
-def course_list(request):
-	courses = Course.objects.all()
-	data = {}
-	data['object_list'] = courses
-	
-	if 'subscribe' in request.POST:
-		profile = request.user.profile
-		profile.courses 
-
-	return render(request, 'course/list.html', data)
-
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
 
