@@ -187,4 +187,3 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 
 .div.file-path-wrapper{
 	border-bottom: 0px !important;
-}

@@ -1,0 +1,12 @@
+{% block content %}
+<div class="row topo">
+	<div class="col s12">
+		{% if course not in user.profile.courses.all %}
+		<h3>{{course.name}}<a class="waves-effect waves-light btn right red darken-1" href="{% url 'course_sub' course.id %}">INSCREVER-SE</a></h3>
+		{% else %}
+		<h3>{{course.name}}<a class="waves-effect waves-light btn right grey" href="{% url 'course_unsub' course.id %}">DESINSCREVER-SE</a></h3>
+		{% endif %}
+		<h6>{{course.code}}</h6>
+	</div>
+</div>
+{% endblock %}

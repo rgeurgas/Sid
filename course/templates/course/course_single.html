@@ -3,13 +3,7 @@
 
 {% block content%}
 
-		<!-- TO DO -->
-		<div class="row topo">
-			<div class="col m9">
-				<h3>{{course.name}}</h3>
-				<h6>{{course.code}}</h6>
-			</div>
-		</div>
+		{% include 'course/snippets/course_top.html'%}
 		<div class="row">
 			<div class="col m4">
 				<h5 class="left-align">Listas</h5>
@@ -46,7 +40,7 @@
 
 				<a href="#" id="excluir-lists" class="btn-flat left">excluir</a>
 				<a href="#" id="voltar-lists" class="vanish btn-flat left">voltar</a>
-				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="{% url 'lists_see_more' course.id %}" class="right btn-flat">ver mais</a>
 				<a href="#modal-list" class="right btn-flat modal-trigger">enviar</a>
 				<!-- Modal form lista  -->
 				<div id="modal-list" class="modal">
@@ -203,7 +197,7 @@
 
 				<a href="#" id="excluir-summaries" class="btn-flat left">excluir</a>
 				<a href="#" id="voltar-summaries" class="vanish btn-flat left">voltar</a>
-				<a href="#" class="right btn-flat">ver mais</a>
+				<a href="{% url 'summaries_see_more' course.id %}" class="right btn-flat">ver mais</a>
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
 				<div id="modal-summary" class="modal">

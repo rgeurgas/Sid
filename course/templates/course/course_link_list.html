@@ -2,12 +2,7 @@
 
 {% block content %}
 
-<div class="row topo">
-	<div class="col m9">
-		<h3>{{course.name}}</h3>
-		<h6>{{course.code}}</h6>
-	</div>
-</div>
+{% include 'course/snippets/course_top.html'%}
 
 <div class="row">
 	<div class="col m4">
