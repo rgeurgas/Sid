@@ -36,4 +36,6 @@ urlpatterns = [
     re_path(r'^course/(?P<course_pk>\d+)/forum/(?P<post_pk>\d+)/(?P<pk>\d+)/remove$', views.comment_remove, name='comment_remove'),
 
     re_path(r'^course/(?P<course_pk>\d+)/links/$', views.course_all_links, name='links_see_more'),
+    re_path(r'^course/(?P<course_pk>\d+)/lists/$', views.course_all_lists, name='lists_see_more'),
+    re_path(r'^course/(?P<course_pk>\d+)/summaries/$', views.course_all_summaries, name='summaries_see_more'),
 ]

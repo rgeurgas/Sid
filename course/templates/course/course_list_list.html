@@ -1,0 +1,85 @@
+{% extends 'base.html' %}		
+
+{% block content %}
+<div class="container">
+	<div class="row topo">
+		<div class="col m9">
+			<h3>{{course.name}}</h3>
+			<h6>{{course.code}}</h6>
+		</div>
+	</div>
+		
+	<div class="row">
+		<div class="col m4">
+			<h5 class="left subtittle">Listas</h5>
+		</div>
+		<div class="col m5 offset-m3">
+			<form class="">
+				<div class="input-field">
+					<input id="search-lists" class="disable-active" type="search" required>
+					<label for="textarea1" class=""><i class="material-icons">search</i></label>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col m12">
+			<hr>
+			<ul class="collection">
+				{% for list in lists %}
+					<li class="collection-item avatar">
+						<img src="/media/{{list.user.profile.image}}" class="circle collection-img">
+						<span class="title">{{list.name}}</span> <br>
+						<p class="usuario-data">{{list.user.username}} • {{list.date}}</p> 
+					
+						<a href="/media/{{list.file}}" class="secondary-content"><i class="material-icons icone-rosa">
+					file_download</i></a>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<a href="#" id="excluir-links" class="btn-flat left">excluir</a>
+			<a href="#" id="voltar-links" class="vanish btn-flat left">voltar</a>
+			<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
+
+			<div id="modal-link" class="modal">
+				<form method="post" class="" enctype="multipart/form-data">{% csrf_token %}
+					<div class="modal-content">
+						<h5>Enviar um list</h5>
+						<hr>
+						<div class="row form-edit">
+							<div class="col s12 offset-m1 m5">
+								<div class="input-field">
+									{{listForm.name}}
+									<label for="name-link">Título</label>
+								</div>
+							</div>
+							<div class="col s12 m5 input-field">
+								{{listForm.teacher}}
+								<label for="teacher-link">Professor</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col s12 m10 offset-m1 input-field">
+								{{listForm.tags}}
+								<label for="tags-link">Tags (separadas por virgulas)</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m10 offset-m1">
+								{{listForm.file}}
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn-flat waves-effect waves-light" type="submit" name="add_link">Enviar
+							<i class="material-icons right">send</i>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
