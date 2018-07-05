@@ -8,7 +8,6 @@
 			<div class="col m4">
 				<h5 class="left-align">Listas</h5>
 				<hr>
-				{% if course.list.all|length > 0 %}
 				<ul class="collection">
 					{% for list in course.list.all|slice:":5" %}
 						<li class="collection-item avatar">
@@ -37,9 +36,6 @@
 						</li>
 					{% endfor %}
 				</ul>
-				{% else %}
-					<h6 class="center">Não possui nenhuma lista</h6>
-				{% endif %}
 
 				<a href="#" id="excluir-lists" class="btn-flat left">excluir</a>
 				<a href="#" id="voltar-lists" class="vanish btn-flat left">voltar</a>
@@ -52,11 +48,10 @@
 			<div class="col m4">
 				<h5>Links</h5>
 				<hr>
-				{% if course.link.all|length > 0 %}
 				<ul class="collection">
 					{% for link in course.link.all|slice:":5" %}
 					<li class="collection-item avatar">
-						<a href="{% url 'view_profile' link.user.profile.id %}"><img src="/media/{{link.user.profile.image}}" class="circle"></a>
+						<img src="/media/{{link.user.profile.image}}" class="circle">
 						<span class="title">{{link.name}}</span><br>
 						<p class="usuario-data">{{link.user.username}} • {{link.date|date:"d/m/Y"}}</p> 
 
@@ -80,10 +75,6 @@
 					</li>
 					{% endfor %}
 				</ul>
-				{% else %}
-					<h6 class="center">Não possui nenhum link</h6>
-				{% endif %}
-
 				<a href="#" id="excluir-links" class="btn-flat left">excluir</a>
 				<a href="#" id="voltar-links" class="vanish btn-flat left">voltar</a>
 				<a href="{% url 'links_see_more' course.id %}" class="right btn-flat">ver mais</a>
@@ -95,7 +86,6 @@
 			<div class="col m4">
 				<h5>Resumos</h5>
 				<hr>
-				{% if course.link.all|length > 0 %}
 				<ul class="collection">
 					{% for summary in course.summary.all|slice:":5" %}
 						<li class="collection-item avatar">
@@ -113,7 +103,7 @@
 								</a>
 							</div>
 							{% else %}
-							<div class="exclude-summary vanish">
+							<div class="exclude-link vanish">
 								<a href="#" class="secondary-content">
 									<i class="material-icons gray">delete_forever</i>
 								</a>
@@ -122,10 +112,6 @@
 						</li>
 					{% endfor %}
 				</ul>
-				{% else %}
-					<h6 class="center">Não possui nenhum resumo</h6>
-				{% endif %}
-
 
 				<a href="#" id="excluir-summaries" class="btn-flat left">excluir</a>
 				<a href="#" id="voltar-summaries" class="vanish btn-flat left">voltar</a>
@@ -141,7 +127,6 @@
 			<div class="col m12">
 				<h5>Fórum</h5>
 				<hr>
-				{% if course.post.all|length > 0%}
 				<ul class="collection post-single">
 					{% for post in course.post.all|slice:":5" %}
 						<a href="/course/{{course.id}}/forum/{{post.id}}">
@@ -154,9 +139,6 @@
 						</a>
 					{% endfor %}
 				</ul>
-				{% else %}
-				<h6 class="center">Nenhum post no fórum dessa disciplina</h6>
-				{% endif %}
 				<a href="forum" class="right btn-flat">ver mais</a>
 				<a href="#modal-post" class="right btn-flat modal-trigger">Novo Post</a>
 				
