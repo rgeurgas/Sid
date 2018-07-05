@@ -9,4 +9,5 @@ urlpatterns = [
     re_path(r'^signup/$', views.signup, name='signup'),
     re_path(r'^profile/(?P<pk>\d+)$', views.view_profile, name='view_profile'),
     re_path(r'^profile/(?P<pk>\d+)$', views.view_profile, name='edit_profile'),
+    re_path(r'^approve', views.approve_and_close, name='approve_and_close')
 ]

@@ -1,8 +1,10 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
 from registration.forms import SignUpForm, EditarForm
 from registration.models import Profile
+
 
 def signup(request):
 	if request.method == 'POST':
@@ -21,6 +23,7 @@ def signup(request):
 		form = SignUpForm()
 	return render(request, 'registration/signup.html', {'form': form})
 
+
 def view_profile(request, pk):
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user=request.user)
@@ -36,8 +39,6 @@ def view_profile(request, pk):
 				return redirect('view_profile', pk=profile.pk)
 		else:
 			form = EditarForm(instance=profile)
-
-
 
 		activities = []
 		for course in sub_courses:
@@ -60,7 +61,11 @@ def view_profile(request, pk):
 			'activities': activities,
 			'form': form
 		}
-		
+
 		return render(request, 'registration/perfil.html', context)
 
 	return redirect('login')
+
+
+def approve_and_close(request):
+	return HttpResponse('<script type="text/javascript"> window.opener.parent.location.href = "/"; window.close(); </script>')
