@@ -29,7 +29,7 @@
 	     	{% if user.is_authenticated %}
 	     	<form method="get" action="{% url 'course_search' %}">
 	     		{% csrf_token %}
-        		<div class="input-field right" style="width: 30vw">
+        		<div class="input-field right" style="width: 20vw">
           		<input id="search" type="search" placeholder="Buscar disciplinas" name="q" required>
           		<label class="label-icon" for="search"><i class="material-icons">search</i></label>
           		<i class="material-icons">close</i>
