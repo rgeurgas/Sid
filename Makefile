@@ -22,3 +22,6 @@ merge:
 	
 shell:
 	$(DOCKER) run web python3 manage.py shell
+
+populate:
+	$(DOCKER) run web python3 manage.py shell < mysite/populate.py
