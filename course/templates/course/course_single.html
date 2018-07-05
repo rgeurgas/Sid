@@ -42,42 +42,8 @@
 				<a href="#" id="voltar-lists" class="vanish btn-flat left">voltar</a>
 				<a href="{% url 'lists_see_more' course.id %}" class="right btn-flat">ver mais</a>
 				<a href="#modal-list" class="right btn-flat modal-trigger">enviar</a>
-				<!-- Modal form lista  -->
-				<div id="modal-list" class="modal">
-					<form method="post" enctype="multipart/form-data">{% csrf_token %}
-						<div class="modal-content">
-							<h5>Enviar uma nova lista</h5>
-							<hr>
-							<div class="row form-edit">
-								<div class="col s12 offset-m1 m5">
-									<div class="input-field">
-										{{listForm.name}}
-										<label for="name-list">Título</label>
-									</div>	
-								</div>
-								<div class="col s12 m5 input-field">
-									{{listForm.teacher}}
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12 m10 offset-m1 input-field">
-									{{listForm.tags}}
-									<label for="tags-list">Tags (separadas por virgulas)</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12 m10 offset-m1">
-									{{listForm.file}}
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn-flat waves-effect waves-light" type="submit" name="add_list">Enviar
-								<i class="material-icons right">send</i>
-							</button>
-						</div>
-					</form>
-				</div>       	
+
+				{% include 'course/snippets/modal_new_list.html'%}				       	
 			</div>
 
 			<div class="col m4">
@@ -115,43 +81,7 @@
 				<a href="{% url 'links_see_more' course.id %}" class="right btn-flat">ver mais</a>
 				<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
 
-				<div id="modal-link" class="modal">
-					<form method="post" class="">{% csrf_token %}
-						<div class="modal-content">
-							<h5>Enviar um link</h5>
-							<hr>
-							<div class="row form-edit">
-								<div class="col s12 offset-m1 m5">
-									<div class="input-field">
-										{{linkForm.name}}
-										<label for="name-link">Título</label>
-									</div>
-								</div>
-								<div class="col s12 m5 input-field">
-									{{linkForm.teacher}}
-									<label for="teacher-link">Professor</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12 m10 offset-m1 input-field">
-									{{linkForm.tags}}
-									<label for="tags-link">Tags (separadas por virgulas)</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s12 m10 offset-m1">
-									{{linkForm.link}}
-									<label for="link">Link</label>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn-flat waves-effect waves-light" type="submit" name="add_link">Enviar
-								<i class="material-icons right">send</i>
-							</button>
-						</div>
-					</form>
-				</div>
+				{% include 'course/snippets/modal_new_link.html'%}
 			</div>
 
 			<div class="col m4">
@@ -189,44 +119,7 @@
 				<a href="{% url 'summaries_see_more' course.id %}" class="right btn-flat">ver mais</a>
 				<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
-				<div id="modal-summary" class="modal">
-					<form method="post" class="" enctype="multipart/form-data"> {% csrf_token %}
-						<div class="modal-content">
-							<h5>Enviar um resumo</h5>
-							<hr>
-							<div class="row form-edit">
-								<div class="col s12 offset-m1 m5">
-									<div class="input-field">
-										{{summaryForm.name}}
-										<label for="name-summary">Título</label>
-									</div>
-									
-								</div>
-								<div class="col s12 m5 input-field">
-									{{summaryForm.teacher}}
-									<label for="teacher-link">Professor</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12 m10 offset-m1 input-field">
-									{{summaryForm.tags}}
-									<label for="tags-summary">Tags (separadas por virgulas)</label>
-								</div>
-							</div>
-						
-							<div class="row">
-								<div class="input-field col s12 m10 offset-m1">
-									{{summaryForm.file}}
-								</div>
-							</div>
-
-							<div class="modal-footer">
-								<button class="btn-flat waves-effect waves-light" type="submit" name="add_summary">Enviar
-									<i class="material-icons right">send</i>
-								</button>
-							</div>
-					</form>
-				</div>
+				{% include 'course/snippets/modal_new_summary.html'%}
 			</div>
 			</div>
 		</div>
@@ -249,40 +142,8 @@
 				</ul>
 				<a href="forum" class="right btn-flat">ver mais</a>
 				<a href="#modal-post" class="right btn-flat modal-trigger">Novo Post</a>
-				<div id="modal-post" class="modal" >
-					<form method="post" class="" enctype="multipart/form-data"> {% csrf_token %} 
-						<div class="modal-content">
-							<h5>Enviar um Post</h5>
-							<hr>
-							<div class="row form-edit">
-								<div class="col s12 offset-m1 m5">
-									<div class="input-field">
-										{{postForm.title}}
-										<label for="title-post">Título</label>
-									</div>				  					
-								</div>
-							</div>
-							<div class="row">
-								<div class="col s12 m10 offset-m1 input-field">
-									{{postForm.tags}}
-									<label for="tags-post">Tags (separadas por virgulas)</label>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col s12 m10 offset-m1 input-field">
-									  {{postForm.text}}
-									  <label for="content-post">Conteúdo</label>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn-flat waves-effect waves-light" type="submit" name="add_post">Enviar
-								<i class="material-icons right">send</i>
-							</button>
-						</div>
-					</form>
-				</div>
+				
+				{% include 'course/snippets/modal_new_post.html'%}
 			</div>
 		</div>
 {% endblock %}

@@ -39,5 +39,5 @@ urlpatterns = [
     re_path(r'^course/(?P<course_pk>\d+)/summaries/$', views.course_all_summaries, name='summaries_see_more'),
 
     re_path(r'^course/(?P<course_pk>\d+)/sub/$', views.course_sub, name='course_sub'),
-    re_path(r'^course/(?P<course_pk>\d+)/unsub/$', views.course_unsub, name='course_unsub')
+    re_path(r'^course/(?P<course_pk>\d+)/unsub/$', views.course_unsub, name='course_unsub'),
 ]

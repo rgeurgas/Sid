@@ -88,6 +88,7 @@ def course_details(request, pk):
 				list_new.course = course
 				list_new.user = request.user
 				list_new.save()
+				return redirect('course_details', pk)
 		else:
 			listForm = ListForm(course)
 		
@@ -98,6 +99,7 @@ def course_details(request, pk):
 				link.course = course
 				link.user = request.user
 				link.save()
+				return redirect('course_details', pk)
 		else:
 			linkForm = LinkForm(course)
 
@@ -108,6 +110,7 @@ def course_details(request, pk):
 				summary.course = course
 				summary.user = request.user
 				summary.save()
+				return redirect('course_details', pk)
 		else:
 			summaryForm = SummaryForm(course)
 		
@@ -118,6 +121,7 @@ def course_details(request, pk):
 				post.course = course
 				post.user = request.user
 				post.save()
+				return redirect('course_details', pk)
 		else:
 			postForm = PostForm()
 
@@ -151,6 +155,7 @@ def course_all_links(request, course_pk):
 			link.course = course
 			link.user = request.user
 			link.save()
+			return redirect('course_all_links', course_pk)
 	else:
 		linkForm = LinkForm(course)
 		links = course.link.all()
@@ -186,6 +191,7 @@ def course_all_lists(request, course_pk):
 			list_new.course = course
 			list_new.user = request.user
 			list_new.save()
+			return redirect('course_all_lists', course_pk)
 	else:
 		listForm = ListForm(course)
 		lists = course.list.all()
@@ -221,6 +227,7 @@ def course_all_summaries(request, course_pk):
 			summary.course = course
 			summary.user = request.user
 			summary.save()
+			return redirect('course_all_summaries', course_pk)
 	else:
 		summaryForm = SummaryForm(course)
 		summaries = course.summary.all()
@@ -338,4 +345,3 @@ def comment_remove(request, course_pk, pk):	# obs: o pk equivale ao comment
 	comment = Comment.objects.get(pk=pk)
 	comment.delete()
 	return redirect('post_detail', course_pk=comment.post.course.id, pk=comment.post.pk) 
-
