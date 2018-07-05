@@ -231,6 +231,19 @@ def course_all_summaries(request, course_pk):
 
 	return render(request, 'course/course_summary_list.html', context)
 
+
+def course_sub(request, course_pk):
+	profile = Profile.objects.get(user=request.user)
+	profile.courses.add(course_pk)
+
+	return redirect('course_details', pk=course_pk)
+
+def course_unsub(request, course_pk):
+	profile = Profile.objects.get(user=request.user)
+	profile.courses.remove(course_pk)
+
+	return redirect('course_details', pk=course_pk)
+
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
 	pk = link.course.id

@@ -172,3 +172,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 .vanish{
 	display: none;
 }
+
+.btn-sub:focus{ 
+  background-color: green
+}
