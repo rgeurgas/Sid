@@ -20,9 +20,9 @@
      		<ul id="nav-mobile" class="left hide-on-med-and-down">
 	   			{% if user.is_authenticated %}
 	   			<li><a href="{% url 'home' %}">Inicio</a></li>
-    	   		<li><a href="/auth/profile/{{request.user.id}}">Meu perfil</a></li>
+    	   		<li><a href="{% url 'view_profile' request.user.id%}">Meu perfil</a></li>
     	   		<li><a href="{% url 'course_list' %}">Disciplinas</a></li>
-       			<li><a href="/auth/logout/">Sair</a></li>
+       			<li><a href="{% url 'logout' %}">Sair</a></li>
        			{% endif %}
        			<!-- <li><a href="collapsible.html"><i class="material-icons">exit_to_app</i></a></li>  -->
 	     	</ul>
