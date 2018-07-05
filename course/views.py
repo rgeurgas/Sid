@@ -103,7 +103,6 @@ def course_details(request, pk):
 
 		if 'add_summary' in request.POST:
 			summaryForm = SummaryForm(course, request.POST, request.FILES)
-			print(summaryForm)
 			if summaryForm.is_valid():
 				summary = summaryForm.save(commit=False)
 				summary.course = course
@@ -111,7 +110,7 @@ def course_details(request, pk):
 				summary.save()
 		else:
 			summaryForm = SummaryForm(course)
-
+		
 		if 'add_post' in request.POST:
 			postForm = PostForm(request.POST)
 			if postForm.is_valid():
@@ -146,6 +145,7 @@ def course_all_links(request, course_pk):
 		links = list(links)
 	elif request.POST:
 		linkForm = LinkForm(course, request.POST)
+		links = course.link.all()
 		if linkForm.is_valid():
 			link = linkForm.save(commit=False)
 			link.course = course
@@ -180,6 +180,7 @@ def course_all_lists(request, course_pk):
 		lists = list(lists)
 	elif request.POST:
 		listForm = ListForm(course, request.POST, request.FILES)
+		lists = course.list.all()
 		if listForm.is_valid():
 			list_new = listForm.save(commit=False)
 			list_new.course = course
@@ -214,6 +215,7 @@ def course_all_summaries(request, course_pk):
 		summaries = list(summaries)
 	elif request.POST:
 		summaryForm = SummaryForm(course, request.POST, request.FILES)
+		summaries = course.summary.all()
 		if summaryForm.is_valid():
 			summary = summaryForm.save(commit=False)
 			summary.course = course
@@ -230,7 +232,6 @@ def course_all_summaries(request, course_pk):
 	}
 
 	return render(request, 'course/course_summary_list.html', context)
-
 
 def course_sub(request, course_pk):
 	profile = Profile.objects.get(user=request.user)
@@ -301,7 +302,7 @@ def post_list(request, course_pk):
 			return redirect('post_list', course_pk=course_pk)
 	else:
 		form = PostForm()
-	print(form)
+
 	data = {'form': form, 'posts': posts, 'course':course}
 	
 	return render(request, 'course/forum_list.html', data)
