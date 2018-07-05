@@ -10,6 +10,21 @@
 				<div class="row">
 					<h5 class="center-align">Bem vindo ao Sid :)</h5>
 				</div>
+        <!-- Nome de usuario -->
+            <div class="row">
+              <div class="input-field col s12 {%if form.username.errors %} erou {% endif %}">
+                  {{form.username}}
+                  <label for="id_username">Nome de Usuário</label>
+                  {% if form.username.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.username.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}                  
+              </div>
+            </div>
+            
         <!-- Nome  primeiro -->
       			<div class="row">
         			<div class="input-field col s6 {%if form.first_name.errors %} erou {% endif %}">
@@ -38,20 +53,7 @@
                 {{form.last_name.erros}}
               </div>
             </div>
-        <!-- Nome de usuario -->
-            <div class="row">
-              <div class="input-field col s12 {%if form.username.errors %} erou {% endif %}">
-                  {{form.username}}
-                  <label for="id_username">Nome de Usuário</label>
-                  {% if form.username.errors %}
-                    <span class="helper-text" data-error=
-                    {% for error in form.username.errors %}
-                      "{{ error }}"
-                    {% endfor %}
-                  ></span>
-                  {% endif %}                  
-              </div>
-            </div>
+        
         <!-- email -->
             <div class="row">
               <div class="input-field col s12  {%if form.email.errors %} erou {% endif %}">
@@ -70,7 +72,7 @@
             <div class="row">
               <div class="input-field col s12 {%if form.birth_date.errors %} erou {% endif %}">
                   {{form.birth_date}}
-                  <label for="birthdate">Data de Nascimento</label> 
+                  <label for="id_birth_date">Data de Nascimento</label> 
                   {% if form.birth_date.errors %}
                     <span class="helper-text" data-error=
                     {% for error in form.birth_date.errors %}
@@ -118,7 +120,7 @@
         		<div class="row">
         			<div class="input-field col s6  {%if form.password1.errors %} erou {% endif %}">
         				{{form.password1}}
-          				<label for="id_password">Senha</label>
+          				<label for="id_password1">Senha</label>
                   {% if form.password1.errors %}
                     <span class="helper-text" data-error=
                     {% for error in form.password1.errors %}
