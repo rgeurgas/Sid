@@ -159,6 +159,7 @@ i.icone-rosa{
 .input-field input[type=search]:focus:not(.browser-default){
 	background-color: #EEEEEE;
 	border-bottom: 1px solid #9e9e9e;
+	color:#000000;
 }
 
 input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
@@ -171,4 +172,32 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 
 .vanish{
 	display: none !important;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+	color:#F62A66 !important;
+}
+
+.choose-file{
+	background-color:#F62A66 !important;
+	font-size: 0.1px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.div.file-path-wrapper{
+	border-bottom: 0px !important;
+}
+
+.post-single p{
+	color:#555555;
+}
+
+.post-single .title{
+	color:#000000;
+}
+
+.nav-wrapper .input-field input[type=search]{
+	color: #000000 !important;
+>>>>>>> 2b359ee496317d17ee82430281edd463e5d93b5b
 }

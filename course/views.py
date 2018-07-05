@@ -89,6 +89,7 @@ def course_details(request, pk):
 				list_new.course = course
 				list_new.user = request.user
 				list_new.save()
+				return redirect('course_details', pk)
 		else:
 			listForm = ListForm(course)
 		
@@ -99,6 +100,7 @@ def course_details(request, pk):
 				link.course = course
 				link.user = request.user
 				link.save()
+				return redirect('course_details', pk)
 		else:
 			linkForm = LinkForm(course)
 
@@ -109,16 +111,19 @@ def course_details(request, pk):
 				summary.course = course
 				summary.user = request.user
 				summary.save()
+				return redirect('course_details', pk)
 		else:
 			summaryForm = SummaryForm(course)
+		
+		if 'add_post' in request.POST:
 
-		if 'add_post' in request.POST and request.method == "POST":
 			postForm = PostForm(request.POST)
 			if postForm.is_valid():
 				post = postForm.save(commit=False)
 				post.course = course
 				post.user = request.user
 				post.save()
+				return redirect('course_details', pk)
 		else:
 			postForm = PostForm()
 
@@ -144,16 +149,110 @@ def course_all_links(request, course_pk):
 			for result in course.link.all().filter(tags__icontains = query_tag):
 				links.add(result)
 		links = list(links)
+	elif request.POST:
+		linkForm = LinkForm(course, request.POST)
+		links = course.link.all()
+		if linkForm.is_valid():
+			link = linkForm.save(commit=False)
+			link.course = course
+			link.user = request.user
+			link.save()
+			return redirect('course_all_links', course_pk)
 	else:
+		linkForm = LinkForm(course)
 		links = course.link.all()
 
 	context = {
 			'course': course,
-			'links': links
+			'links': links,
+			'linkForm': linkForm,
 	}
 
 	return render(request, 'course/course_link_list.html', context)
 
+def course_all_lists(request, course_pk):
+	course = Course.objects.get(pk=course_pk)
+	
+	if request.GET:
+		query = request.GET.get('q')
+
+		query_tags = query.split(' ')
+
+		lists = set()
+		for query_tag in query_tags:
+			for result in course.list.all().filter(name__icontains = query_tag):
+				lists.add(result)
+			for result in course.list.all().filter(tags__icontains = query_tag):
+				lists.add(result)
+		lists = list(lists)
+	elif request.POST:
+		listForm = ListForm(course, request.POST, request.FILES)
+		lists = course.list.all()
+		if listForm.is_valid():
+			list_new = listForm.save(commit=False)
+			list_new.course = course
+			list_new.user = request.user
+			list_new.save()
+			return redirect('course_all_lists', course_pk)
+	else:
+		listForm = ListForm(course)
+		lists = course.list.all()
+
+	context = {
+			'course': course,
+			'lists': lists,
+			'listForm': listForm,
+	}
+
+	return render(request, 'course/course_list_list.html', context)
+
+def course_all_summaries(request, course_pk):
+	course = Course.objects.get(pk=course_pk)
+	
+	if request.GET:
+		query = request.GET.get('q')
+
+		query_tags = query.split(' ')
+
+		summaries = set()
+		for query_tag in query_tags:
+			for result in course.summary.all().filter(name__icontains = query_tag):
+				summaries.add(result)
+			for result in course.summary.all().filter(tags__icontains = query_tag):
+				summaries.add(result)
+		summaries = list(summaries)
+	elif request.POST:
+		summaryForm = SummaryForm(course, request.POST, request.FILES)
+		summaries = course.summary.all()
+		if summaryForm.is_valid():
+			summary = summaryForm.save(commit=False)
+			summary.course = course
+			summary.user = request.user
+			summary.save()
+			return redirect('course_all_summaries', course_pk)
+	else:
+		summaryForm = SummaryForm(course)
+		summaries = course.summary.all()
+
+	context = {
+			'course': course,
+			'summaries': summaries,
+			'summaryForm': summaryForm,
+	}
+
+	return render(request, 'course/course_summary_list.html', context)
+
+def course_sub(request, course_pk):
+	profile = Profile.objects.get(user=request.user)
+	profile.courses.add(course_pk)
+
+	return redirect('course_details', pk=course_pk)
+
+def course_unsub(request, course_pk):
+	profile = Profile.objects.get(user=request.user)
+	profile.courses.remove(course_pk)
+
+	return redirect('course_details', pk=course_pk)
 
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
@@ -181,7 +280,7 @@ def download(request, path):
 			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 			return response
 
-def post_new(request):
+def post_new(request, course_pk):
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES)
 
@@ -212,7 +311,7 @@ def post_list(request, course_pk):
 			return redirect('post_list', course_pk=course_pk)
 	else:
 		form = PostForm()
-	print(form)
+
 	data = {'form': form, 'posts': posts, 'course':course}
 	
 	return render(request, 'course/forum_list.html', data)
@@ -231,7 +330,7 @@ def post_detail(request, course_pk, pk):
 			new_comment.post = post
 			new_comment.user = request.user
 			new_comment.save()	
-			return redirect('post_detail', course_pk = course_pk, pk=post.pk)
+			return redirect('post_detail', course_pk=course_pk, pk=post.pk)
 	else:
 		form = CommentForm()
 	
@@ -239,13 +338,12 @@ def post_detail(request, course_pk, pk):
 	
 	return render(request, 'course/forum_single.html', context)
 
-def post_remove(request, pk):
+def post_remove(request, course_pk, pk):
 	post = Post.objects.get(pk=pk)
 	post.delete()
 	return redirect('post_list') 
 
-def comment_remove(request, pk):	# obs: o pk equivale ao comment
+def comment_remove(request, course_pk, pk):	# obs: o pk equivale ao comment
 	comment = Comment.objects.get(pk=pk)
 	comment.delete()
-	return redirect('post_detail', course_pk = comment.post.course.id,pk=comment.post.pk) 
-
+	return redirect('post_detail', course_pk=comment.post.course.id, pk=comment.post.pk) 

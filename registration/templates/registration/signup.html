@@ -12,25 +12,44 @@
 				</div>
         <!-- Nome  primeiro -->
       			<div class="row">
-        			<div class="input-field col s6">
+        			<div class="input-field col s6 {%if form.first_name.errors %} erou {% endif %}">
         				{{form.first_name}}
-                {{form.last_name.errors}}
           				<label for="id_first_name">Primeiro Nome</label>	
+                   {% if form.first_name.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.first_name.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %} 
         			</div>
         		
         <!-- Nome  Segundo -->
-              <div class="input-field col s6">
+              <div class="input-field col s6 {%if form.last_name.errors %} erou {% endif %}">
               	{{form.last_name}}
                   <label for="id_last_name">Último Nome</label> 
+                   {% if form.last_name.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.last_name.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %} 
                 {{form.last_name.erros}}
               </div>
             </div>
         <!-- Nome de usuario -->
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 {%if form.username.errors %} erou {% endif %}">
                   {{form.username}}
                   <label for="id_username">Nome de Usuário</label>
-                  {{form.username.errors}}
+                  {% if form.username.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.username.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}                  
               </div>
             </div>
         <!-- email -->
@@ -43,50 +62,84 @@
                     {% for error in form.email.errors %}
                       "{{ error }}"
                     {% endfor %}
-                  {% else %}
-                    "Achou errado otário."
                   ></span>
                   {% endif %}
               </div>
             </div>
         <!-- data nasc -->
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 {%if form.birth_date.errors %} erou {% endif %}">
                   {{form.birth_date}}
-                  <label for="birthdate">Data de Nascimento</label>                  
-                  {{form.birth_date.errors}}
+                  <label for="birthdate">Data de Nascimento</label> 
+                  {% if form.birth_date.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.birth_date.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}                 
+                  
               </div>
             </div>
         <!-- universidade   -->
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s12 {%if form.university.errors %} erou {% endif %}">
                   {{form.university}}
                   <label for="id_university">Universidade</label> 
+                  {% if form.university.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.university.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}                 
+                  
                   {{form.university.errors}}
               </div>
             </div>
         <!-- Bio -->  
             <div class="row">
-              <div class="input-field col s12">
-                  <!-- <textarea id="bio" type="text" class="validate materialize-textarea"></textarea> -->
+              <div class="input-field col s12 {%if form.bio.errors %} erou {% endif %}">
+                  
                   {{form.bio}}
                   <label for="id_bio">Bio</label>
-                  {{form.bio.errors}}
+                  {% if form.bio.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.bio.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}
+                  
               </div>
             </div>
         <!-- Foto -->
         <!-- senha -->
         		<div class="row">
-        			<div class="input-field col s6">
+        			<div class="input-field col s6  {%if form.password1.errors %} erou {% endif %}">
         				{{form.password1}}
           				<label for="id_password">Senha</label>
-                {{form.password1.errors}}
+                  {% if form.password1.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.password1.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}
+                
         			</div>
         <!-- senha confirm -->
-              <div class="input-field col s6">
+              <div class="input-field col s6 {%if form.password2.errors %} erou {% endif %}">
 				  {{form.password2}}
                   <label for="id_password2">Confirme sua senha</label>
-                  {{form.password2.errors}}
+                  {% if form.password2.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.password2.errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}
+                  
               </div>
             </div>
         		<div class="row">
