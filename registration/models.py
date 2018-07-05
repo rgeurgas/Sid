@@ -12,7 +12,7 @@ class Profile(models.Model):
 	university = models.CharField(max_length=50, null=True, blank=True)
 	courses = models.ManyToManyField(Course, blank=True)
 	bio = models.TextField(default=" ")
-	image = models.ImageField(upload_to='profile/pictures/', default="profile/pictures/default.png")
+	image = models.ImageField(upload_to='profile/pictures/', default="profile/pictures/default.webp")
 	def __str__(self):
 		return self.user.username
 
