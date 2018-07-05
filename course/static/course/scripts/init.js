@@ -58,4 +58,15 @@ $(document).ready(function(){
 		$(this).addClass("vanish");
 		$("#excluir-summaries").removeClass("vanish");
 	});
+
+	$('.erou').children('input').addClass('invalid');
+	$('.erou').children('input').focusout(function(){
+		$(this).removeClass("valid");
+		$(this).parent().children('span').addClass('vanish');
+	})
+	$('.erou').children('input').focusin(function(){
+	 	$(this).removeClass('invalid');
+	})
+	
+	
 });

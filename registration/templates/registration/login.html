@@ -24,12 +24,14 @@
         			<div class="input-field col s12">
           				{{ form.username }}
           				<label for="username">Nome de Usuário</label>	
+                  {{ form.username.errors }}
         			</div>
         		</div>
         		<div class="row">
         			<div class="input-field col s12">
         				{{form.password}}
           				<label for="password">Senha</label>
+                  {{form.password.errors}}
         			</div>
         		</div>
         		<div class="row">

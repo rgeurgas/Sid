@@ -170,5 +170,5 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 .vanish{
-	display: none;
+	display: none !important;
 }
