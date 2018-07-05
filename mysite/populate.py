@@ -248,6 +248,7 @@ jordao = Teacher(name='Thaís Jordão')
 menegatto = Teacher(name='Valdir Antonio Menegatto')
 perez = Teacher(name='Victor Hugo Jorge Pérez')
 leite = Teacher(name='Wagner Vieira Leite Nunes')
+luke = Teacher(name='Luke Skywalker')
 
 bergamasco.save()
 sasha.save()
@@ -297,6 +298,7 @@ jordao.save()
 menegatto.save()
 perez.save()
 leite.save()
+luke.save()
 
 course = Course(
     name='Sistemas Evolutivos e Aplicados à Robótica',
@@ -507,7 +509,7 @@ course = Course(
     code='SSC-130',
 )
 course.save()
-course.teachers.set([simoes.id])
+course.teachers.set([simone.id])
 
 course = Course(
     name='Redes de Computadores',
@@ -2365,3 +2367,10 @@ course = Course(
     code='SME-881',
 )
 course.save()
+
+course = Course(
+    name='Introdução à Jedi',
+    code='JED-101',
+)
+course.save()
+course.teachers.set([luke.id])

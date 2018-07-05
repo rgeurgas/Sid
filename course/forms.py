@@ -26,7 +26,7 @@ class ListForm(forms.ModelForm):
 
 	def __init__(self, course, *args, **kwargs):
 		super(ListForm, self).__init__(*args, **kwargs)
-		self.fields['teacher'] = forms.ModelChoiceField(queryset=Teacher.objects.filter(pk__in=course.teachers.all()))
+		self.fields['teacher'] = forms.ModelChoiceField(queryset=Teacher.objects.filter(pk__in=course.teachers.all()), required=False)
 
 	class Meta:
 		model = List
@@ -40,7 +40,7 @@ class SummaryForm(forms.ModelForm):
 
 	def __init__(self, course, *args, **kwargs):
 		super(SummaryForm, self).__init__(*args, **kwargs)
-		self.fields['teacher'] = forms.ModelChoiceField(queryset=Teacher.objects.filter(pk__in=course.teachers.all()))
+		self.fields['teacher'] = forms.ModelChoiceField(queryset=Teacher.objects.filter(pk__in=course.teachers.all()), required=False)
 
 	class Meta:
 		model = Summary
@@ -53,7 +53,7 @@ class LinkForm(forms.ModelForm):
 
 	def __init__(self, course, *args, **kwargs):
 		super(LinkForm, self).__init__(*args, **kwargs)
-		self.fields['teacher'] = forms.ModelChoiceField(queryset=Teacher.objects.filter(pk__in=course.teachers.all()))
+		self.fields['teacher'] = forms.ModelChoiceField(queryset=Teacher.objects.filter(pk__in=course.teachers.all()), required=False)
 
 	class Meta:
 		model = Link
