@@ -8,9 +8,9 @@
 			<h5 class="left subtittle">Resumos</h5>
 		</div>
 		<div class="col m5 offset-m3">
-			<form class="">
+			<form class="" action="{% url 'summaries_see_more' course.id %}" method="get">
 				<div class="input-field">
-					<input id="search-lists" class="disable-active" type="search" required>
+					<input id="search-summaries" class="disable-active" type="search" name="q" required>
 					<label for="textarea1" class=""><i class="material-icons">search</i></label>
 				</div>
 			</form>
@@ -35,7 +35,7 @@
 
 			<a href="#" id="excluir-links" class="btn-flat left">excluir</a>
 			<a href="#" id="voltar-links" class="vanish btn-flat left">voltar</a>
-			<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
+			<a href="#modal-summary" class="right btn-flat modal-trigger">enviar</a>
 
 			{% include 'course/snippets/modal_new_summary.html'%}
 		</div>
