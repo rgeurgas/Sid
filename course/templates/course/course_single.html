@@ -253,13 +253,13 @@
 			<div class="col m12">
 				<h5>Fórum</h5>
 				<hr>
-				<ul class="collection">
+				<ul class="collection post-single">
 					{% for post in course.post.all|slice:":5" %}
 						<a href="/course/{{course.id}}/forum/{{post.id}}">
 							<li class="collection-item avatar">
 								<img src="/media/{{post.user.profile.image}}" class="circle">
 								<span class="title">{{post.title}}</span>
-								<p>{{post.text}}</p>
+								<p>{{post.text|slice:":50" }}...</p>
 								<i class="material-icons icone-rosa secondary-content">arrow_forward</i>
 							</li>
 						</a>
