@@ -21,15 +21,23 @@
 					<h5 class="center-align">Bem vindo ao Sid :)</h5>
 				</div>
       			<div class="row">
-        			<div class="input-field col s12">
+        			<div class="input-field col s12 {%if form.non_field_errors %} erou {% endif %}">
           				{{ form.username }}
-          				<label for="username">Nome de Usuário</label>	
+          				<label for="username">Nome de Usuário</label>	                 
         			</div>
         		</div>
         		<div class="row">
-        			<div class="input-field col s12">
+        			<div class="input-field col s12 {%if form.errors %} erou {% endif %}">
         				{{form.password}}
           				<label for="password">Senha</label>
+                  {% if form.errors %}
+                    <span class="helper-text" data-error=
+                    {% for error in form.non_field_errors %}
+                      "{{ error }}"
+                    {% endfor %}
+                  ></span>
+                  {% endif %}
+                  {{form.password.errors}}
         			</div>
         		</div>
         		<div class="row">

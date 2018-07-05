@@ -171,7 +171,7 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 }
 
 .vanish{
-	display: none;
+	display: none !important;
 }
 
 .dropdown-content li>a, .dropdown-content li>span{
@@ -199,4 +199,5 @@ input:not([type]):focus:not([readonly])+label, input[type=text]:not(.browser-def
 
 .nav-wrapper .input-field input[type=search]{
 	color: #000000 !important;
+>>>>>>> 2b359ee496317d17ee82430281edd463e5d93b5b
 }

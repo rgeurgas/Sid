@@ -78,10 +78,11 @@ def course_list(request):
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
 
+	print(request.method == 'POST')
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user=request.user)
-		
-		if 'add_list' in request.POST:
+
+		if 'add_list' in request.POST and request.method == "POST":
 			listForm = ListForm(course, request.POST, request.FILES)
 			if listForm.is_valid():
 				list_new = listForm.save(commit=False)
@@ -92,7 +93,7 @@ def course_details(request, pk):
 		else:
 			listForm = ListForm(course)
 		
-		if 'add_link' in request.POST:
+		if 'add_link' in request.POST and request.method == "POST":
 			linkForm = LinkForm(course, request.POST)
 			if linkForm.is_valid():
 				link = linkForm.save(commit=False)
@@ -103,7 +104,7 @@ def course_details(request, pk):
 		else:
 			linkForm = LinkForm(course)
 
-		if 'add_summary' in request.POST:
+		if 'add_summary' in request.POST and request.method == "POST":
 			summaryForm = SummaryForm(course, request.POST, request.FILES)
 			if summaryForm.is_valid():
 				summary = summaryForm.save(commit=False)
@@ -115,6 +116,7 @@ def course_details(request, pk):
 			summaryForm = SummaryForm(course)
 		
 		if 'add_post' in request.POST:
+
 			postForm = PostForm(request.POST)
 			if postForm.is_valid():
 				post = postForm.save(commit=False)
