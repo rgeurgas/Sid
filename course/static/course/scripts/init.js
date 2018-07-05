@@ -66,7 +66,7 @@ $(document).ready(function(){
 	})
 	$('.erou').children('input').focusin(function(){
 	 	$(this).removeClass('invalid');
-	})
+	});
 	
-	
+	$('li[tabindex = \'0\'].selected').addClass('disabled');	
 });
