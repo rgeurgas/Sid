@@ -3,9 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class SignUpForm(UserCreationForm):
-	birth_date = forms.DateField(widget=forms.TextInput(attrs={'id':'birthdate', 'class':'datepicker'}), input_formats=('%d %b, %Y'))
+	birth_date = forms.DateField(widget=forms.DateInput(attrs={'id':'birthdate', 'class':'datepicker'}))
 	university = forms.CharField(max_length=50)
-	bio = forms.CharField(max_length=500)
+	bio = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'id':'id_bio'}))
 	email = forms.EmailField(max_length=254, help_text='Required. Please insert a valid email')
 
 	class Meta:
@@ -17,7 +17,7 @@ class EditarForm(forms.ModelForm):
 	birth_date = forms.DateField(help_text='Required. Format: YYYY-MM-DD')
 	#COLOCAR DATEPICKER!!!
 	university = forms.CharField(max_length=50)
-	bio = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'id':'id_email'}))
+	bio = forms.CharField(max_length=500, widget=forms.Textarea(attrs={'id':'id_bio'}))
 	image = forms.ImageField()
 
 	class Meta:

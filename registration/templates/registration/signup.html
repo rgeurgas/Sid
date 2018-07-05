@@ -6,7 +6,10 @@
       <form class="col s10 offset-s1 m6 offset-m3" method="post" enctype="multipart/form-data">
   		{{ form.non_field_errors }}
     	{% for field in form %}
-    	{{field.error}}
+      <script type="text/javascript">
+        console.log({{field.error}});
+       
+      </script>  
     	{% endfor %}
     	{% csrf_token %}
 			<div class="topo">
@@ -45,6 +48,8 @@
               <div class="input-field col s12">
                   {{form.birth_date}}
                   <label for="birthdate">Data de Nascimento</label>
+                  <span class="helper-text" data-error="{{form.birth_date.errors}}" data-success="Correto" ></span>
+                  {{form.birth_date.errors}}
               </div>
             </div>
         <!-- universidade   -->
@@ -85,7 +90,7 @@
         		<div class="divider"></div>
         		<div class="row">
         			<div class="col s12">
-	        			<p class="center">Já possui uma conta? Entre <a href="#">aqui</a></p>
+	        			<p class="center">Já possui uma conta? Entre <a href="{% url 'login'%}">aqui</a></p>
         		</div>	
         		</div>
       		</div>	

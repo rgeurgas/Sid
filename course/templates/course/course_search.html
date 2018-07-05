@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+	<h5>Resultados da busca</h5>
+	<hr>
+	{% if not has_results %}
+	<h6 class="center">Não foi encontrada nenhuma disciplina :(</h6>
+	{% else %}
+	<div class="collection">
+		{% for course in search_courses %}
+			<a href="{%url 'course_details' course.id%}" class="collection-item" style="color: #374955"><b>{{course.name}}</b> - {{course.code}}</a>
+		{% endfor %}
+	</div>					
+	{% endif %}
+</div>
+<div class="row">
+	<h5>Todas as suas disciplinas</h5>
+	<hr>
+	{% if not has_user_courses %}
+	<h6 class="center">Você ainda não está inscrito em nenhuma disciplina</h6>
+	{% else %}
+	<div class="collection">
+		{% for course in user_courses %}
+			<a href="{%url 'course_details' course.id%}" class="collection-item" style="color: #374955"><b>{{course.name}}</b> - {{course.code}}</a>
+		{% endfor %}
+	</div>					
+	{% endif %}				
+</div>
+
+{% endblock %}

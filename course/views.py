@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
 
-from course.models import Course, Link, List, Summary, Post, Comment
+from course.models import Course, Link, List, Summary, Post, Comment, Teacher
 from course.forms import CourseForm, LinkForm, ListForm, SummaryForm, PostForm, CommentForm
 from registration.models import Profile
 
@@ -34,6 +34,35 @@ def home(request):
 		return render(request, 'course/home.html', context)
 
 	return redirect('login')
+
+def course_search(request):
+	query = request.GET.get('q')
+	query_tags = query.split(' ')
+
+	results = set()
+
+	for tag in query_tags:
+		for result in Course.objects.all().filter(name__icontains = tag):
+			results.add(result)
+		for result in Course.objects.all().filter(code__icontains = tag):
+			results.add(result)
+		for teacher in Teacher.objects.all().filter(name__icontains = tag):
+			for result in Course.objects.all().filter(teachers=teacher.id):
+				results.add(result)
+	results = list(results)
+
+
+	profile = Profile.objects.get(user=request.user)
+	user_courses = profile.courses.all()
+
+	context = {
+		'search_courses': results,
+		'user_courses': user_courses,
+		'has_results': len(results) > 0,
+		'has_user_courses': len(user_courses) > 0
+	}
+
+	return render(request, 'course/course_search.html', context)
 
 def course_list(request):
 	courses = Course.objects.all()
@@ -94,59 +123,52 @@ def course_details(request, pk):
 
 		context = {'course':course, 'listForm':listForm,'linkForm':linkForm,
 				   'summaryForm':summaryForm, 'postForm':postForm}
-		
+
 		return render(request, 'course/course_single.html', context)
 	
 	return redirect('login')
 
-def link_list(request):
-	links = Link.objects.all()
-	data = {}
-	data['object_list'] = links
-	return render(request, 'course/list.html', data)
+def course_all_links(request, course_pk):
+	course = Course.objects.get(pk=course_pk)
+	
+	if request.GET:
+		query = request.GET.get('q')
 
-def link_detail(request, pk):
-	link = Link.objects.get(pk=pk)
-	context = {'link':link}
-	return render(request, 'course/detail.html', context)
+		query_tags = query.split(' ')
+
+		links = set()
+		for query_tag in query_tags:
+			for result in course.link.all().filter(name__icontains = query_tag):
+				links.add(result)
+			for result in course.link.all().filter(tags__icontains = query_tag):
+				links.add(result)
+		links = list(links)
+	else:
+		links = course.link.all()
+
+	context = {
+			'course': course,
+			'links': links
+	}
+
+	return render(request, 'course/course_link_list.html', context)
+
 
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
-	pk = link.course
+	pk = link.course.id
 	link.delete()
 	return redirect('course_details', pk)
 
-def list_list(request):
-	lists = List.objects.all()
-	data = {}
-	data['object_list'] = lists
-	return render(request, 'course/list.html', data)
-
-def list_detail(request, pk):
-	list_c = List.objects.get(pk=pk)
-	context = {'list':list_c}
-	return render(request, 'course/detail.html', context)
-
 def list_remove(request, pk):
 	list_c = List.objects.get(pk=pk)
-	pk = list_c.course
+	pk = list_c.course.id
 	list_c.delete()
 	return redirect('course_details', pk)
 
-def summary_list(request):
-	summaries = Summary.objects.all()
-	data = {}
-	data['object_list'] = summaries
-	return render(request, 'course/list.html', data)
-
-def summary_detail(request, pk):
-	summary = Summary.objects.get(pk=pk)
-	context = {'summary':summary}
-	return render(request, 'course/detail.html', context)
-
 def summary_remove(request, pk):
 	summary = Summary.objects.get(pk=pk)
-	pk = summary.course
+	pk = summary.course.id
 	summary.delete()
 	return redirect('course_details', pk)
 
@@ -194,7 +216,7 @@ def post_list(request, course_pk):
 	
 	return render(request, 'course/forum_list.html', data)
 
-def post_detail(request, pk):
+def post_detail(request, course_pk, pk):
 	post = Post.objects.get(pk=pk)
 	
 	comments = list(post.comment.all())
@@ -208,7 +230,7 @@ def post_detail(request, pk):
 			new_comment.post = post
 			new_comment.user = request.user
 			new_comment.save()	
-			return redirect('post_detail', pk=post.pk)
+			return redirect('post_detail', course_pk = course_pk, pk=post.pk)
 	else:
 		form = CommentForm()
 	
@@ -224,5 +246,5 @@ def post_remove(request, pk):
 def comment_remove(request, pk):	# obs: o pk equivale ao comment
 	comment = Comment.objects.get(pk=pk)
 	comment.delete()
-	return redirect('post_detail', pk=comment.post.pk) 
+	return redirect('post_detail', course_pk = comment.post.course.id,pk=comment.post.pk) 
 
