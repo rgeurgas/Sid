@@ -7,40 +7,35 @@
 				<div class="row" style="margin-right: 10px">
 					<h5>Atividade recente</h5>
 					<hr>
-
+					{% if activities|length > 0 %}
 					<ul class="collection">
 						{% for activity in activities %}
-						<li class="collection-item avatar">
-							<img src="https://www.famousbirthdays.com/headshots/ethan-klein-3.jpg" class="circle">
+						<li class="collection-item avatar item-list" onclick="location.href='{%url 'course_details' activity.obj.course.id%}'">
+							<a href="{% url 'view_profile' activity.obj.user.profile.id %}"><img src="/media/{{activity.obj.user.profile.image}}" class="circle"></a>
 							<span class="title">{{ activity.obj.user.username }} enviou {{activity.tipo}} para {{ activity.obj.course.name }}: {{activity.obj.name}}</span>
 							{# <p>O texto vem aqui</p> #}
 							<a href="{%url 'course_details' activity.obj.course.id%}" class="secondary-content"><i class="material-icons icone-rosa">arrow_forward</i></a>
 						</li>
 						{% endfor %}
 					</ul>
+					{% else %}
+					<h6 class="center">Nenhuma atividade recente</h6>
+					{% endif %}
 				</div>
 			</div>
 			<div class="col m4">
-				<!-- <div class="row">
-					<h5>Conquistas recentes</h5>
-					<hr>
-					<div class="collection">
-						<!-- <h5 class="collection-header">Disciplinas</h5> 
-						<a href="#" class="collection-item" style="color: #374955">Disciplina A</a>
-						<a href="#" class="collection-item" style="color: #374955">Disciplina A</a>
-						<a href="#" class="collection-item" style="color: #374955">Disciplina A</a>
-						<a href="#" class="collection-item" style="color: #374955">Disciplina A</a>
-						<a href="#" class="collection-item" style="color: #374955">Disciplina A</a>
-					</div>
-				</div> -->
 				<div class="row">
 					<h5>Suas disciplinas</h5>
 					<hr>
+					{% if courses|length > 0 %}
 					<div class="collection">
 						{% for course in courses %}
 						<a href="{%url 'course_details' course.id%}" class="collection-item" style="color: #374955">{{course.name}}</a>
 						{% endfor %}
 					</div>
+					{% else %}
+					<h6 class="center">Você não possui nenhuma disciplina :(</h6>
+					{% endif %}
 				</div>
 			</div>
 		</div>

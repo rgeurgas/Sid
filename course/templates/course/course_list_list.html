@@ -1,0 +1,43 @@
+{% extends 'base.html' %}		
+
+{% block content %}
+	{% include 'course/snippets/course_top.html'%}
+		
+	<div class="row">
+		<div class="col m4">
+			<h5 class="left subtittle">Listas</h5>
+		</div>
+		<div class="col m5 offset-m3">
+			<form class="">
+				<div class="input-field">
+					<input id="search-lists" class="disable-active" type="search" required>
+					<label for="textarea1" class=""><i class="material-icons">search</i></label>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col m12">
+			<hr>
+			<ul class="collection">
+				{% for list in lists %}
+					<li class="collection-item avatar item-list-bg">
+						<a href="{% url 'view_profile' list.user.profile.id %}"><img src="/media/{{list.user.profile.image}}" class="circle collection-img"></a>
+						<span class="title">{{list.name}}</span> <br>
+						<p class="usuario-data">{{list.user.username}} • {{list.date}}</p> 
+					
+						<a href="/media/{{list.file}}" class="secondary-content"><i class="material-icons icone-rosa">
+					file_download</i></a>
+					</li>
+				{% endfor %}
+			</ul>
+
+			<a href="#" id="excluir-links" class="btn-flat left">excluir</a>
+			<a href="#" id="voltar-links" class="vanish btn-flat left">voltar</a>
+			<a href="#modal-link" class="right btn-flat modal-trigger">enviar</a>
+
+			{% include 'course/snippets/modal_new_list.html'%}
+		</div>
+	</div>
+{% endblock %}

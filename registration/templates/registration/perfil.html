@@ -7,7 +7,11 @@
 		<!-- TO DO -->
 		<div class="row topo">
 			<div class="col m9">
+				{% if profile.user.id == request.user.id %}
+				<h3>{{profile.user.username}} <a href="#modal-list" class="btn modal-trigger red draken-1">Editar Perfil</a></h3>
+				{% else %}
 				<h3>{{profile.user.username}}</h3>
+				{% endif %}
 				<h6>{{profile.bio}}</h6>
 			</div>
 			<div class="col m3">
@@ -15,8 +19,7 @@
 			</div>
 		
 
-			<a href="#modal-list" class="right btn-flat modal-trigger">Editar Perfil</a>
-				<!-- Modal form lista  -->
+			<!-- Modal form lista  -->
 			<div id="modal-list" class="modal">
 			  	<form method="post" enctype="multipart/form-data">{% csrf_token %}
 			  		<div class="modal-content">
@@ -55,32 +58,14 @@
 			</div>
 		</div>
 
-		<!--<div class="">
-			<h5 class="left-align">Conquistas</h5>
-			<hr>
-			<div class="row conquistas-bar">
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle preto-branco"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-				<div class="col m1 conquista-img"><img src="https://i.pinimg.com/originals/d4/48/b1/d448b1a9e555ff80dd93479cf61f3013.jpg" class="circle"></div>
-			</div>
-		</div>-->
-
 		<div class="row">
 			<div class="col m12">
 				<h5 class='left-align'>Atividade recente</h5>
 					<hr>
+					{% if activities|length > 0 %}
 					<ul class="collection">
 						{% for activity in activities %}
-						<li class="collection-item avatar">
+						<li class="collection-item avatar item-list" onclick="location.href='{%url 'course_details' activity.obj.course.id%}'">
 							<img src="/media/{{activity.obj.user.profile.image}}" class="circle">
 							<span class="title">{{ activity.obj.user.username }} enviou {{activity.tipo}} para {{ activity.obj.course.name }}: {{activity.obj.name}}</span>
 							{# <p>O texto vem aqui</p> #}
@@ -88,6 +73,9 @@
 						</li>
 						{% endfor %}
 					</ul>
+					{% else %}
+					<h6 class="center">Usuário não possui nenhuma atividade recente</h6>
+					{% endif %}
 			</div>
 		</div>
 
