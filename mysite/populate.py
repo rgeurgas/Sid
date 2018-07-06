@@ -1,8 +1,29 @@
 from course.models import Teacher, Course
+from allauth.socialaccount.models import SocialApp
+from django.contrib.sites.models import Site
 
-
+SocialApp.objects.all().delete()
 Teacher.objects.all().delete()
 Course.objects.all().delete()
+Site.objects.all().delete()
+
+site = Site(domain='localhost:8000', name='localhost')
+site.save()
+
+google = SocialApp(
+    provider='google',
+    name='Google',
+    client_id='391769807258-1m9ojltdvphurdmuslv4\
+aoriq4jkc5p5.apps.googleusercontent.com',
+    secret='KtzOBNQTsof9fkGlB8iC5rLK'
+)
+google.save()
+google.sites.set([site.id])
+
+print(f'Set SITE_ID = {site.id} on mysite/settings.py')
+print(f'Default domain is localhost:8000 if you want another \
+domain add it to Sites and add it on the Sites relation of the Google SocialApp \
+on Admin and set SITE_ID = {site.id+1}')
 
 # SCC
 roseli = Teacher(name='Roseli Ap. Francelin Romero')
