@@ -25,3 +25,6 @@ shell:
 
 populate:
 	$(DOCKER) run web python3 manage.py shell < mysite/populate.py
+
+changedomain:
+	$(DOCKER) run web python3 manage.py changedomain $(DOMAIN)

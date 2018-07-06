@@ -2,15 +2,13 @@ from course.models import Teacher, Course
 from django.contrib.sites.models import Site
 from allauth.socialaccount.models import SocialApp
 
+Site.objects.all().delete()
 SocialApp.objects.all().delete()
 Teacher.objects.all().delete()
 Course.objects.all().delete()
-Site.objects.all().delete()
 
 site = Site(id=0, domain='localhost:8000', name='localhost')
 site.save()
-site2 = Site(domain='example.com', name='example')
-site2.save()
 
 google = SocialApp(
     provider='google',
@@ -22,9 +20,8 @@ aoriq4jkc5p5.apps.googleusercontent.com',
 google.save()
 google.sites.set([site.id])
 
-print(f'Default domain is localhost:8000 if you want another \
-domain add it to Sites and add it on the Sites relation of the \
-Google SocialApp on Admin and set SITE_ID = {site2.id+1}')
+print(f'Default domain is localhost:8000 if you want to \
+change it run "make changedomain DOMAIN=your_domain"')
 
 # SCC
 roseli = Teacher(name='Roseli Ap. Francelin Romero')
