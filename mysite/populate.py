@@ -1,6 +1,6 @@
 from course.models import Teacher, Course
-from allauth.socialaccount.models import SocialApp
 from django.contrib.sites.models import Site
+from allauth.socialaccount.models import SocialApp
 
 SocialApp.objects.all().delete()
 Teacher.objects.all().delete()

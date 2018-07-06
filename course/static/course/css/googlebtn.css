@@ -6,6 +6,8 @@
   border: thin solid #888;
   box-shadow: 1px 1px 1px grey;
   white-space: nowrap;
+  width: 100%;
+  height: 100%;
 }
 
 #customBtn:hover {
@@ -21,6 +23,8 @@ span.icon {
   background: url('https://developers.google.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
   display: inline-block;
   vertical-align: middle;
+  width: 32px;
+  height: 32px;
 }
 
 span.buttonText {
