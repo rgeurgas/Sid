@@ -2,11 +2,13 @@ import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from course.models import Course, Link, List, Summary, Post, Comment, Teacher
 from course.forms import CourseForm, LinkForm, ListForm, SummaryForm, PostForm, CommentForm
 from registration.models import Profile
 
+@login_required
 def home(request):
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(user=request.user)
@@ -35,6 +37,7 @@ def home(request):
 
 	return redirect('login')
 
+@login_required
 def course_search(request):
 	query = request.GET.get('q')
 	query_tags = query.split(' ')
@@ -64,6 +67,7 @@ def course_search(request):
 
 	return render(request, 'course/course_search.html', context)
 
+@login_required
 def course_details(request, pk):
 	course = Course.objects.get(pk=pk)
 
@@ -122,6 +126,7 @@ def course_details(request, pk):
 	
 	return redirect('login')
 
+@login_required
 def course_all_links(request, course_pk):
 	course = Course.objects.get(pk=course_pk)
 	
@@ -160,6 +165,7 @@ def course_all_links(request, course_pk):
 
 	return render(request, 'course/course_link_list.html', context)
 
+@login_required
 def course_all_lists(request, course_pk):
 	course = Course.objects.get(pk=course_pk)
 	
@@ -198,6 +204,7 @@ def course_all_lists(request, course_pk):
 
 	return render(request, 'course/course_list_list.html', context)
 
+@login_required
 def course_all_summaries(request, course_pk):
 	course = Course.objects.get(pk=course_pk)
 	
@@ -235,36 +242,42 @@ def course_all_summaries(request, course_pk):
 
 	return render(request, 'course/course_summary_list.html', context)
 
+@login_required
 def course_sub(request, course_pk):
 	profile = Profile.objects.get(user=request.user)
 	profile.courses.add(course_pk)
 
 	return redirect('course_details', pk=course_pk)
 
+@login_required
 def course_unsub(request, course_pk):
 	profile = Profile.objects.get(user=request.user)
 	profile.courses.remove(course_pk)
 
 	return redirect('course_details', pk=course_pk)
 
+@login_required
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
 	pk = link.course.id
 	link.delete()
 	return redirect('course_details', pk)
 
+@login_required
 def list_remove(request, pk):
 	list_c = List.objects.get(pk=pk)
 	pk = list_c.course.id
 	list_c.delete()
 	return redirect('course_details', pk)
 
+@login_required
 def summary_remove(request, pk):
 	summary = Summary.objects.get(pk=pk)
 	pk = summary.course.id
 	summary.delete()
 	return redirect('course_details', pk)
 
+@login_required
 def download(request, path):
 	file_path = os.path.join(settings.MEDIA_ROOT, path)
 	if os.path.exists(file_path):
@@ -273,6 +286,7 @@ def download(request, path):
 			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 			return response
 
+@login_required
 def post_new(request, course_pk):
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES)
@@ -287,6 +301,7 @@ def post_new(request, course_pk):
 
 	return render(request, 'forum/post_new.html', {'form':form})
 
+@login_required
 def post_list(request, course_pk):
 	posts = Post.objects.all()
 	course = Course.objects.get(pk=course_pk)
@@ -309,6 +324,7 @@ def post_list(request, course_pk):
 	
 	return render(request, 'course/forum_list.html', data)
 
+@login_required
 def post_detail(request, course_pk, pk):
 	post = Post.objects.get(pk=pk)
 	
@@ -331,11 +347,13 @@ def post_detail(request, course_pk, pk):
 	
 	return render(request, 'course/forum_single.html', context)
 
+@login_required
 def post_remove(request, course_pk, pk):
 	post = Post.objects.get(pk=pk)
 	post.delete()
 	return redirect('post_list') 
 
+@login_required
 def comment_remove(request, course_pk, pk):	# obs: o pk equivale ao comment
 	comment = Comment.objects.get(pk=pk)
 	comment.delete()

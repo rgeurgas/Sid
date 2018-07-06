@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 from course.models import Course
 from registration.forms import SignUpForm, EditarForm
@@ -25,7 +26,7 @@ def signup(request):
 		form = SignUpForm()
 	return render(request, 'registration/signup.html', {'form': form})
 
-
+@login_required
 def view_profile(request, pk):
 	if request.user.is_authenticated:
 		profile = Profile.objects.get(id=pk)
@@ -70,6 +71,6 @@ def view_profile(request, pk):
 
 	return redirect('login')
 
-
+@login_required
 def approve_and_close(request):
 	return HttpResponse('<script type="text/javascript"> window.opener.parent.location.href = "/"; window.close(); </script>')
