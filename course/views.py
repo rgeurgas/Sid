@@ -260,21 +260,30 @@ def course_unsub(request, course_pk):
 def link_remove(request, pk):
 	link = Link.objects.get(pk=pk)
 	pk = link.course.id
-	link.delete()
+	
+	if request.user.username == link.user.username:
+		link.delete()
+	
 	return redirect('course_details', pk)
 
 @login_required
 def list_remove(request, pk):
 	list_c = List.objects.get(pk=pk)
 	pk = list_c.course.id
-	list_c.delete()
+		
+	if request.user.username == list_c.user.username:
+		list_c.delete()
+	
 	return redirect('course_details', pk)
 
 @login_required
 def summary_remove(request, pk):
 	summary = Summary.objects.get(pk=pk)
 	pk = summary.course.id
-	summary.delete()
+	
+	if request.user.username == summary.user.username:
+		summary.delete()
+	
 	return redirect('course_details', pk)
 
 @login_required
@@ -350,11 +359,17 @@ def post_detail(request, course_pk, pk):
 @login_required
 def post_remove(request, course_pk, pk):
 	post = Post.objects.get(pk=pk)
-	post.delete()
+	
+	if request.user.username == post.user.username:
+		post.delete()
+	
 	return redirect('post_list') 
 
 @login_required
 def comment_remove(request, course_pk, pk):	# obs: o pk equivale ao comment
 	comment = Comment.objects.get(pk=pk)
-	comment.delete()
+	
+	if request.user.username == comment.user.username:
+		comment.delete()
+	
 	return redirect('post_detail', course_pk=comment.post.course.id, pk=comment.post.pk) 
